@@ -12,4 +12,5 @@
 - **الـ SKUs:**
 - **توزيع الميزانية (budget split):**
 - **رابط المتجر (store URL):**
-- **اسم الحساب في Windsor (Windsor account name):**
+- **اسم الحساب في Windsor (Windsor account name):** TikTok = `Zain abaya` (id `7494645342479319056`). Meta/Snapchat غير متصلة بعد.
+- **منصة المتجر (store platform):** Salla (سلة).
