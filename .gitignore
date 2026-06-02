@@ -1,0 +1,10 @@
+# Secrets / مفاتيح
+.env
+.env.*
+*.key
+*token*
+*secret*
+*credentials*
+
+# Raw exports الخام من المنصات
+raw/
