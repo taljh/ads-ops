@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily Brief — June 8, 2026</title>
+<style>
+  :root {
+    --green:  #16a34a;
+    --green-bg: #f0fdf4;
+    --green-border: #bbf7d0;
+    --yellow: #ca8a04;
+    --yellow-bg: #fefce8;
+    --yellow-border: #fde68a;
+    --red:    #dc2626;
+    --red-bg: #fef2f2;
+    --red-border: #fecaca;
+    --blue:   #2563eb;
+    --blue-bg: #eff6ff;
+    --blue-border: #bfdbfe;
+    --gray:   #6b7280;
+    --gray-bg: #f9fafb;
+    --gray-border: #e5e7eb;
+    --dark:   #111827;
+    --card-shadow: 0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.05);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f3f4f6;
+    color: var(--dark);
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: #0f172a;
+    color: white;
+    padding: 28px 40px 24px;
+  }
+  .page-header .meta { font-size: 11px; color: #94a3b8; margin-bottom: 6px; letter-spacing: .05em; text-transform: uppercase; }
+  .page-header h1 { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+  .page-header .subtitle { font-size: 13px; color: #cbd5e1; }
+  .header-pills { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600;
+  }
+  .pill.maintenance { background: #1e40af; color: #bfdbfe; }
+  .pill.day { background: #374151; color: #d1d5db; }
+  .pill.peak-warn { background: #92400e; color: #fde68a; }
+
+  /* ── LAYOUT ── */
+  .page-body { padding: 28px 40px; max-width: 1300px; margin: 0 auto; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  .four-col { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; }
+
+  /* ── CLIENT BLOCK ── */
+  .client-block { background: white; border-radius: 12px; box-shadow: var(--card-shadow); overflow: hidden; margin-bottom: 28px; }
+  .client-header {
+    padding: 16px 22px 14px;
+    display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 1px solid #f1f5f9;
+  }
+  .client-header.noura { background: linear-gradient(135deg,#fdf4ff,#fae8ff); }
+  .client-header.zain  { background: linear-gradient(135deg,#f0f9ff,#e0f2fe); }
+  .client-title { font-size: 16px; font-weight: 700; }
+  .client-sub   { font-size: 11px; color: var(--gray); margin-top: 2px; }
+  .client-body  { padding: 22px; }
+
+  /* ── KPI CARDS ── */
+  .kpi-card {
+    background: var(--gray-bg);
+    border: 1px solid var(--gray-border);
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+  .kpi-card .label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: .05em; color: var(--gray); margin-bottom: 4px; }
+  .kpi-card .value { font-size: 22px; font-weight: 800; line-height: 1; }
+  .kpi-card .sub   { font-size: 11px; color: var(--gray); margin-top: 4px; }
+  .kpi-card.green  { background: var(--green-bg); border-color: var(--green-border); }
+  .kpi-card.green .value { color: var(--green); }
+  .kpi-card.yellow { background: var(--yellow-bg); border-color: var(--yellow-border); }
+  .kpi-card.yellow .value { color: var(--yellow); }
+  .kpi-card.red    { background: var(--red-bg); border-color: var(--red-border); }
+  .kpi-card.red .value    { color: var(--red); }
+  .kpi-card.blue   { background: var(--blue-bg); border-color: var(--blue-border); }
+  .kpi-card.blue .value   { color: var(--blue); }
+
+  /* ── SECTION TITLE ── */
+  .section-title {
+    font-size: 10px; font-weight: 700; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--gray);
+    margin: 22px 0 10px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .section-title::after { content:''; flex: 1; height: 1px; background: #e5e7eb; }
+
+  /* ── TABLES ── */
+  table { width: 100%; border-collapse: collapse; }
+  th {
+    text-align: left; font-size: 10px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: .05em;
+    color: var(--gray); padding: 6px 10px;
+    background: #f8fafc; border-bottom: 1px solid #e5e7eb;
+  }
+  td { padding: 9px 10px; border-bottom: 1px solid #f1f5f9; font-size: 12px; vertical-align: middle; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #fafafa; }
+  .table-wrap { border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden; }
+
+  /* ── BADGES ── */
+  .badge {
+    display: inline-block; padding: 2px 8px; border-radius: 20px;
+    font-size: 10px; font-weight: 700; white-space: nowrap;
+  }
+  .badge.green  { background: var(--green-bg);  color: var(--green);  border: 1px solid var(--green-border); }
+  .badge.yellow { background: var(--yellow-bg); color: var(--yellow); border: 1px solid var(--yellow-border); }
+  .badge.red    { background: var(--red-bg);    color: var(--red);    border: 1px solid var(--red-border); }
+  .badge.gray   { background: var(--gray-bg);   color: var(--gray);   border: 1px solid var(--gray-border); }
+  .badge.blue   { background: var(--blue-bg);   color: var(--blue);   border: 1px solid var(--blue-border); }
+  .badge.paused { background: #f1f5f9; color: #64748b; border: 1px solid #cbd5e1; }
+
+  /* ── PACING BAR ── */
+  .pacing-wrap { margin-top: 4px; }
+  .pacing-label { display: flex; justify-content: space-between; font-size: 11px; color: var(--gray); margin-bottom: 5px; }
+  .pacing-track { background: #e5e7eb; border-radius: 4px; height: 8px; overflow: hidden; position: relative; }
+  .pacing-fill { height: 100%; border-radius: 4px; }
+  .pacing-fill.green  { background: var(--green); }
+  .pacing-fill.yellow { background: #eab308; }
+  .pacing-fill.red    { background: var(--red); }
+  .pacing-cap { position: absolute; top: -2px; bottom: -2px; width: 2px; background: #374151; border-radius: 1px; }
+
+  /* ── DECISION CARDS ── */
+  .decision-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px,1fr)); gap: 12px; }
+  .decision-card {
+    border-radius: 10px; padding: 14px 16px;
+    border-left: 4px solid;
+  }
+  .decision-card.urgent { border-color: var(--red);    background: var(--red-bg); }
+  .decision-card.watch  { border-color: var(--yellow); background: var(--yellow-bg); }
+  .decision-card.action { border-color: var(--blue);   background: var(--blue-bg); }
+  .decision-card.ok     { border-color: var(--green);  background: var(--green-bg); }
+  .decision-card .d-title { font-weight: 700; font-size: 12px; margin-bottom: 5px; }
+  .decision-card .d-reason { font-size: 11px; color: #374151; line-height: 1.5; }
+  .decision-card .d-tag { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; margin-bottom: 6px; }
+  .decision-card.urgent .d-tag { color: var(--red); }
+  .decision-card.watch  .d-tag { color: var(--yellow); }
+  .decision-card.action .d-tag { color: var(--blue); }
+  .decision-card.ok     .d-tag { color: var(--green); }
+
+  /* ── CREATIVE SCORECARD ── */
+  .creative-row { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid #f1f5f9; }
+  .creative-row:last-child { border-bottom: none; }
+  .creative-rank { width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; flex-shrink: 0; }
+  .creative-rank.gold   { background: #fef9c3; color: #854d0e; }
+  .creative-rank.silver { background: #f1f5f9; color: #374151; }
+  .creative-rank.bronze { background: #fff7ed; color: #9a3412; }
+  .creative-rank.dead   { background: #fee2e2; color: #991b1b; }
+  .creative-name { flex: 1; font-size: 12px; font-weight: 600; min-width: 0; }
+  .creative-name small { display: block; font-weight: 400; color: var(--gray); font-size: 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .creative-metrics { display: flex; gap: 8px; flex-shrink: 0; }
+  .cm { text-align: center; }
+  .cm .v { font-size: 13px; font-weight: 700; }
+  .cm .l { font-size: 9px; color: var(--gray); text-transform: uppercase; letter-spacing: .03em; }
+  .cm .v.green  { color: var(--green); }
+  .cm .v.yellow { color: var(--yellow); }
+  .cm .v.red    { color: var(--red); }
+  .cm .v.gray   { color: var(--gray); }
+
+  /* ── BAR CHART ── */
+  .bar-chart { padding: 6px 0; }
+  .bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .bar-row:last-child { margin-bottom: 0; }
+  .bar-label { width: 90px; font-size: 11px; font-weight: 600; flex-shrink: 0; text-align: right; }
+  .bar-track { flex: 1; background: #f1f5f9; border-radius: 3px; height: 18px; overflow: hidden; }
+  .bar-fill  { height: 100%; border-radius: 3px; display: flex; align-items: center; padding-left: 8px; font-size: 10px; font-weight: 700; color: white; white-space: nowrap; }
+  .bar-row .bar-value { width: 60px; font-size: 11px; font-weight: 700; flex-shrink: 0; }
+
+  /* ── GUARDRAILS ── */
+  .guardrail-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 8px; }
+  .gr-item {
+    display: flex; align-items: center; gap: 8px;
+    padding: 9px 12px; border-radius: 8px;
+    background: white; border: 1px solid #e5e7eb;
+    font-size: 11px;
+  }
+  .gr-icon { width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; flex-shrink: 0; }
+  .gr-icon.pass  { background: var(--green-bg);  color: var(--green); }
+  .gr-icon.warn  { background: var(--yellow-bg); color: var(--yellow); }
+  .gr-icon.fail  { background: var(--red-bg);    color: var(--red); }
+  .gr-icon.pause { background: #f1f5f9; color: #64748b; }
+  .gr-text .gr-title { font-weight: 600; font-size: 11px; }
+  .gr-text .gr-val   { font-size: 10px; color: var(--gray); }
+
+  /* ── ACTION PLAN TIMELINE ── */
+  .timeline { position: relative; padding-left: 28px; }
+  .timeline::before { content: ''; position: absolute; left: 8px; top: 6px; bottom: 6px; width: 2px; background: #e5e7eb; }
+  .tl-item { position: relative; margin-bottom: 16px; }
+  .tl-item:last-child { margin-bottom: 0; }
+  .tl-dot { position: absolute; left: -24px; top: 2px; width: 14px; height: 14px; border-radius: 50%; border: 2px solid white; }
+  .tl-dot.red    { background: var(--red); }
+  .tl-dot.yellow { background: #eab308; }
+  .tl-dot.blue   { background: var(--blue); }
+  .tl-dot.green  { background: var(--green); }
+  .tl-time { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--gray); margin-bottom: 3px; }
+  .tl-title { font-size: 12px; font-weight: 700; margin-bottom: 2px; }
+  .tl-desc  { font-size: 11px; color: #374151; }
+
+  /* ── SALLA ATTRIBUTION ── */
+  .salla-box { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 10px; padding: 14px 16px; }
+
+  /* ── SEPARATOR ── */
+  .client-divider { height: 2px; background: linear-gradient(90deg, #e2e8f0, transparent); margin: 8px 0 24px; }
+
+  /* ── INSIGHT BOX ── */
+  .insight { border-radius: 8px; padding: 12px 14px; margin-top: 10px; font-size: 11px; line-height: 1.6; }
+  .insight.blue   { background: var(--blue-bg);   border: 1px solid var(--blue-border); color: #1e3a8a; }
+  .insight.green  { background: var(--green-bg);  border: 1px solid var(--green-border); color: #14532d; }
+  .insight.red    { background: var(--red-bg);    border: 1px solid var(--red-border); color: #7f1d1d; }
+  .insight.yellow { background: var(--yellow-bg); border: 1px solid var(--yellow-border); color: #713f12; }
+  .insight strong { font-weight: 700; }
+
+  /* ── FOOTER ── */
+  .page-footer { text-align: center; padding: 20px; font-size: 11px; color: #9ca3af; }
+
+  /* ── MISC ── */
+  .mt8  { margin-top: 8px; }
+  .mt12 { margin-top: 12px; }
+  .mt16 { margin-top: 16px; }
+  .strike { text-decoration: line-through; color: var(--gray); }
+  .mono { font-family: 'SF Mono', 'Fira Code', monospace; }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     PAGE HEADER
+══════════════════════════════════════════ -->
+<div class="page-header">
+  <div class="meta">Ads Operations — Daily Brief</div>
+  <h1>Campaign Review &amp; Decision Board</h1>
+  <div class="subtitle">Date: June 8, 2026 &nbsp;·&nbsp; Data: Windsor.ai (TikTok / Snapchat) + Salla MCP &nbsp;·&nbsp; Period: Jun 2–8 + MTD</div>
+  <div class="header-pills">
+    <span class="pill day">Day 8 of 30</span>
+    <span class="pill maintenance">Phase: Maintenance</span>
+    <span class="pill peak-warn">Next Peak: Jun 26 → Jul 3</span>
+  </div>
+</div>
+
+<div class="page-body">
+
+
+<!-- ══════════════════════════════════════════
+     NOURA
+══════════════════════════════════════════ -->
+<div class="client-block">
+  <div class="client-header noura">
+    <div>
+      <div class="client-title">Noura — عبايات نوره</div>
+      <div class="client-sub">Platforms: TikTok (primary) + Snapchat (STOPPED Jun 6) &nbsp;·&nbsp; Store: Salla (abay-nora.com)</div>
+    </div>
+    <div style="text-align:right">
+      <div style="font-size:11px;color:#6b7280;">Monthly Cap</div>
+      <div style="font-size:18px;font-weight:800;color:#6d28d9;">15,000 SAR</div>
+    </div>
+  </div>
+  <div class="client-body">
+
+    <!-- KPIs -->
+    <div class="section-title">Key Metrics — MTD (June 1–8)</div>
+    <div class="four-col">
+      <div class="kpi-card yellow">
+        <div class="label">Blended ROAS</div>
+        <div class="value">5.42</div>
+        <div class="sub">Target 6.0 &nbsp;·&nbsp; Floor 4.5 ✓</div>
+      </div>
+      <div class="kpi-card blue">
+        <div class="label">Salla Revenue (MTD)</div>
+        <div class="value">22,487</div>
+        <div class="sub">SAR &nbsp;·&nbsp; 59 orders confirmed</div>
+      </div>
+      <div class="kpi-card blue">
+        <div class="label">Total Ad Spend (MTD est.)</div>
+        <div class="value">~4,145</div>
+        <div class="sub">SAR &nbsp;·&nbsp; TikTok + Snapchat pre-stop</div>
+      </div>
+      <div class="kpi-card green">
+        <div class="label">Projected June Total</div>
+        <div class="value">~13,200</div>
+        <div class="sub">SAR &nbsp;·&nbsp; within 15K cap ✓</div>
+      </div>
+    </div>
+
+    <!-- Monthly Pacing -->
+    <div class="section-title">Monthly Pacing</div>
+    <div class="pacing-wrap">
+      <div class="pacing-label">
+        <span>Spent so far: ~4,145 SAR</span>
+        <span>Projected: ~13,200 SAR &nbsp;|&nbsp; Cap: 15,000 SAR</span>
+      </div>
+      <div class="pacing-track">
+        <div class="pacing-fill green" style="width:88%"></div>
+        <div class="pacing-cap" style="left:88%"></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:10px;color:#9ca3af;margin-top:4px;">
+        <span>0</span>
+        <span style="margin-left:calc(88% - 30px)">13,200 (projected)</span>
+        <span>15,000</span>
+      </div>
+    </div>
+    <div class="insight green mt8">
+      <strong>Snapchat stopped Jun 6</strong> — going forward TikTok-only at ~395 SAR/day. Remaining 22 days × 395 = ~8,690 SAR. Total projected ~13,200 SAR. Safe headroom of ~1,800 SAR reserved for peak scale (Jun 26+).
+    </div>
+
+    <!-- Salla Revenue Attribution -->
+    <div class="section-title">Salla Revenue Attribution — MTD</div>
+    <div class="two-col">
+      <div>
+        <div class="bar-chart">
+          <div class="bar-row">
+            <div class="bar-label">Direct</div>
+            <div class="bar-track"><div class="bar-fill" style="width:57%;background:#6d28d9;">57%</div></div>
+            <div class="bar-value" style="color:#6d28d9;font-weight:800;">12,903 SAR</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">TikTok</div>
+            <div class="bar-track"><div class="bar-fill" style="width:43%;background:#0284c7;">43%</div></div>
+            <div class="bar-value" style="color:#0284c7;font-weight:800;">9,584 SAR</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">Snapchat</div>
+            <div class="bar-track"><div class="bar-fill" style="width:0%;background:#dc2626;">0%</div></div>
+            <div class="bar-value" style="color:#dc2626;font-weight:800;">0 SAR ✓</div>
+          </div>
+        </div>
+        <div class="insight blue mt8" style="font-size:10px;">
+          <strong>Halo effect confirmed:</strong> "Direct" = organic + TikTok halo (non-click conversions). May baseline was 64% Direct — June at 57% = healthy. Snapchat showing zero confirms Jun 6 stop decision was correct.
+        </div>
+      </div>
+      <div class="salla-box">
+        <div style="font-size:11px;font-weight:700;color:#15803d;margin-bottom:10px;">59 Confirmed Orders (Last 7 Days)</div>
+        <table>
+          <tr><td style="font-size:11px;">Most recent order</td><td style="font-weight:700;font-size:11px;">418 SAR</td><td><span class="badge yellow">Pending Review</span></td></tr>
+          <tr><td style="font-size:11px;">2nd order</td><td style="font-weight:700;font-size:11px;">434 SAR</td><td><span class="badge yellow">Pending Review</span></td></tr>
+          <tr><td style="font-size:11px;">3rd order</td><td style="font-weight:700;font-size:11px;">798 SAR</td><td><span class="badge yellow">Pending Review</span></td></tr>
+        </table>
+        <div style="margin-top:10px;font-size:10px;color:#15803d;font-style:italic;">"Pending Review" = paid &amp; confirmed. Counts as real revenue.</div>
+        <div style="margin-top:8px;font-size:11px;">Abandoned carts: <strong style="color:#dc2626;">801</strong> — retargeting opportunity</div>
+      </div>
+    </div>
+
+    <!-- TikTok Campaign Performance -->
+    <div class="section-title">TikTok — Campaign Level (Jun 2–8)</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Campaign</th>
+            <th>Status</th>
+            <th>Spend</th>
+            <th>Conv.</th>
+            <th>ROAS</th>
+            <th>CPA</th>
+            <th>CTR</th>
+            <th>Freq.</th>
+            <th>Verdict</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Main | May 2026</strong></td>
+            <td><span class="badge green">ACTIVE</span></td>
+            <td>2,615 SAR</td>
+            <td>33</td>
+            <td style="font-weight:800;color:#ca8a04;">4.97</td>
+            <td style="font-weight:800;color:#ca8a04;">79.2</td>
+            <td>3.28%</td>
+            <td style="color:#ca8a04;font-weight:700;">2.90 ⚠</td>
+            <td><span class="badge yellow">Monitor</span></td>
+          </tr>
+          <tr style="background:#fff7f7;">
+            <td><strong>Gulf Sales | JUN</strong></td>
+            <td><span class="badge green">ACTIVE</span></td>
+            <td>148 SAR</td>
+            <td>1</td>
+            <td style="font-weight:800;color:#dc2626;">3.02</td>
+            <td style="font-weight:800;color:#dc2626;">148</td>
+            <td>9.82%</td>
+            <td>2.12</td>
+            <td><span class="badge red">Watch Today</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Ad Group Level -->
+    <div class="section-title">TikTok — Ad Group Level (Jun 2–8, Main Campaign)</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Ad Group</th>
+            <th>Strategy</th>
+            <th>Spend</th>
+            <th>Conv.</th>
+            <th>ROAS</th>
+            <th>CPA</th>
+            <th>CTR</th>
+            <th>Freq.</th>
+            <th>Verdict</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="background:#f0fdf4;">
+            <td><strong>Asayel | NTC | looklike</strong></td>
+            <td><span class="badge blue">Lookalike</span></td>
+            <td>1,020 SAR</td>
+            <td>14</td>
+            <td style="font-weight:800;color:#16a34a;">6.11</td>
+            <td style="font-weight:800;color:#16a34a;">72.9</td>
+            <td>2.30%</td>
+            <td>2.69</td>
+            <td><span class="badge green">Keep — Don't Touch</span></td>
+          </tr>
+          <tr style="background:#fff7f7;">
+            <td><strong>Wasayef</strong></td>
+            <td><span class="badge yellow">Target Cost</span></td>
+            <td>1,597 SAR</td>
+            <td>20</td>
+            <td style="font-weight:800;color:#dc2626;">4.50</td>
+            <td style="font-weight:800;color:#ca8a04;">79.9</td>
+            <td>3.65%</td>
+            <td>2.52</td>
+            <td><span class="badge yellow">ABO Candidate</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="insight blue mt8">
+      <strong>Key insight:</strong> Asayel Lookalike (ROAS 6.11, CPA 72.9) is carrying the campaign. Wasayef at ROAS 4.50 = exactly at the guardrail floor. Wasayef's weakness is being dragged by <strong>Image carousel 3</strong> (see Creative Analysis below).
+    </div>
+
+    <!-- Snapchat Status -->
+    <div class="section-title">Snapchat — Status</div>
+    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:14px 18px;display:flex;gap:24px;flex-wrap:wrap;">
+      <div>
+        <div style="font-size:10px;color:#64748b;text-transform:uppercase;font-weight:700;">Decision</div>
+        <div style="font-size:14px;font-weight:800;color:#64748b;">STOPPED — Jun 6, 2026</div>
+      </div>
+      <div>
+        <div style="font-size:10px;color:#64748b;text-transform:uppercase;font-weight:700;">Salla Purchases</div>
+        <div style="font-size:14px;font-weight:800;color:#dc2626;">0 SAR (confirmed)</div>
+      </div>
+      <div>
+        <div style="font-size:10px;color:#64748b;text-transform:uppercase;font-weight:700;">Platform Claimed</div>
+        <div style="font-size:14px;font-weight:800;color:#64748b;">6,478 SAR <span style="font-size:11px;font-weight:400;">(5× inflation)</span></div>
+      </div>
+      <div>
+        <div style="font-size:10px;color:#64748b;text-transform:uppercase;font-weight:700;">Frequency (Campaign)</div>
+        <div style="font-size:14px;font-weight:800;color:#dc2626;">8.77 (limit: 6)</div>
+      </div>
+      <div>
+        <div style="font-size:10px;color:#64748b;text-transform:uppercase;font-weight:700;">Action</div>
+        <div style="font-size:14px;font-weight:800;color:#16a34a;">Done ✓</div>
+      </div>
+    </div>
+
+    <!-- WASAYEF CREATIVE DEEP DIVE -->
+    <div class="section-title">Wasayef Creative Analysis — ABO Decision (May 15–Jun 8)</div>
+
+    <div class="insight red">
+      <strong>Root cause of Wasayef ROAS 4.50:</strong> Image carousel 3 consumed 1,780 SAR at ROAS 4.04 (CPA 98.9). Without it, Wasayef's true ROAS = ~8+. The ABO solves this by isolating the winner.
+    </div>
+
+    <div class="mt12">
+      <!-- Carousel 4 vs 3 bar comparison -->
+      <div class="bar-chart">
+        <div class="bar-row">
+          <div class="bar-label" style="color:#16a34a;font-weight:800;">carousel 4</div>
+          <div class="bar-track"><div class="bar-fill" style="width:78%;background:#16a34a;">ROAS 8.15 — 12 conv — CPA 43 SAR</div></div>
+          <div class="bar-value" style="color:#16a34a;font-size:13px;">✓ WINNER</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label" style="color:#dc2626;font-weight:800;">carousel 3</div>
+          <div class="bar-track"><div class="bar-fill" style="width:43%;background:#dc2626;">ROAS 3.53 — 8 conv — CPA 105 SAR</div></div>
+          <div class="bar-value" style="color:#dc2626;font-size:13px;">✗ KILL</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label" style="color:#dc2626;font-weight:800;">@M reply</div>
+          <div class="bar-track"><div class="bar-fill" style="width:0%;background:#dc2626;"></div><div style="padding:3px 8px;font-size:10px;color:#dc2626;">206 SAR — 0 conv — Freq 3.37</div></div>
+          <div class="bar-value" style="color:#dc2626;font-size:13px;">✗ KILL NOW</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt12">
+      <div style="font-size:11px;font-weight:700;color:#374151;margin-bottom:8px;">All Wasayef Creatives — Full Scorecard</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Rank</th><th>Creative</th><th>Period</th><th>Spend</th><th>Conv.</th><th>ROAS</th><th>CPA</th><th>CTR</th><th>Freq.</th><th>ABO?</th></tr>
+          </thead>
+          <tbody>
+            <tr style="background:#f0fdf4;">
+              <td><span class="badge green">1st</span></td>
+              <td><strong>Image carousel 4</strong></td>
+              <td>Jun 2–8</td>
+              <td>519 SAR</td>
+              <td><strong>12</strong></td>
+              <td style="font-weight:800;color:#16a34a;">8.15</td>
+              <td style="font-weight:800;color:#16a34a;">43</td>
+              <td>3.69%</td>
+              <td>1.95</td>
+              <td><span class="badge green">YES — Primary</span></td>
+            </tr>
+            <tr style="background:#fefce8;">
+              <td><span class="badge yellow">2nd</span></td>
+              <td><strong>وصايف تجنن ي بنات</strong></td>
+              <td>May–Jun</td>
+              <td>55 SAR</td>
+              <td>3</td>
+              <td style="font-weight:800;color:#16a34a;">25.34</td>
+              <td style="font-weight:800;color:#16a34a;">18</td>
+              <td>1.05%</td>
+              <td>1.56</td>
+              <td><span class="badge yellow">YES — Wild Card</span></td>
+            </tr>
+            <tr style="background:#fff7f7;">
+              <td><span class="badge red">Kill</span></td>
+              <td><strong>Image carousel 3</strong></td>
+              <td>May–Jun</td>
+              <td>1,780 SAR</td>
+              <td>18</td>
+              <td style="font-weight:800;color:#dc2626;">4.04</td>
+              <td style="font-weight:800;color:#dc2626;">98.9</td>
+              <td>5.11%</td>
+              <td>2.51</td>
+              <td><span class="badge red">NO — Pause Main</span></td>
+            </tr>
+            <tr style="background:#fff7f7;">
+              <td><span class="badge red">Kill</span></td>
+              <td><strong>الرد على @M</strong></td>
+              <td>Jun 2–8</td>
+              <td>206 SAR</td>
+              <td style="color:#dc2626;font-weight:800;">0</td>
+              <td style="font-weight:800;color:#dc2626;">0</td>
+              <td style="font-weight:800;color:#dc2626;">∞</td>
+              <td>0.86%</td>
+              <td style="color:#dc2626;font-weight:700;">3.37</td>
+              <td><span class="badge red">NO — Guardrail #6</span></td>
+            </tr>
+            <tr style="background:#f8fafc;">
+              <td><span class="badge gray">—</span></td>
+              <td>وصايف الرهيييييبه</td>
+              <td>Jun 2–8</td>
+              <td>2 SAR</td>
+              <td>0</td>
+              <td style="color:#9ca3af;">—</td>
+              <td style="color:#9ca3af;">—</td>
+              <td>3.95%</td>
+              <td>1.79</td>
+              <td><span class="badge gray">Too early</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="insight yellow mt8">
+      <strong>Wild Card note (وصايف تجنن):</strong> ROAS 25.34 with only 3 conversions in May. June 2–8 shows 0 conv on 36 SAR spend — unclear if it stalled. Include in ABO as 2nd creative but set a stop rule: if spend hits 150 SAR with 0 conversions, pause it.
+    </div>
+
+    <!-- NOURA DECISION BOARD -->
+    <div class="section-title">Noura — Decision Board</div>
+    <div class="decision-grid">
+      <div class="decision-card urgent">
+        <div class="d-tag">Urgent — Today</div>
+        <div class="d-title">Kill: "الرد على @M" from Main</div>
+        <div class="d-reason">206 SAR spend in Jun 2–8 with 0 conversions. Frequency 3.37. Guardrail #6 triggered: spend ≥ 2× CPA ceiling (150 SAR) + zero conversions = stop immediately.</div>
+      </div>
+      <div class="decision-card urgent">
+        <div class="d-tag">Urgent — Today</div>
+        <div class="d-title">Kill: Image carousel 3 from Main</div>
+        <div class="d-reason">1,780 SAR spend at ROAS 4.04, CPA 98.9 SAR (above 90 ceiling). This single creative is the reason Wasayef's ROAS sits at 4.50. Removing it restores true Wasayef performance.</div>
+      </div>
+      <div class="decision-card action">
+        <div class="d-tag">Action — This Week</div>
+        <div class="d-title">Launch: New ABO Campaign for Wasayef</div>
+        <div class="d-reason">
+          Structure: 1 ad group · Broad targeting · No Target Cost<br><br>
+          <strong>Creative 1:</strong> Image carousel 4 (primary — ROAS 8.15, 12 conv)<br>
+          <strong>Creative 2:</strong> وصايف تجنن (wild card — ROAS 25 / 3 conv)<br><br>
+          Budget: 150–200 SAR/day. Wait 48h before pausing Wasayef from Main.
+        </div>
+      </div>
+      <div class="decision-card watch">
+        <div class="d-tag">Watch — Daily</div>
+        <div class="d-title">Gulf Sales | JUN: Decision Point</div>
+        <div class="d-reason">Spend so far: 148 SAR · Conversions: 1 · Guardrail limit: 150 SAR with 0 new conversions = stop.<br><br>If it gets another 1–2 conversions today → keep. If 0 → pause and redirect budget to Main.</div>
+      </div>
+      <div class="decision-card watch">
+        <div class="d-tag">Watch — This Week</div>
+        <div class="d-title">Asayel Lookalike: Frequency 2.90</div>
+        <div class="d-reason">Approaching the prospecting limit of 3.0. Currently ROAS 6.11 and performing well — do not touch. But prepare a fresh creative if frequency crosses 3.0+ and ROAS starts dropping.</div>
+      </div>
+      <div class="decision-card ok">
+        <div class="d-tag">Confirmed</div>
+        <div class="d-title">Snapchat: Stopped ✓</div>
+        <div class="d-reason">0 SAR Salla revenue confirmed in June. Salla traffic sources shows Snapchat = 0 purchases. Platform was claiming 5× inflated ROAS via view-through attribution. Decision correct.</div>
+      </div>
+    </div>
+
+    <!-- GUARDRAILS -->
+    <div class="section-title">Noura — Guardrails Check</div>
+    <div class="guardrail-grid">
+      <div class="gr-item"><div class="gr-icon pass">✓</div><div class="gr-text"><div class="gr-title">Blended ROAS ≥ 4.5</div><div class="gr-val">Current: 5.42 ✓</div></div></div>
+      <div class="gr-item"><div class="gr-icon warn">!</div><div class="gr-text"><div class="gr-title">Blended ROAS ≥ 6.0 (target)</div><div class="gr-val">5.42 — below target, early June</div></div></div>
+      <div class="gr-item"><div class="gr-icon pass">✓</div><div class="gr-text"><div class="gr-title">Monthly Cap ≤ 15K</div><div class="gr-val">Projected ~13,200 SAR ✓</div></div></div>
+      <div class="gr-item"><div class="gr-icon warn">!</div><div class="gr-text"><div class="gr-title">TikTok CPA ≤ 75</div><div class="gr-val">Main: 79.2 SAR (above alert)</div></div></div>
+      <div class="gr-item"><div class="gr-icon pass">✓</div><div class="gr-text"><div class="gr-title">TikTok CPA ≤ 90 (ceiling)</div><div class="gr-val">79.2 SAR ✓</div></div></div>
+      <div class="gr-item"><div class="gr-icon warn">!</div><div class="gr-text"><div class="gr-title">Frequency &lt; 3 (prospecting)</div><div class="gr-val">Asayel: 2.90 — approaching</div></div></div>
+      <div class="gr-item"><div class="gr-icon fail">✗</div><div class="gr-text"><div class="gr-title">Guardrail #6 (@M creative)</div><div class="gr-val">206 SAR + 0 conv → STOP NOW</div></div></div>
+      <div class="gr-item"><div class="gr-icon pause">⏸</div><div class="gr-text"><div class="gr-title">Snapchat Frequency &lt; 6</div><div class="gr-val">Stopped Jun 6 — action taken ✓</div></div></div>
+    </div>
+
+  </div>
+</div><!-- /noura block -->
+
+
+<!-- ══════════════════════════════════════════
+     ZAIN
+══════════════════════════════════════════ -->
+<div class="client-block">
+  <div class="client-header zain">
+    <div>
+      <div class="client-title">Zain — عبايات زين (رغد)</div>
+      <div class="client-sub">Platform: TikTok only &nbsp;·&nbsp; Store: Salla &nbsp;·&nbsp; No Blended ROAS (Salla access pending)</div>
+    </div>
+    <div style="text-align:right">
+      <div style="font-size:11px;color:#6b7280;">Monthly Cap</div>
+      <div style="font-size:18px;font-weight:800;color:#0284c7;">15,000 SAR</div>
+    </div>
+  </div>
+  <div class="client-body">
+
+    <!-- KPIs -->
+    <div class="section-title">Key Metrics — TikTok (Jun 2–8)</div>
+    <div class="four-col">
+      <div class="kpi-card yellow">
+        <div class="label">TikTok ROAS (Active)</div>
+        <div class="value">5.00–10.56</div>
+        <div class="sub">Winners CBO 5.00 · New Prosp. 10.56</div>
+      </div>
+      <div class="kpi-card blue">
+        <div class="label">Active Spend (7 days)</div>
+        <div class="value">2,054</div>
+        <div class="sub">SAR · 2 active campaigns</div>
+      </div>
+      <div class="kpi-card yellow">
+        <div class="label">Projected June Total</div>
+        <div class="value">~8,700</div>
+        <div class="sub">SAR · below target 11.5K ⚠</div>
+      </div>
+      <div class="kpi-card green">
+        <div class="label">Monthly Cap</div>
+        <div class="value">15,000</div>
+        <div class="sub">SAR · room to scale ✓</div>
+      </div>
+    </div>
+
+    <!-- Monthly Pacing -->
+    <div class="section-title">Monthly Pacing — Target: 11,500 SAR</div>
+    <div class="pacing-wrap">
+      <div class="pacing-label">
+        <span>Spent so far: ~2,577 SAR (est. incl. Jun 1)</span>
+        <span>Projected: ~8,700 SAR &nbsp;|&nbsp; Target: 11,500 SAR &nbsp;|&nbsp; Cap: 15,000 SAR</span>
+      </div>
+      <div class="pacing-track" style="background:#e5e7eb;position:relative;">
+        <div class="pacing-fill yellow" style="width:58%"></div>
+        <div class="pacing-cap" style="left:77%;background:#0284c7;"></div>
+        <div class="pacing-cap" style="left:100%;background:#374151;"></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:10px;color:#9ca3af;margin-top:4px;">
+        <span>0</span>
+        <span style="margin-left:calc(58% - 24px);color:#ca8a04;">8,700 proj.</span>
+        <span style="margin-left:calc(19% - 24px);color:#0284c7;">11,500 target</span>
+        <span>15,000</span>
+      </div>
+    </div>
+    <div class="insight yellow mt8">
+      <strong>Gap to target:</strong> ~2,800 SAR under target. With 22 days remaining, need ~127 SAR/day extra vs current pace. Options: increase Winners CBO budget by ~20%, or scale Prospecting Sales | JUN after 15+ conversions.
+    </div>
+
+    <!-- Campaign Performance -->
+    <div class="section-title">TikTok — All Campaigns (Jun 2–8)</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Campaign</th><th>Status</th><th>Spend</th><th>Conv.</th><th>ROAS</th><th>CPA</th><th>CTR</th><th>Freq.</th><th>Verdict</th></tr>
+        </thead>
+        <tbody>
+          <tr style="background:#eff6ff;">
+            <td><strong>Prospecting Sales | JUN</strong> <span class="badge blue" style="font-size:9px;">NEW</span></td>
+            <td><span class="badge green">ACTIVE</span></td>
+            <td>185 SAR</td>
+            <td>5</td>
+            <td style="font-weight:800;color:#16a34a;">10.56</td>
+            <td style="font-weight:800;color:#16a34a;">37</td>
+            <td>3.38%</td>
+            <td>2.16</td>
+            <td><span class="badge green">Promising — Need 15+ conv</span></td>
+          </tr>
+          <tr style="background:#fefce8;">
+            <td><strong>Sales | Winners CBO | May 2026</strong></td>
+            <td><span class="badge green">ACTIVE</span></td>
+            <td>1,870 SAR</td>
+            <td>23</td>
+            <td style="font-weight:800;color:#ca8a04;">5.00</td>
+            <td style="font-weight:800;color:#ca8a04;">81.3</td>
+            <td>3.69%</td>
+            <td style="font-weight:800;color:#dc2626;">3.65 ✗</td>
+            <td><span class="badge red">Creative Fatigue — Act</span></td>
+          </tr>
+          <tr style="background:#f8fafc;">
+            <td class="strike">Prospecting | Jun</td>
+            <td><span class="badge paused">STOPPED Jun 7</span></td>
+            <td>201 SAR</td>
+            <td style="color:#dc2626;font-weight:700;">0</td>
+            <td style="color:#dc2626;font-weight:700;">0</td>
+            <td style="color:#dc2626;font-weight:700;">∞</td>
+            <td>7.61%</td>
+            <td>1.89</td>
+            <td><span class="badge gray">Correct call ✓</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="insight red mt8">
+      <strong>Winners CBO Frequency 3.65 exceeds the 3.0 prospecting limit.</strong> ROAS is sitting exactly at the 5.0 floor. This is classic creative fatigue. The audience is seeing the same creatives too many times — clicking rate drops, purchase intent drops. Action required this week.
+    </div>
+    <div class="insight green mt8">
+      <strong>"Prospecting | Jun" stopped correctly:</strong> 201 SAR spent, 0 conversions. High CTR (7.61%) but zero purchases = landing page or audience-product mismatch. Guardrail #6 triggered (spend ≥ 150 SAR + 0 conv). Manual stop on Jun 7 was the right call.
+    </div>
+
+    <!-- ZAIN DECISION BOARD -->
+    <div class="section-title">Zain — Decision Board</div>
+    <div class="decision-grid">
+      <div class="decision-card urgent">
+        <div class="d-tag">Urgent — This Week</div>
+        <div class="d-title">Winners CBO: Refresh Creatives</div>
+        <div class="d-reason">Frequency 3.65 &gt; limit 3.0. ROAS at floor 5.0. CPA 81.3 above the 75 alert. Signs of creative fatigue — the same ads are oversaturating the audience. New creatives needed to avoid ROAS collapse.</div>
+      </div>
+      <div class="decision-card action">
+        <div class="d-tag">Action — After 15 Conversions</div>
+        <div class="d-title">Scale: Prospecting Sales | JUN +20%</div>
+        <div class="d-reason">Currently ROAS 10.56, CPA 37 SAR — best performing campaign. Only 5 conversions (need ~15 for statistical confidence). Once it hits 15 conv → increase budget by 20–25% per the TikTok scaling rule (≤30% every 2–3 days).</div>
+      </div>
+      <div class="decision-card watch">
+        <div class="d-tag">Watch — Monthly</div>
+        <div class="d-title">Pacing Gap: ~2,800 SAR under target</div>
+        <div class="d-reason">June target is 11,500 SAR. Current projection ~8,700. With Prospecting | Jun stopped, fill the gap via: (1) Winners CBO budget +20% after fresh creatives, or (2) Prospecting Sales | JUN scale after 15 conv.</div>
+      </div>
+      <div class="decision-card ok">
+        <div class="d-tag">Confirmed</div>
+        <div class="d-title">Prospecting | Jun: Stopped ✓</div>
+        <div class="d-reason">0 conversions + 201 SAR spend = Guardrail #6 triggered. High CTR (7.61%) without purchases suggests the traffic isn't converting — audience or landing page issue. Correct manual decision on Jun 7.</div>
+      </div>
+    </div>
+
+    <!-- GUARDRAILS -->
+    <div class="section-title">Zain — Guardrails Check</div>
+    <div class="guardrail-grid">
+      <div class="gr-item"><div class="gr-icon warn">?</div><div class="gr-text"><div class="gr-title">Blended ROAS</div><div class="gr-val">Not available — Salla access pending</div></div></div>
+      <div class="gr-item"><div class="gr-icon warn">!</div><div class="gr-text"><div class="gr-title">TikTok ROAS ≥ 5.0</div><div class="gr-val">Winners CBO = 5.00 (on the floor)</div></div></div>
+      <div class="gr-item"><div class="gr-icon warn">!</div><div class="gr-text"><div class="gr-title">CPA ≤ 75 (alert)</div><div class="gr-val">Winners CBO: 81.3 SAR ⚠</div></div></div>
+      <div class="gr-item"><div class="gr-icon pass">✓</div><div class="gr-text"><div class="gr-title">CPA ≤ 90 (ceiling)</div><div class="gr-val">81.3 SAR ✓</div></div></div>
+      <div class="gr-item"><div class="gr-icon fail">✗</div><div class="gr-text"><div class="gr-title">Frequency &lt; 3 (prospecting)</div><div class="gr-val">Winners CBO: 3.65 — exceeds limit</div></div></div>
+      <div class="gr-item"><div class="gr-icon pass">✓</div><div class="gr-text"><div class="gr-title">Guardrail #6 (Prosp | Jun)</div><div class="gr-val">Stopped correctly Jun 7 ✓</div></div></div>
+      <div class="gr-item"><div class="gr-icon pass">✓</div><div class="gr-text"><div class="gr-title">Monthly Cap ≤ 15K</div><div class="gr-val">Projected ~8,700 SAR ✓</div></div></div>
+      <div class="gr-item"><div class="gr-icon pass">✓</div><div class="gr-text"><div class="gr-title">Scale Rule ≤ 30%/2–3 days</div><div class="gr-val">Prospecting Sales | JUN scaling when ready</div></div></div>
+    </div>
+
+  </div>
+</div><!-- /zain block -->
+
+
+<!-- ══════════════════════════════════════════
+     MASTER ACTION PLAN
+══════════════════════════════════════════ -->
+<div class="client-block">
+  <div class="client-header" style="background:linear-gradient(135deg,#1e293b,#0f172a);">
+    <div>
+      <div class="client-title" style="color:white;">Master Action Plan</div>
+      <div class="client-sub" style="color:#94a3b8;">Prioritized across both clients — Jun 8, 2026</div>
+    </div>
+  </div>
+  <div class="client-body">
+    <div class="two-col">
+
+      <!-- Timeline -->
+      <div>
+        <div class="section-title">Action Timeline</div>
+        <div class="timeline">
+
+          <div class="tl-item">
+            <div class="tl-dot red"></div>
+            <div class="tl-time">TODAY — Noura</div>
+            <div class="tl-title">Pause "الرد على @M" from Wasayef group</div>
+            <div class="tl-desc">206 SAR + 0 conversions in 7 days. Guardrail #6. No debate needed.</div>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-dot red"></div>
+            <div class="tl-time">TODAY — Noura</div>
+            <div class="tl-title">Pause Image carousel 3 from Main | May 2026</div>
+            <div class="tl-desc">ROAS 3.53, CPA 105. Biggest drag on Wasayef. Removing it will immediately improve ROAS from 4.5 toward 8+.</div>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-dot red"></div>
+            <div class="tl-time">TODAY — Noura</div>
+            <div class="tl-title">Check Gulf Sales | JUN conversions</div>
+            <div class="tl-desc">148 SAR spend, 1 conversion. If no new conversion today (reaching 150 SAR spend) → pause and redirect to Main.</div>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-dot yellow"></div>
+            <div class="tl-time">THIS WEEK — Zain</div>
+            <div class="tl-title">Add fresh creatives to Winners CBO</div>
+            <div class="tl-desc">Frequency 3.65 = creative fatigue. Prepare new creatives. Do not change budget or targeting — only add new ads to the existing ad groups.</div>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-dot blue"></div>
+            <div class="tl-time">THIS WEEK — Noura</div>
+            <div class="tl-title">Launch ABO Wasayef campaign</div>
+            <div class="tl-desc">1 ad group · Broad targeting · 150–200 SAR/day.<br>Creative 1: Image carousel 4 (ROAS 8.15)<br>Creative 2: وصايف تجنن (wild card, ROAS 25 / 3 conv)<br>Wait 48h before pausing Wasayef from Main.</div>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-dot blue"></div>
+            <div class="tl-time">AFTER 15 CONV — Zain</div>
+            <div class="tl-title">Scale Prospecting Sales | JUN +20%</div>
+            <div class="tl-desc">Currently ROAS 10.56, CPA 37 SAR. Excellent early signal. Wait for 15+ conversions, then increase budget by 20% per TikTok scaling rule.</div>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-dot green"></div>
+            <div class="tl-time">JUN 26 — BOTH CLIENTS</div>
+            <div class="tl-title">Salary Season Peak — Increase daily budgets</div>
+            <div class="tl-desc">Peak window: Jun 26 → Jul 3. Noura target: ~600 SAR/day. Zain target: ~550 SAR/day. Pre-plan creative refresh and budget allocation before this window.</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Summary scorecards -->
+      <div>
+        <div class="section-title">Account Health Summary</div>
+
+        <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:14px 16px;margin-bottom:12px;">
+          <div style="font-weight:700;font-size:13px;margin-bottom:10px;color:#15803d;">Noura — Healthy with 2 urgent kills needed</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:11px;">
+            <div>Blended ROAS: <strong>5.42</strong> (above floor 4.5)</div>
+            <div>June revenue: <strong>22,487 SAR</strong></div>
+            <div>Active TikTok: <strong>2 campaigns</strong></div>
+            <div>Snapchat: <strong>Stopped ✓</strong></div>
+            <div>Pacing: <strong>13,200 projected</strong></div>
+            <div>Kills needed: <strong style="color:#dc2626;">2 creatives today</strong></div>
+          </div>
+        </div>
+
+        <div style="background:#fefce8;border:1px solid #fde68a;border-radius:10px;padding:14px 16px;margin-bottom:12px;">
+          <div style="font-weight:700;font-size:13px;margin-bottom:10px;color:#854d0e;">Zain — Performing but under-paced + creative fatigue</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:11px;">
+            <div>TikTok ROAS: <strong>5.00–10.56</strong></div>
+            <div>Blended ROAS: <strong style="color:#9ca3af;">Not available</strong></div>
+            <div>Active campaigns: <strong>2</strong></div>
+            <div>Stopped Jun 7: <strong>1 (correct)</strong></div>
+            <div>Pacing gap: <strong style="color:#ca8a04;">~2,800 SAR</strong></div>
+            <div>Frequency alert: <strong style="color:#dc2626;">3.65 (limit: 3)</strong></div>
+          </div>
+        </div>
+
+        <div class="section-title">Reference — Benchmarks</div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Metric</th><th>Noura</th><th>Zain</th></tr></thead>
+            <tbody>
+              <tr><td>Blended ROAS floor</td><td>4.5</td><td>4.5</td></tr>
+              <tr><td>Blended ROAS target</td><td>6.0</td><td>6.0</td></tr>
+              <tr><td>TikTok ROAS target</td><td>≥ 5.0</td><td>≥ 5.0</td></tr>
+              <tr><td>CPA alert / ceiling</td><td>75 / 90 SAR</td><td>75 / 90 SAR</td></tr>
+              <tr><td>Frequency limit (prosp.)</td><td>&lt; 3</td><td>&lt; 3</td></tr>
+              <tr><td>Monthly spend cap</td><td>15,000 SAR</td><td>15,000 SAR</td></tr>
+              <tr><td>Peak days (salary)</td><td colspan="2">26th → 3rd monthly</td></tr>
+              <tr><td>Breakeven ROAS</td><td>~2.4 (margin 42%)</td><td>~2.5 (est.)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</div><!-- /page-body -->
+
+<div class="page-footer">
+  Generated: June 8, 2026 &nbsp;·&nbsp; Data: Windsor.ai + Salla MCP &nbsp;·&nbsp; ads-ops system
+</div>
+
+</body>
+</html>

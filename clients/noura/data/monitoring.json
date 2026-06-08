@@ -1,0 +1,52 @@
+{
+  "_note": "watch signals are checked automatically on every daily run — not delegated to user",
+  "_last_cleaned": "2026-06-08",
+
+  "noura_gulf_sales_jun_conversions": {
+    "first_seen": "2026-06-08",
+    "last_seen": "2026-06-08",
+    "days": 1,
+    "signal": "Gulf Sales | JUN: حملة جديدة UAE+Qatar — يراقب التحويلات حتى تصل 10+ أو تصرف 300+ SAR بدون نتيجة",
+    "level": "monitor",
+    "context": {
+      "campaign": "Gulf Sales | JUN",
+      "target": "10 conversions to validate scaling",
+      "abort_threshold": "300 SAR spend + 0 conversions = stop (Guardrail #6)",
+      "check_date": "2026-06-11"
+    }
+  },
+
+  "noura_asayel_lookalike_frequency": {
+    "first_seen": "2026-06-08",
+    "last_seen": "2026-06-08",
+    "days": 1,
+    "signal": "Asayel Lookalike: frequency 2.90 — يقترب من حد prospecting 3.0",
+    "level": "monitor",
+    "context": {
+      "adgroup": "وصايف Lookalike | May 2026 (Asayel creative)",
+      "current_frequency": 2.90,
+      "guardrail_threshold": 3.0,
+      "action_if_breached": "تجديد الكرييتف أو تغيير الجمهور",
+      "check_date": "2026-06-10"
+    }
+  },
+
+  "noura_wasayef_post_pause_measurement": {
+    "first_seen": "2026-06-08",
+    "last_seen": "2026-06-08",
+    "days": 1,
+    "signal": "Wasayef (Main | May 2026): قياس الأداء بعد إيقاف carousel 3 + @M — هل تحسن ROAS؟",
+    "level": "watch",
+    "context": {
+      "adgroup": "وصايف | May 2026 (Main campaign)",
+      "baseline_roas": 4.50,
+      "baseline_cpa": 79.9,
+      "baseline_spend_weekly": 1597,
+      "paused_today": ["Image carousel 3 (ROAS 3.53, CPA 105)", "الرد على @M (206 SAR + 0 conv)"],
+      "live_creative": "Image carousel 4 (ROAS 8.15 in last 7 days)",
+      "expected_roas_post_pause": "7.0 - 8.0",
+      "measurement_date": "2026-06-13",
+      "verdict": "if ROAS < 5.5 after 5 days → investigate why carousel 4 not delivering expected numbers"
+    }
+  }
+}

@@ -8,3 +8,17 @@
 
 # Raw exports الخام من المنصات
 raw/
+
+# macOS
+.DS_Store
+
+# SQLite databases (binary — تتغير كل يوم، لا ترفع)
+*.db
+*.sqlite
+
+# Obsidian editor settings (شخصية)
+.obsidian/
+
+# Python cache
+__pycache__/
+*.pyc
