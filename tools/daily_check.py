@@ -826,8 +826,52 @@ class DailyCheck:
                 for v in monitors.values():
                     lines.append(f"    • {v['signal']}")
 
+        # ── Clarity (سلوك الزوار) ──
+        clarity_section = self._clarity_section()
+        if clarity_section:
+            lines.append(f"\n{'─'*55}")
+            lines.extend(clarity_section)
+
         lines.append("")
         return "\n".join(lines)
+
+    def _clarity_section(self) -> list:
+        """Fetch Clarity behavioral signals and format as report lines.
+        Returns [] if client has no Clarity config or fetch fails."""
+        try:
+            from tools.clarity_client import get_clarity
+        except ImportError:
+            return []
+
+        data = get_clarity(self.client, num_days=1)
+        if not data:
+            return []
+
+        lines = ["  CLARITY (سلوك الزوار — آخر 24h)"]
+
+        # Core signals
+        scroll_flag = " ⚠️" if data["scroll_depth"] < 30 else ""
+        qb_flag     = " ⚠️" if data["quickback_pct"] > 3 else ""
+        lines.append(
+            f"  Sessions {data['sessions']:,} | Unique {data['unique_users']:,} | "
+            f"Scroll {data['scroll_depth']}%{scroll_flag} | Quickback {data['quickback_pct']}%{qb_flag}"
+        )
+        lines.append(
+            f"  Dead clicks {data['dead_click_pct']}% | Rage clicks {data['rage_click_pct']}% | "
+            f"TikTok referral {data['tiktok_pct']}%"
+        )
+
+        # Devices (top 2)
+        if data["devices"]:
+            dev_str = " · ".join(f"{d['name']} {d['sessions']:,}" for d in data["devices"][:2])
+            lines.append(f"  Devices: {dev_str}")
+
+        # Countries (top 3)
+        if data["countries"]:
+            ctr_str = " · ".join(f"{c['name']} {c['sessions']:,}" for c in data["countries"])
+            lines.append(f"  Countries: {ctr_str}")
+
+        return lines
 
     # ── LEARN ───────────────────────────────────
 

@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily Brief</title>
+<style>
+/*
+ * DESIGN PRINCIPLE:
+ * Color = signal only. Neutral gray for everything else.
+ * Red/amber appear ONLY when a guardrail is violated or a metric is trending danger.
+ * Never use color just to make a number "look important".
+ */
+
+:root {
+  --ink:    #111827;
+  --ink-2:  #374151;
+  --ink-3:  #6b7280;
+  --ink-4:  #9ca3af;
+  --bg:     #f3f4f6;
+  --surface:#ffffff;
+  --border: #e5e7eb;
+
+  /* Signal palette — used sparingly */
+  --green:       #16a34a;
+  --green-light: #dcfce7;
+  --amber:       #d97706;
+  --amber-light: #fef3c7;
+  --red:         #dc2626;
+  --red-light:   #fee2e2;
+  --blue:        #2563eb;
+  --blue-light:  #dbeafe;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* ── HEADER ── */
+.header {
+  background: #0f172a;
+  color: white;
+  padding: 18px 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.header h1 { font-size: 17px; font-weight: 700; }
+.header .sub { font-size: 11px; color: #94a3b8; margin-top: 2px; }
+.pills { display: flex; gap: 6px; flex-wrap: wrap; }
+.pill {
+  font-size: 10px; font-weight: 600; letter-spacing: .04em;
+  padding: 3px 9px; border-radius: 20px;
+}
+.pill-maint   { background: #1e3a5f; color: #93c5fd; }
+.pill-peak    { background: #7c2d12; color: #fed7aa; }
+.pill-day     { background: #1e293b; color: #94a3b8; }
+.pill-neutral { background: #1e293b; color: #64748b; }
+
+/* ── PAGE ── */
+.page { max-width: 1100px; margin: 0 auto; padding: 20px 16px; }
+
+.client-block { margin-bottom: 32px; }
+.client-header {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 16px; padding-bottom: 10px;
+  border-bottom: 2px solid var(--border);
+}
+.client-name { font-size: 15px; font-weight: 700; }
+
+/* ── SECTION ── */
+.section { margin-bottom: 18px; }
+.section-label {
+  font-size: 10px; font-weight: 700; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--ink-4);
+  margin-bottom: 8px;
+  display: flex; align-items: center; gap: 8px;
+}
+.section-label::after { content:''; flex:1; height:1px; background:var(--border); }
+.section-sub { font-size: 10px; color: var(--ink-4); font-weight: 400; text-transform: none; letter-spacing: 0; margin-left: 4px; }
+
+/* ── KPI CARDS ── */
+.kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+@media (max-width: 680px) { .kpi-grid { grid-template-columns: repeat(2, 1fr); } }
+
+.kpi {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 16px;
+}
+.kpi-label { font-size: 10px; color: var(--ink-4); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 5px; }
+.kpi-val { font-size: 22px; font-weight: 700; color: var(--ink); line-height: 1.1; }
+.kpi-val.sig-red   { color: var(--red); }
+.kpi-val.sig-amber { color: var(--amber); }
+.kpi-val.sig-green { color: var(--green); }
+.kpi-row { display: flex; align-items: center; gap: 8px; margin-top: 5px; flex-wrap: wrap; }
+.kpi-note { font-size: 11px; color: var(--ink-4); }
+
+/* ── DELTA ── */
+/* Only three states: pos (good), neg (bad), neutral (flat/small change) */
+.d { font-size: 11px; font-weight: 600; white-space: nowrap; }
+.d-pos  { color: var(--green); }
+.d-neg  { color: var(--red); }
+.d-warn { color: var(--amber); }
+.d-flat { color: var(--ink-4); }
+
+/* ── PACING BAR ── */
+.pacing-track { height: 6px; background: var(--border); border-radius: 3px; margin-top: 8px; overflow: hidden; }
+.pacing-fill  { height: 100%; border-radius: 3px; }
+.pacing-sub   { display: flex; justify-content: space-between; font-size: 10px; color: var(--ink-4); margin-top: 3px; }
+
+/* ── ACTION PLAN ── */
+.action-list { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+.action-row {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 11px 16px;
+  border-bottom: 1px solid var(--border);
+  border-left: 3px solid transparent;
+}
+.action-row:last-child { border-bottom: none; }
+.action-row.urgent { border-left-color: var(--red); }
+.action-row.action { border-left-color: var(--blue); }
+.action-row.watch  { border-left-color: var(--amber); }
+.action-row.done   { border-left-color: var(--green); opacity: .6; }
+
+.abadge {
+  flex-shrink: 0; font-size: 10px; font-weight: 700; letter-spacing: .04em;
+  padding: 2px 8px; border-radius: 4px; text-transform: uppercase; margin-top: 1px;
+}
+.ab-urgent { background: var(--red-light); color: var(--red); }
+.ab-action { background: var(--blue-light); color: var(--blue); }
+.ab-watch  { background: var(--amber-light); color: var(--amber); }
+.ab-done   { background: var(--green-light); color: var(--green); }
+
+.action-body { flex: 1; min-width: 0; }
+.action-title  { font-size: 13px; font-weight: 600; }
+.action-detail { font-size: 12px; color: var(--ink-3); margin-top: 2px; }
+.action-meta   { font-size: 11px; color: var(--ink-4); margin-top: 3px; }
+
+/* ── TABLE ── */
+.tbl-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; overflow: auto; }
+table { width: 100%; border-collapse: collapse; min-width: 680px; }
+thead th {
+  padding: 7px 11px;
+  font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em;
+  color: var(--ink-4); background: var(--bg);
+  text-align: left; white-space: nowrap;
+  border-bottom: 1px solid var(--border);
+}
+thead th:not(:first-child) { text-align: right; }
+tbody tr { border-bottom: 1px solid var(--border); }
+tbody tr:last-child { border-bottom: none; }
+tbody tr.row-dim td { color: var(--ink-4); }
+tbody td { padding: 8px 11px; font-size: 12px; color: var(--ink-2); vertical-align: top; }
+tbody td:not(:first-child) { text-align: right; }
+
+/* Metric cell coloring — ONLY on violations */
+.c-red   { color: var(--red) !important; font-weight: 600; }
+.c-amber { color: var(--amber) !important; font-weight: 600; }
+.c-green { color: var(--green) !important; }
+
+.metric-cell { display: flex; flex-direction: column; align-items: flex-end; gap: 1px; }
+.metric-val  { font-size: 12px; }
+.metric-delta { font-size: 10px; }
+
+.camp-tag  { font-size: 10px; color: var(--ink-4); display: block; }
+.group-name { font-weight: 600; color: var(--ink); font-size: 13px; }
+.group-note { font-size: 11px; color: var(--ink-4); margin-top: 2px; font-style: italic; }
+
+/* Status badge */
+.sbadge { display: inline-flex; align-items: center; font-size: 10px; padding: 1px 6px; border-radius: 3px; font-weight: 600; }
+.sb-active  { background: #dcfce7; color: #166534; }
+.sb-paused  { background: #f3f4f6; color: #6b7280; }
+.sb-watch   { background: var(--amber-light); color: #92400e; }
+
+/* ── GUARDRAILS ── */
+.gr-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+@media (max-width: 680px) { .gr-grid { grid-template-columns: repeat(2, 1fr); } }
+.gr-item {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 6px; padding: 10px 12px;
+  display: flex; gap: 8px; align-items: flex-start;
+}
+.gr-item.gr-fail { border-color: #fca5a5; background: #fff5f5; }
+.gr-item.gr-warn { border-color: #fcd34d; background: #fffbeb; }
+.gr-icon  { font-size: 14px; flex-shrink: 0; }
+.gr-name  { font-size: 11px; font-weight: 600; color: var(--ink-2); }
+.gr-detail { font-size: 11px; color: var(--ink-4); margin-top: 1px; }
+
+/* ── MONITORING ── */
+.mon-list { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+.mon-row {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 9px 14px; border-bottom: 1px solid var(--border);
+}
+.mon-row:last-child { border-bottom: none; }
+.mon-badge { flex-shrink: 0; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 4px; text-transform: uppercase; margin-top: 1px; }
+.mb-monitor { background: var(--blue-light); color: var(--blue); }
+.mb-warning { background: var(--amber-light); color: #92400e; }
+.mb-action  { background: var(--red-light); color: var(--red); }
+.mb-watch   { background: var(--blue-light); color: var(--blue); }
+.mon-sig  { flex: 1; font-size: 12px; color: var(--ink-2); }
+.mon-due  { font-size: 11px; color: var(--ink-4); flex-shrink: 0; white-space: nowrap; margin-top: 1px; }
+
+/* ── DECISIONS LOG ── */
+.dec-list { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+.dec-row {
+  display: grid; grid-template-columns: 68px 1fr auto;
+  gap: 12px; align-items: center;
+  padding: 9px 14px; border-bottom: 1px solid var(--border);
+}
+.dec-row:last-child { border-bottom: none; }
+.dec-date   { font-size: 11px; color: var(--ink-4); }
+.dec-text   { font-size: 12px; color: var(--ink-2); }
+.dec-text strong { color: var(--ink); }
+.dec-reason { font-size: 11px; color: var(--ink-4); text-align: right; }
+
+/* divider between clients */
+.client-divider { border: none; border-top: 2px solid var(--border); margin: 8px 0 28px; }
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════════
+     DATA — Claude fills this object each daily check.
+     Everything below this block is static template code.
+     ════════════════════════════════════════════════════ -->
+<script>
+const REPORT = {
+  date: "June 9, 2026",
+  generated: "09:45",
+
+  clients: [
+
+    /* ─── NOURA ─────────────────────────────────────── */
+    {
+      id: "noura",
+      name: "Noura Abayas",
+      cycle: "maintenance",   // 'peak' | 'maintenance'
+      cycle_day: 9,
+
+      /* Blended = Salla revenue ÷ total platform spend */
+      blended: {
+        roas:      5.42,  roas_prev:     4.80,   roas_floor: 4.5,
+        orders:    59,    orders_prev:   45,
+        revenue:   22487, revenue_prev:  18200,
+        spend_mtd: 4150,  spend_mtd_prev:3500,
+        aov:       381,   aov_prev:      404,
+        pacing_projected: 13200,
+        budget_cap:       15000,
+      },
+
+      /* One row per ad group (include paused for history) */
+      adgroups: [
+        {
+          campaign: "Main | May 2026",
+          name: "Asayel NTC Lookalike",
+          status: "active",  // 'active' | 'paused' | 'watch'
+          spend_7d: 1680, spend_prev: 1540,
+          roas: 6.67,     roas_prev: 5.90,   roas_floor: 4.5,
+          cpa:  67,       cpa_prev:  73,     cpa_ceil: 90,
+          ctr:  2.10,     ctr_prev:  2.35,
+          freq: 2.60,     freq_prev: 2.30,   freq_thresh: 3.0,
+          conv: 25,       conv_prev: 21,
+          note: "Freq 2.60 → approaching limit 3.0"
+        },
+        {
+          campaign: "Main | May 2026",
+          name: "Wasayef",
+          status: "active",
+          spend_7d: 1260, spend_prev: 1597,
+          roas: 8.21,     roas_prev: 4.50,   roas_floor: 4.5,
+          cpa:  61,       cpa_prev:  79.9,   cpa_ceil: 90,
+          ctr:  1.95,     ctr_prev:  1.80,
+          freq: 1.20,     freq_prev: 2.10,   freq_thresh: 3.0,
+          conv: 21,       conv_prev: 20,
+          note: "Carousel 3 + @M paused Jun 8 — measuring Jun 13"
+        },
+        {
+          campaign: "Gulf Sales | JUN",
+          name: "Gulf Prospecting",
+          status: "watch",
+          spend_7d: 186, spend_prev: 0,
+          roas: 2.48,    roas_prev: null,   roas_floor: 4.5,
+          cpa:  186,     cpa_prev:  null,   cpa_ceil: 90,
+          ctr:  1.40,    ctr_prev:  null,
+          freq: 1.10,    freq_prev: null,   freq_thresh: 3.0,
+          conv: 1,       conv_prev: 0,
+          note: "New — watching until 300 SAR or 10 conv"
+        },
+        {
+          campaign: "Prospecting Sales | JUN",
+          name: "Wasayef | WC",
+          status: "active",
+          spend_7d: 100, spend_prev: 0,
+          roas: null,    roas_prev: null,   roas_floor: 4.5,
+          cpa:  null,    cpa_prev:  null,   cpa_ceil: 90,
+          ctr:  null,    ctr_prev:  null,
+          freq: null,    freq_prev: null,   freq_thresh: 3.0,
+          conv: 0,       conv_prev: 0,
+          note: "Launched Jun 9 — 100 SAR/day, V2-C1-C2"
+        },
+        {
+          campaign: "Main | May 2026",
+          name: "Image carousel 3",
+          status: "paused",
+          spend_7d: 0,  spend_prev: 420,
+          roas: 3.53,   roas_prev: 4.04,   roas_floor: 4.5,
+          cpa:  105,    cpa_prev:  99,     cpa_ceil: 90,
+          ctr:  1.20,   ctr_prev:  1.45,
+          freq: 1.80,   freq_prev: 1.60,   freq_thresh: 2.5,
+          conv: 4,      conv_prev: 6,
+          note: "STOPPED Jun 8 — 3-period ROAS decline (10.06→4.04→3.53)"
+        },
+      ],
+
+      guardrails: [
+        { name: "Budget Cap (15K SAR)",          status: "pass", detail: "Projected 13,200 SAR ✓" },
+        { name: "ROAS Floor (≥4.5)",              status: "pass", detail: "Blended 5.42 ✓" },
+        { name: "CPA Ceiling (≤90 SAR)",          status: "pass", detail: "Active groups: 61–74 SAR ✓" },
+        { name: "Frequency Prospecting (<3.0)",   status: "warn", detail: "Asayel 2.60 — approaching" },
+        { name: "Guardrail #6 (0 conv + 2×CPA)",  status: "pass", detail: "@M + Carousel 3 stopped ✓" },
+        { name: "Scale Rule (≤30% / 2-3 days)",   status: "pass", detail: "No scale events today" },
+      ],
+
+      monitoring: [
+        { level: "monitor", days: 1, signal: "Gulf Sales | JUN: ROAS 2.48 — new campaign, stop at 300 SAR + 0 conv", check: "Jun 11" },
+        { level: "monitor", days: 1, signal: "Asayel Lookalike: Freq 2.60 → approaching limit 3.0, prepare creative refresh", check: "Jun 10" },
+        { level: "watch",   days: 1, signal: "Wasayef post-pause: baseline ROAS 4.50 → expect 7–8 with carousel 4 only", check: "Jun 13" },
+      ],
+
+      actions: [
+        {
+          priority: "watch",
+          title: "Wasayef — Post-Pause Measurement",
+          detail: "Paused: Carousel 3 (ROAS 3.53, CPA 105) + @M (Guardrail #6: 206 SAR + 0 conv). Carousel 4 alone = 8.15. Baseline locked: ROAS 4.50 / CPA 79.9 / spend 1,597/week.",
+          due: "Jun 13 — compare 5-day average"
+        },
+        {
+          priority: "action",
+          title: "Prospecting Sales | JUN (Wasayef WC) — Monitor Learning",
+          detail: "Launched Jun 9. 100 SAR/day, V2-C1-C2 + 5 captions. No scale until 15+ conv and ROAS > 6 confirmed.",
+          due: "Jun 12 — first review"
+        },
+        {
+          priority: "watch",
+          title: "Gulf Sales | JUN — Conversion Threshold",
+          detail: "1 conv, ROAS 2.48, 186 SAR spent. Guardrail #6 triggers at 300 SAR + 0 conv. Target: 10 conv to validate.",
+          due: "Jun 11 — auto-check"
+        },
+        {
+          priority: "watch",
+          title: "Asayel Lookalike — Frequency 2.60",
+          detail: "Guardrail threshold = 3.0. At current pace (↑0.3/week) will breach in ~5 days. Start preparing creative refresh.",
+          due: "Jun 10 — check daily"
+        },
+      ],
+
+      recent_decisions: [
+        { date: "Jun 8", action: "Paused", target: "Image carousel 3", reason: "ROAS 3.53, CPA 105 — 3-period decline" },
+        { date: "Jun 8", action: "Paused", target: "الرد على @M", reason: "Guardrail #6: 206 SAR + 0 conv" },
+        { date: "Jun 6", action: "Stopped", target: "Snapchat all", reason: "0 Salla sales — view-through attribution confirmed" },
+      ]
+    },
+
+    /* ─── ZAIN ──────────────────────────────────────── */
+    {
+      id: "zain",
+      name: "Zain Abaya",
+      cycle: "maintenance",
+      cycle_day: 9,
+
+      blended: {
+        roas:      5.01,  roas_prev: 4.20,   roas_floor: 4.0,
+        orders:    38,    orders_prev: 28,
+        revenue:   14200, revenue_prev: 10800,
+        spend_mtd: 1800,  spend_mtd_prev: 1400,
+        aov:       374,   aov_prev: 386,
+        pacing_projected: 8700,
+        budget_cap:       15000,
+      },
+
+      adgroups: [
+        {
+          campaign: "Sales | Winners CBO | May 2026",
+          name: "#fypシ ✨ (WC)",
+          status: "active",
+          spend_7d: 980,  spend_prev: 840,
+          roas: 5.01,     roas_prev: 4.10,   roas_floor: 4.0,
+          cpa:  63,       cpa_prev:  78,     cpa_ceil: 90,
+          ctr:  2.45,     ctr_prev:  2.60,
+          freq: 3.65,     freq_prev: 3.10,   freq_thresh: 3.0,
+          conv: 16,       conv_prev: 11,
+          note: "Freq 3.65 BREACHED (>3.0) — creative refresh urgent"
+        },
+        {
+          campaign: "Sales | Winners CBO | May 2026",
+          name: "#50_Cold_Broad",
+          status: "watch",
+          spend_7d: 386, spend_prev: 320,
+          roas: null,    roas_prev: null,   roas_floor: 4.0,
+          cpa:  null,    cpa_prev:  null,   cpa_ceil: 90,
+          ctr:  1.10,    ctr_prev:  1.40,
+          freq: 3.01,    freq_prev: 2.80,  freq_thresh: 3.0,
+          conv: 0,       conv_prev: 2,
+          note: "96.86 SAR + 0 conv — 53 SAR from Guardrail #6 (150 SAR)"
+        },
+        {
+          campaign: "Prospecting Sales | JUN",
+          name: "Zain Jun Prospecting",
+          status: "active",
+          spend_7d: 274, spend_prev: 0,
+          roas: 9.69,    roas_prev: null,   roas_floor: 4.0,
+          cpa:  55,      cpa_prev:  null,   cpa_ceil: 90,
+          ctr:  2.80,    ctr_prev:  null,
+          freq: 1.20,    freq_prev: null,   freq_thresh: 3.0,
+          conv: 5,       conv_prev: 0,
+          note: "ROAS 9.69 — hold until 15 conv before scaling"
+        },
+        {
+          campaign: "Prospecting | Jun",
+          name: "Old Jun Prospecting",
+          status: "paused",
+          spend_7d: 0,  spend_prev: 201,
+          roas: null,   roas_prev: null,   roas_floor: 4.0,
+          cpa:  null,   cpa_prev:  null,   cpa_ceil: 90,
+          ctr:  null,   ctr_prev:  null,
+          freq: null,   freq_prev: null,   freq_thresh: 3.0,
+          conv: 0,      conv_prev: 0,
+          note: "STOPPED Jun 7 — Guardrail #6: 201 SAR + 0 conv"
+        },
+      ],
+
+      guardrails: [
+        { name: "Budget Cap (15K SAR)",          status: "pass", detail: "Projected 8,700 SAR — below target" },
+        { name: "ROAS Floor (≥4.0)",              status: "pass", detail: "Blended 5.01 ✓" },
+        { name: "CPA Ceiling (≤90 SAR)",          status: "pass", detail: "Active groups: 55–63 SAR ✓" },
+        { name: "Frequency Prospecting (<3.0)",   status: "fail", detail: "#fypシ Freq 3.65 — BREACHED 🔴" },
+        { name: "Guardrail #6 (0 conv + 2×CPA)",  status: "warn", detail: "#50_Cold_Broad: 96 SAR + 0 conv — 53 SAR from trigger" },
+        { name: "Pacing (target 11,500 SAR)",     status: "warn", detail: "Projected 8,700 — gap 2,800 SAR" },
+      ],
+
+      monitoring: [
+        { level: "warning", days: 2, signal: "Winners CBO #fypシ: Freq 3.65 BREACHED — creative refresh needed before any scale", check: "Immediate" },
+        { level: "watch",   days: 1, signal: "#50_Cold_Broad: 96.86 SAR + 0 conv — 53 SAR from Guardrail #6 auto-stop (150 SAR)", check: "Auto-monitor" },
+        { level: "monitor", days: 1, signal: "Prospecting Sales | JUN: 5 conv — watch for 15+ before any budget increase", check: "Jun 13" },
+        { level: "watch",   days: 1, signal: "Monthly pacing gap: projected 8,700 vs target 11,500 — plan peak days 26→3", check: "Weekly" },
+      ],
+
+      actions: [
+        {
+          priority: "urgent",
+          title: "Winners CBO — Frequency 3.65 BREACH",
+          detail: "#fypシ ✨ carrying the account alone. Freq 3.65 > limit 3.0. Creative is saturating. Prepare new creative or audience expansion before CTR drops and ROAS follows (CTR lags ROAS by 5–7 days).",
+          due: "This week"
+        },
+        {
+          priority: "watch",
+          title: "#50_Cold_Broad — 53 SAR from Auto-Stop",
+          detail: "96.86 SAR spend + 0 conversions. Guardrail #6 triggers at 150 SAR (2× CPA ceiling). Will auto-stop if no conversion by ~150 SAR.",
+          due: "Auto-monitor"
+        },
+        {
+          priority: "action",
+          title: "Prospecting Sales | JUN — Hold for 15 Conv",
+          detail: "ROAS 9.69 — very promising but 5 conv only. Small sample. No budget increase until 15+ conv. Then: +25% every 2 days if ROAS stays > 7.",
+          due: "Jun 13 — first scale review"
+        },
+        {
+          priority: "watch",
+          title: "Monthly Pacing — Reserve for Peak Days 26→3",
+          detail: "Gap 2,800 SAR. Plan gradual increase starting ~Jun 22 so peak days (26–30) have room. Don't dump budget all at once.",
+          due: "Jun 22 — plan ahead"
+        },
+      ],
+
+      recent_decisions: [
+        { date: "Jun 7", action: "Stopped", target: "Prospecting | Jun", reason: "Guardrail #6: 201 SAR + 0 conv" },
+        { date: "Jun 5", action: "Monitoring", target: "#50_Cold_Broad CTR", reason: "CTR dropped 27% — watching 0-conv threshold" },
+      ]
+    }
+
+  ] // end clients
+}; // end REPORT
+</script>
+
+<!-- ═══════════════════════════════
+     RENDERING ENGINE — do not edit
+     ═══════════════════════════════ -->
+<script>
+/* ── Formatters ── */
+function fmt(n, dec=1) {
+  if (n === null || n === undefined) return '—';
+  return Number(n).toLocaleString('en', {minimumFractionDigits: dec, maximumFractionDigits: dec});
+}
+function fmtK(n) {
+  if (n === null || n === undefined) return '—';
+  return Number(n).toLocaleString('en', {minimumFractionDigits: 0, maximumFractionDigits: 0});
+}
+
+/* ── Delta ──
+   direction: 'up_good' = higher is better (ROAS, conv, revenue, CTR)
+              'up_bad'  = lower is better (CPA, freq, spend)
+   Returns an HTML <span> with arrow + % + color.
+   Colors appear ONLY when change is meaningful (>3%).
+*/
+function delta(cur, prev, dir='up_good') {
+  if (cur === null || cur === undefined || !prev || prev === 0)
+    return '<span class="d d-flat">—</span>';
+  const pct = (cur - prev) / Math.abs(prev) * 100;
+  const abs = Math.abs(pct);
+  if (abs < 3) return `<span class="d d-flat">→ ${abs.toFixed(1)}%</span>`;
+  const up   = pct > 0;
+  const good = (dir === 'up_good' && up) || (dir === 'up_bad' && !up);
+  const cls  = good ? (abs > 10 ? 'd-pos' : 'd-flat') : (abs > 10 ? 'd-neg' : 'd-warn');
+  return `<span class="d ${cls}">${up ? '↑' : '↓'} ${abs.toFixed(1)}%</span>`;
+}
+
+/* ── Signal colors — ONLY on guardrail violations ── */
+function roasCls(v, floor) {
+  if (!v) return '';
+  if (v < floor)           return 'c-red';
+  if (v < floor * 1.08)    return 'c-amber';
+  return '';
+}
+function cpaCls(v, ceil) {
+  if (!v) return '';
+  if (v > ceil)            return 'c-red';
+  if (v > ceil * 0.85)     return 'c-amber';
+  return '';
+}
+function freqCls(v, thresh) {
+  if (!v) return '';
+  if (v > thresh)          return 'c-red';
+  if (v > thresh * 0.90)   return 'c-amber';
+  return '';
+}
+
+function sbadge(status) {
+  const m = {active:['sb-active','Active'], paused:['sb-paused','Paused ⏸'], watch:['sb-watch','Watch']};
+  const [c,l] = m[status] || ['sb-paused', status];
+  return `<span class="sbadge ${c}">${l}</span>`;
+}
+function abadge(p) {
+  const m = {urgent:['ab-urgent','Urgent'], action:['ab-action','Action'], watch:['ab-watch','Watch'], done:['ab-done','Done']};
+  const [c,l] = m[p] || ['ab-watch', p];
+  return `<span class="abadge ${c}">${l}</span>`;
+}
+function grIcon(s) {
+  return {pass:'✅', fail:'🔴', warn:'⚠️'}[s] || '—';
+}
+function monCls(l) {
+  return {monitor:'mb-monitor', warning:'mb-warning', action:'mb-action', watch:'mb-watch'}[l] || 'mb-monitor';
+}
+
+function mcell(val, d, cls='') {
+  return `<div class="metric-cell">
+    <span class="metric-val ${cls}">${val}</span>
+    <span class="metric-delta">${d}</span>
+  </div>`;
+}
+
+/* ── Client renderer ── */
+function renderClient(c) {
+  const b = c.blended;
+
+  /* Pacing */
+  const mtdPct  = Math.min(b.spend_mtd / b.budget_cap * 100, 100);
+  const projPct = Math.min(b.pacing_projected / b.budget_cap * 100, 100);
+  const pacColor = b.pacing_projected > b.budget_cap * 0.95 ? 'var(--red)' :
+                   b.pacing_projected > b.budget_cap * 0.85 ? 'var(--amber)' : 'var(--blue)';
+
+  /* ROAS KPI class */
+  const roasKpiCls = b.roas < b.roas_floor ? 'sig-red' :
+                     b.roas < b.roas_floor * 1.1 ? 'sig-amber' : '';
+
+  return `
+  <div class="client-block">
+
+    <!-- Client header -->
+    <div class="client-header">
+      <span class="client-name">${c.name}</span>
+      <div class="pills">
+        <span class="pill ${c.cycle==='peak' ? 'pill-peak' : 'pill-maint'}">${c.cycle==='peak' ? '🔥 Peak' : 'Maintenance'}</span>
+        <span class="pill pill-day">Day ${c.cycle_day}</span>
+      </div>
+    </div>
+
+    <!-- Blended KPIs -->
+    <div class="section">
+      <div class="section-label">Blended Performance — MTD <span class="section-sub">vs prev 7 days</span></div>
+      <div class="kpi-grid">
+        <div class="kpi">
+          <div class="kpi-label">Blended ROAS</div>
+          <div class="kpi-val ${roasKpiCls}">${fmt(b.roas)}</div>
+          <div class="kpi-row">
+            ${delta(b.roas, b.roas_prev, 'up_good')}
+            <span class="kpi-note">floor ${b.roas_floor}</span>
+          </div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">Orders</div>
+          <div class="kpi-val">${b.orders}</div>
+          <div class="kpi-row">
+            ${delta(b.orders, b.orders_prev, 'up_good')}
+            <span class="kpi-note">AOV ${fmtK(b.aov)} SAR</span>
+          </div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">Salla Revenue</div>
+          <div class="kpi-val" style="font-size:18px">${fmtK(b.revenue)} SAR</div>
+          <div class="kpi-row">
+            ${delta(b.revenue, b.revenue_prev, 'up_good')}
+            <span class="kpi-note">MTD</span>
+          </div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">Pacing</div>
+          <div class="kpi-val" style="font-size:18px">${fmtK(b.spend_mtd)} SAR</div>
+          <div class="kpi-row">
+            ${delta(b.spend_mtd, b.spend_mtd_prev, 'up_bad')}
+            <span class="kpi-note">proj ${fmtK(b.pacing_projected)} / ${fmtK(b.budget_cap)}</span>
+          </div>
+          <div class="pacing-track">
+            <div class="pacing-fill" style="width:${mtdPct.toFixed(1)}%;background:${pacColor}"></div>
+          </div>
+          <div class="pacing-sub">
+            <span>MTD ${mtdPct.toFixed(0)}%</span>
+            <span>Proj ${projPct.toFixed(0)}%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Master Action Plan -->
+    <div class="section">
+      <div class="section-label">Master Action Plan</div>
+      <div class="action-list">
+        ${c.actions.map(a => `
+        <div class="action-row ${a.priority}">
+          ${abadge(a.priority)}
+          <div class="action-body">
+            <div class="action-title">${a.title}</div>
+            <div class="action-detail">${a.detail}</div>
+            <div class="action-meta">Due: ${a.due}</div>
+          </div>
+        </div>`).join('')}
+      </div>
+    </div>
+
+    <!-- Ad Groups -->
+    <div class="section">
+      <div class="section-label">Ad Groups <span class="section-sub">↑↓ vs prev 7 days</span></div>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th style="min-width:180px">Campaign / Group</th>
+              <th>Status</th>
+              <th>Spend 7d</th>
+              <th>ROAS</th>
+              <th>CPA</th>
+              <th>CTR</th>
+              <th>Freq</th>
+              <th>Conv</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${c.adgroups.map(ag => `
+            <tr class="${ag.status==='paused' ? 'row-dim' : ''}">
+              <td>
+                <span class="camp-tag">${ag.campaign}</span>
+                <span class="group-name">${ag.name}</span>
+                ${ag.note ? `<div class="group-note">${ag.note}</div>` : ''}
+              </td>
+              <td>${sbadge(ag.status)}</td>
+              <td>${mcell(fmtK(ag.spend_7d)+' SAR', delta(ag.spend_7d, ag.spend_prev, 'up_bad'))}</td>
+              <td>${mcell(fmt(ag.roas), delta(ag.roas, ag.roas_prev, 'up_good'), roasCls(ag.roas, ag.roas_floor))}</td>
+              <td>${mcell(ag.cpa ? fmt(ag.cpa,0)+' SAR' : '—', delta(ag.cpa, ag.cpa_prev, 'up_bad'), cpaCls(ag.cpa, ag.cpa_ceil))}</td>
+              <td>${mcell(ag.ctr ? fmt(ag.ctr)+'%' : '—', delta(ag.ctr, ag.ctr_prev, 'up_good'))}</td>
+              <td>${mcell(fmt(ag.freq), delta(ag.freq, ag.freq_prev, 'up_bad'), freqCls(ag.freq, ag.freq_thresh))}</td>
+              <td>${mcell(ag.conv ?? '—', delta(ag.conv, ag.conv_prev, 'up_good'))}</td>
+            </tr>`).join('')}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Guardrails -->
+    <div class="section">
+      <div class="section-label">Guardrails Check</div>
+      <div class="gr-grid">
+        ${c.guardrails.map(g => `
+        <div class="gr-item ${g.status==='fail' ? 'gr-fail' : g.status==='warn' ? 'gr-warn' : ''}">
+          <span class="gr-icon">${grIcon(g.status)}</span>
+          <div>
+            <div class="gr-name">${g.name}</div>
+            <div class="gr-detail">${g.detail}</div>
+          </div>
+        </div>`).join('')}
+      </div>
+    </div>
+
+    <!-- Monitoring Signals -->
+    <div class="section">
+      <div class="section-label">Monitoring Signals</div>
+      <div class="mon-list">
+        ${c.monitoring.map(m => `
+        <div class="mon-row">
+          <span class="mon-badge ${monCls(m.level)}">${m.level} · ${m.days}d</span>
+          <span class="mon-sig">${m.signal}</span>
+          <span class="mon-due">Check ${m.check}</span>
+        </div>`).join('')}
+      </div>
+    </div>
+
+    <!-- Recent Decisions -->
+    <div class="section">
+      <div class="section-label">Recent Decisions</div>
+      <div class="dec-list">
+        ${c.recent_decisions.map(d => `
+        <div class="dec-row">
+          <span class="dec-date">${d.date}</span>
+          <span class="dec-text"><strong>${d.action}:</strong> ${d.target}</span>
+          <span class="dec-reason">${d.reason}</span>
+        </div>`).join('')}
+      </div>
+    </div>
+
+  </div>`;
+}
+
+/* ── Main render ── */
+function render() {
+  document.getElementById('app').innerHTML = `
+    <div class="header">
+      <div>
+        <h1>Daily Brief</h1>
+        <div class="sub">${REPORT.date} &nbsp;·&nbsp; Generated ${REPORT.generated}</div>
+      </div>
+      <div class="pills">
+        <span class="pill pill-neutral">${REPORT.clients.length} clients</span>
+        <span class="pill pill-neutral">Windsor delay ~2h</span>
+      </div>
+    </div>
+    <div class="page">
+      ${REPORT.clients.map((c,i) =>
+        renderClient(c) + (i < REPORT.clients.length-1 ? '<hr class="client-divider">' : '')
+      ).join('')}
+    </div>
+  `;
+}
+
+window.addEventListener('DOMContentLoaded', render);
+</script>
+
+<div id="app"></div>
+</body>
+</html>

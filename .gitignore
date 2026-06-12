@@ -5,6 +5,7 @@
 *token*
 *secret*
 *credentials*
+clarity_config.py
 
 # Raw exports الخام من المنصات
 raw/
@@ -15,6 +16,10 @@ raw/
 # SQLite databases (binary — تتغير كل يوم، لا ترفع)
 *.db
 *.sqlite
+*.bak
+
+# Local browser traces
+.playwright-mcp/
 
 # Obsidian editor settings (شخصية)
 .obsidian/

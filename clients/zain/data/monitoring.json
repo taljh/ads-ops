@@ -1,56 +1,16 @@
 {
-  "_note": "watch signals are checked automatically on every daily run — not delegated to user",
-  "_last_cleaned": "2026-06-08",
-
-  "zain_winners_cbo_frequency": {
-    "first_seen": "2026-06-08",
-    "last_seen": "2026-06-08",
+  "tiktok_sales__winners_cbo__may_2026_freq": {
+    "first_seen": "2026-06-09",
+    "last_seen": "2026-06-09",
     "days": 1,
-    "signal": "Winners CBO: frequency 3.65 — تجاوز حد prospecting 3.0. الكرييتف على وشك التشبع.",
-    "level": "warning",
-    "context": {
-      "campaign": "Sales | Winners CBO | May 2026",
-      "current_frequency": 3.65,
-      "guardrail_threshold": 3.0,
-      "status": "BREACHED — يحتاج تجديد كرييتف فوري",
-      "action": "اقترح كرييتف جديد أو توسيع الجمهور قبل نهاية الأسبوع",
-      "escalate_if": "frequency > 4.0 في القياس التالي → تنبيه أكشن"
-    }
+    "signal": "Winners CBO: lifetime freq كان 3.18 (Jun 8). Daily freq Jun 9 = 2.03 (تحسّن). مراقبة daily freq لا تتجاوز 2.5.",
+    "level": "monitor"
   },
-
-  "zain_prospecting_sales_jun_conversions": {
-    "first_seen": "2026-06-08",
-    "last_seen": "2026-06-08",
-    "days": 1,
-    "signal": "Prospecting Sales | JUN: 5 تحويلات حتى الآن — تراقب وصول 15+ للتحقق من الكفاءة قبل التوسيع",
-    "level": "monitor",
-    "context": {
-      "campaign": "Prospecting Sales | JUN",
-      "current_conversions": 5,
-      "scale_threshold": 15,
-      "current_roas_platform": 10.56,
-      "current_cpa": 55,
-      "note": "ROAS واعد جداً لكن عينة صغيرة (5 تحويلات). لا سكيل قبل 15+ تحويل.",
-      "action_at_threshold": "عند 15+ تحويل: رفع ميزانية +25% كل يومين إذا ROAS > 7",
-      "abort_threshold": "صرف 300 SAR + conversions < 3 في أسبوع → أعد التقييم"
-    }
-  },
-
-  "zain_monthly_pacing_gap": {
-    "first_seen": "2026-06-08",
-    "last_seen": "2026-06-08",
-    "days": 1,
-    "signal": "Pacing: توقع نهاية الشهر ~8,700 SAR — دون هدف 11,500 SAR بـ 2,800 SAR",
-    "level": "watch",
-    "context": {
-      "mtd_spend": 1800,
-      "projected_monthly": 8700,
-      "target_monthly": 11500,
-      "gap": 2800,
-      "budget_cap": 15000,
-      "payroll_peak_days": "26 → 3",
-      "action": "حجز ميزانية الذروة مسبقاً (26-30 يونيو): زيادة Winners CBO + Prospecting Sales بالتدريج خلال أسبوعين",
-      "check_weekly": true
-    }
+  "tiktok_50_cold_broad_zero_conv": {
+    "first_seen": "2026-06-04",
+    "last_seen": "2026-06-09",
+    "days": 6,
+    "signal": "#50_Cold_Broad: 112 ر.س Jun 4-9 بـ 0 تحويل. Guardrail #6 limit = 150 ر.س. 38 ر.س من الايقاف.",
+    "level": "warning"
   }
 }
