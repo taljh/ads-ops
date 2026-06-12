@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily Brief — Jun 9–12, 2026</title>
+<style>
+  :root {
+    --green:#16a34a; --green-bg:#f0fdf4; --green-border:#bbf7d0;
+    --yellow:#ca8a04; --yellow-bg:#fefce8; --yellow-border:#fde68a;
+    --red:#dc2626; --red-bg:#fef2f2; --red-border:#fecaca;
+    --blue:#2563eb; --blue-bg:#eff6ff; --blue-border:#bfdbfe;
+    --gray:#6b7280; --gray-bg:#f9fafb; --gray-border:#e5e7eb;
+    --dark:#111827; --card-shadow:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.05);
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Tahoma',sans-serif; background:#f3f4f6; color:var(--dark); font-size:13px; line-height:1.5; }
+  .page-header { background:#0f172a; color:white; padding:28px 40px 24px; }
+  .page-header .meta { font-size:11px; color:#94a3b8; margin-bottom:6px; letter-spacing:.05em; text-transform:uppercase; }
+  .page-header h1 { font-size:22px; font-weight:700; margin-bottom:4px; }
+  .page-header .subtitle { font-size:13px; color:#cbd5e1; }
+  .header-pills { display:flex; gap:8px; margin-top:14px; flex-wrap:wrap; }
+  .pill { display:inline-flex; align-items:center; gap:5px; padding:3px 10px; border-radius:20px; font-size:11px; font-weight:600; }
+  .pill.maintenance { background:#1e40af; color:#bfdbfe; }
+  .pill.day { background:#374151; color:#d1d5db; }
+  .pill.peak-warn { background:#92400e; color:#fde68a; }
+  .pill.alarm { background:#7f1d1d; color:#fecaca; }
+  .page-body { padding:28px 40px; max-width:1300px; margin:0 auto; }
+  .two-col { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+  .four-col { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+  .client-block { background:white; border-radius:12px; box-shadow:var(--card-shadow); overflow:hidden; margin-bottom:28px; }
+  .client-header { padding:16px 22px 14px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid #f1f5f9; }
+  .client-header.noura { background:linear-gradient(135deg,#fdf4ff,#fae8ff); }
+  .client-header.zain { background:linear-gradient(135deg,#f0f9ff,#e0f2fe); }
+  .client-title { font-size:16px; font-weight:700; }
+  .client-sub { font-size:11px; color:var(--gray); margin-top:2px; }
+  .client-body { padding:22px; }
+  .kpi-card { background:var(--gray-bg); border:1px solid var(--gray-border); border-radius:10px; padding:14px 16px; }
+  .kpi-card .label { font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:.05em; color:var(--gray); margin-bottom:4px; }
+  .kpi-card .value { font-size:22px; font-weight:800; line-height:1; }
+  .kpi-card .sub { font-size:11px; color:var(--gray); margin-top:4px; }
+  .kpi-card.green { background:var(--green-bg); border-color:var(--green-border); } .kpi-card.green .value { color:var(--green); }
+  .kpi-card.yellow { background:var(--yellow-bg); border-color:var(--yellow-border); } .kpi-card.yellow .value { color:var(--yellow); }
+  .kpi-card.red { background:var(--red-bg); border-color:var(--red-border); } .kpi-card.red .value { color:var(--red); }
+  .kpi-card.blue { background:var(--blue-bg); border-color:var(--blue-border); } .kpi-card.blue .value { color:var(--blue); }
+  .section-title { font-size:10px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--gray); margin:22px 0 10px; display:flex; align-items:center; gap:8px; }
+  .section-title::after { content:''; flex:1; height:1px; background:#e5e7eb; }
+  table { width:100%; border-collapse:collapse; }
+  th { text-align:right; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:var(--gray); padding:6px 10px; background:#f8fafc; border-bottom:1px solid #e5e7eb; }
+  td { padding:9px 10px; border-bottom:1px solid #f1f5f9; font-size:12px; vertical-align:middle; }
+  tr:last-child td { border-bottom:none; }
+  tr:hover td { background:#fafafa; }
+  .table-wrap { border:1px solid #e5e7eb; border-radius:8px; overflow:hidden; }
+  .badge { display:inline-block; padding:2px 8px; border-radius:20px; font-size:10px; font-weight:700; white-space:nowrap; }
+  .badge.green { background:var(--green-bg); color:var(--green); border:1px solid var(--green-border); }
+  .badge.yellow { background:var(--yellow-bg); color:var(--yellow); border:1px solid var(--yellow-border); }
+  .badge.red { background:var(--red-bg); color:var(--red); border:1px solid var(--red-border); }
+  .badge.gray { background:var(--gray-bg); color:var(--gray); border:1px solid var(--gray-border); }
+  .badge.blue { background:var(--blue-bg); color:var(--blue); border:1px solid var(--blue-border); }
+  .badge.paused { background:#f1f5f9; color:#64748b; border:1px solid #cbd5e1; }
+  .pacing-wrap { margin-top:4px; }
+  .pacing-label { display:flex; justify-content:space-between; font-size:11px; color:var(--gray); margin-bottom:5px; }
+  .pacing-track { background:#e5e7eb; border-radius:4px; height:8px; overflow:hidden; position:relative; }
+  .pacing-fill { height:100%; border-radius:4px; }
+  .pacing-fill.green { background:var(--green); } .pacing-fill.yellow { background:#eab308; } .pacing-fill.red { background:var(--red); }
+  .pacing-cap { position:absolute; top:-2px; bottom:-2px; width:2px; background:#374151; border-radius:1px; }
+  .decision-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:12px; }
+  .decision-card { border-radius:10px; padding:14px 16px; border-right:4px solid; }
+  .decision-card.urgent { border-color:var(--red); background:var(--red-bg); }
+  .decision-card.watch { border-color:var(--yellow); background:var(--yellow-bg); }
+  .decision-card.action { border-color:var(--blue); background:var(--blue-bg); }
+  .decision-card.ok { border-color:var(--green); background:var(--green-bg); }
+  .decision-card .d-title { font-weight:700; font-size:12px; margin-bottom:5px; }
+  .decision-card .d-reason { font-size:11px; color:#374151; line-height:1.5; }
+  .decision-card .d-tag { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; margin-bottom:6px; }
+  .decision-card.urgent .d-tag { color:var(--red); } .decision-card.watch .d-tag { color:var(--yellow); }
+  .decision-card.action .d-tag { color:var(--blue); } .decision-card.ok .d-tag { color:var(--green); }
+  .bar-chart { padding:6px 0; }
+  .bar-row { display:flex; align-items:center; gap:10px; margin-bottom:8px; }
+  .bar-label { width:120px; font-size:11px; font-weight:600; flex-shrink:0; text-align:left; }
+  .bar-track { flex:1; background:#f1f5f9; border-radius:3px; height:20px; overflow:hidden; }
+  .bar-fill { height:100%; border-radius:3px; display:flex; align-items:center; padding-right:8px; font-size:10px; font-weight:700; color:white; white-space:nowrap; justify-content:flex-end; }
+  .bar-row .bar-value { width:70px; font-size:11px; font-weight:700; flex-shrink:0; }
+  .guardrail-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:8px; }
+  .gr-item { display:flex; align-items:center; gap:8px; padding:9px 12px; border-radius:8px; background:white; border:1px solid #e5e7eb; font-size:11px; }
+  .gr-icon { width:20px; height:20px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:11px; flex-shrink:0; }
+  .gr-icon.pass { background:var(--green-bg); color:var(--green); } .gr-icon.warn { background:var(--yellow-bg); color:var(--yellow); }
+  .gr-icon.fail { background:var(--red-bg); color:var(--red); } .gr-icon.pause { background:#f1f5f9; color:#64748b; }
+  .gr-text .gr-title { font-weight:600; font-size:11px; } .gr-text .gr-val { font-size:10px; color:var(--gray); }
+  .timeline { position:relative; padding-right:28px; }
+  .timeline::before { content:''; position:absolute; right:8px; top:6px; bottom:6px; width:2px; background:#e5e7eb; }
+  .tl-item { position:relative; margin-bottom:16px; } .tl-item:last-child { margin-bottom:0; }
+  .tl-dot { position:absolute; right:-24px; top:2px; width:14px; height:14px; border-radius:50%; border:2px solid white; }
+  .tl-dot.red { background:var(--red); } .tl-dot.yellow { background:#eab308; } .tl-dot.blue { background:var(--blue); } .tl-dot.green { background:var(--green); }
+  .tl-time { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:var(--gray); margin-bottom:3px; }
+  .tl-title { font-size:12px; font-weight:700; margin-bottom:2px; } .tl-desc { font-size:11px; color:#374151; }
+  .insight { border-radius:8px; padding:12px 14px; margin-top:10px; font-size:11px; line-height:1.6; }
+  .insight.blue { background:var(--blue-bg); border:1px solid var(--blue-border); color:#1e3a8a; }
+  .insight.green { background:var(--green-bg); border:1px solid var(--green-border); color:#14532d; }
+  .insight.red { background:var(--red-bg); border:1px solid var(--red-border); color:#7f1d1d; }
+  .insight.yellow { background:var(--yellow-bg); border:1px solid var(--yellow-border); color:#713f12; }
+  .insight strong { font-weight:700; }
+  .page-footer { text-align:center; padding:20px; font-size:11px; color:#9ca3af; }
+  .mt8 { margin-top:8px; } .mt12 { margin-top:12px; } .mt16 { margin-top:16px; }
+  .up { color:var(--green); font-weight:700; } .down { color:var(--red); font-weight:700; } .flat { color:var(--gray); }
+  .daycol { font-weight:800; color:#0f172a; white-space:nowrap; }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div class="meta">Ads Operations — Daily Brief (متابعة سفر)</div>
+  <h1>تقرير الأيام 9–12 يونيو · مسار يومي + قرارات</h1>
+  <div class="subtitle">الفترة: <strong>9–12 يونيو 2026</strong> (منذ آخر تقرير 8 يونيو) &nbsp;·&nbsp; المصدر: Windsor.ai (TikTok/Snapchat) + Salla MCP &nbsp;·&nbsp; القياس: كل يوم على حِدة، مقارنة بالفترة السابقة (5–8 يونيو) ونفس الأيام الشهر الماضي (9–12 مايو)</div>
+  <div class="header-pills">
+    <span class="pill day">اليوم 12 من 30</span>
+    <span class="pill maintenance">المرحلة: صيانة</span>
+    <span class="pill peak-warn">الذروة القادمة: 26 يونيو → 3 يوليو</span>
+    <span class="pill alarm">⚠ خرق أرضية ROAS — نوره (Blended 3.5)</span>
+  </div>
+</div>
+
+<div class="page-body">
+
+<!-- ════════ خلاصة تنفيذية ════════ -->
+<div class="client-block">
+  <div class="client-header" style="background:linear-gradient(135deg,#1e293b,#0f172a);">
+    <div>
+      <div class="client-title" style="color:white;">الخلاصة التنفيذية — اقرأها وأنت مسافر</div>
+      <div class="client-sub" style="color:#94a3b8;">أهم 3 أشياء حصلت في 4 أيام، وأهم 3 قرارات عاجلة</div>
+    </div>
+  </div>
+  <div class="client-body">
+    <div class="insight red" style="margin-top:0;">
+      <strong>1) نوره — الأرضية انكسرت:</strong> Blended ROAS للأيام 9–12 = <strong>3.52</strong> (سلة 5,522 ÷ صرف 1,569) — <strong>تحت أرضية 4.5</strong>. المسار ينحدر: مايو 5.85 → 1–8 يونيو 5.42 → 9–12 يونيو 3.52. السبب الجوهري: <strong>فرضية «الكرييتف الرابح carousel 4» سقطت</strong> — بعد عزله (قرار 8 يونيو) انهار من ROAS 8.15 إلى <strong>1.97</strong>، وحملة وصايف الجديدة حرقت <strong>359 ر.س بصفر تحويل</strong>. القرار: تجميد أي توسيع (Guardrail #2) + إيقاف الخاسر + إعادة الميزانية لـ<strong>أصايل</strong> (البطل الفعلي).
+    </div>
+    <div class="insight yellow">
+      <strong>2) زين — انهيار شهري للمحرّك:</strong> نفس الحملة (Winners CBO) ونفس الأيام: مايو 9–12 كانت ROAS <strong>11.9</strong> بـ24 تحويل، يونيو 9–12 صارت <strong>2.94</strong> بـ6 تحويلات — <strong>وبصرف أعلى</strong> (935 مقابل 766). الكرييتف الوحيد «#fypシ ✨» تعب (يومان من أربعة بصفر تحويل). والحملة الجديدة Prospecting سُكِّلت غلط (100→300/يوم في 3 أيام) فانهار ROAS من 11.56 إلى 2.65.
+    </div>
+    <div class="insight blue">
+      <strong>3) القرارات العاجلة الثلاثة (اليوم):</strong> (أ) نوره: أوقف <strong>Wasayef-V2-C2</strong> فوراً (Guardrail #6) وجمّد ميزانيات التوسيع. (ب) نوره: حوِّل الثقل لـ<strong>Asayel New V2 C1</strong> (ROAS 12–18 صاعد). (ج) زين: ارجِع ميزانية Prospecting من 300 إلى ~120 وأوقف <strong>#103-C1</strong>، وجهّز كرييتف بطل جديد لـ CBO قبل ما ينهار أكثر. <strong>Snapchat = 0 صرف / 0 إسناد ✓</strong> (القرار صحيح ومستمر).
+    </div>
+  </div>
+</div>
+
+<!-- ════════ NOURA ════════ -->
+<div class="client-block">
+  <div class="client-header noura">
+    <div>
+      <div class="client-title">نوره — عبايات نوره</div>
+      <div class="client-sub">TikTok (أساسية) + Snapchat (موقّفة منذ 6 يونيو) &nbsp;·&nbsp; المتجر: سلة (abay-nora.com)</div>
+    </div>
+    <div style="text-align:left">
+      <div style="font-size:11px;color:#6b7280;">سقف شهري</div>
+      <div style="font-size:18px;font-weight:800;color:#6d28d9;">15,000 ر.س</div>
+    </div>
+  </div>
+  <div class="client-body">
+
+    <div class="section-title">مؤشرات الفترة 9–12 يونيو</div>
+    <div class="four-col">
+      <div class="kpi-card red">
+        <div class="label">Blended ROAS (9–12)</div>
+        <div class="value">3.52</div>
+        <div class="sub">🔴 تحت الأرضية 4.5 · مايو 5.85 ← 1–8 يونيو 5.42 ← الآن 3.52</div>
+      </div>
+      <div class="kpi-card blue">
+        <div class="label">إيراد سلة (9–12)</div>
+        <div class="value">5,522</div>
+        <div class="sub">ر.س · 14 طلب · مباشر 57% / تيك توك 36% / IG 7%</div>
+      </div>
+      <div class="kpi-card yellow">
+        <div class="label">صرف TikTok (9–12)</div>
+        <div class="value">1,569</div>
+        <div class="sub">ر.س · Main 936 · وصايف الجديدة 460 · الخليج 173</div>
+      </div>
+      <div class="kpi-card green">
+        <div class="label">توقّع صرف يونيو</div>
+        <div class="value">~13,000</div>
+        <div class="sub">ر.س · داخل السقف ✓ — المشكلة كفاءة لا حجم</div>
+      </div>
+    </div>
+
+    <div class="insight red">
+      <strong>القراءة الأساسية:</strong> الصرف منضبط (pacing سليم، MTD 5,166 من 15K)، لكن <strong>الكفاءة انهارت</strong>. الـ Blended 3.52 يكسر الأرضية لأول مرة منذ دخول النظام. هذا ليس «يوم سيئ» — هو <strong>مسار هابط 4 أيام</strong>، ومصدره معروف بالاسم: عزل carousel 4 لم يرفع وصايف كما توقّعنا في 8 يونيو، بل كشف أن وصايف نفسه يتعب وأن <strong>أصايل</strong> هو من يحمل التحويلات.
+    </div>
+
+    <!-- المسار اليومي -->
+    <div class="section-title">المسار اليومي — حملة Main (كل يوم على حِدة)</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>اليوم</th><th>صرف</th><th>تحويل</th><th>ROAS منصة</th><th>CPA</th><th>CTR</th><th>Freq</th><th>الاتجاه يوم-ليوم</th></tr></thead>
+        <tbody>
+          <tr><td class="daycol">الإثنين 8 (مرجع)</td><td>314</td><td>5</td><td style="font-weight:800;color:#16a34a;">7.76</td><td>63</td><td>2.80%</td><td>2.09</td><td><span class="flat">— آخر يوم صحي قبل الانهيار</span></td></tr>
+          <tr style="background:#fff7f7;"><td class="daycol">الثلاثاء 9</td><td>216</td><td>1</td><td style="font-weight:800;color:#dc2626;">1.94</td><td>216</td><td>2.61%</td><td>2.32</td><td><span class="down">▼ سقوط حاد −75% ROAS</span></td></tr>
+          <tr style="background:#fff7f7;"><td class="daycol">الأربعاء 10</td><td>365</td><td>2</td><td style="font-weight:800;color:#dc2626;">2.24</td><td>183</td><td>2.52%</td><td>2.36</td><td><span class="down">▼ صرف أعلى، ROAS لا يزال أرضي</span></td></tr>
+          <tr style="background:#fefce8;"><td class="daycol">الخميس 11</td><td>200</td><td>2</td><td style="font-weight:800;color:#ca8a04;">4.08</td><td>100</td><td>2.54%</td><td>2.26</td><td><span class="up">▲ تحسّن جزئي (أصايل أنقذ اليوم)</span></td></tr>
+          <tr style="background:#fff7f7;"><td class="daycol">الجمعة 12*</td><td>154</td><td>1</td><td style="font-weight:800;color:#dc2626;">2.71</td><td>154</td><td>2.21%</td><td>2.00</td><td><span class="down">▼ جمعة + يوم جزئي · CTR يهبط</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="insight yellow mt8">
+      <strong>ماذا يقول المسار؟</strong> الانهيار بدأ <strong>9 يونيو بالضبط</strong> — أول يوم بعد إيقاف carousel 3 و«الرد على @M» وخفض ميزانية وصايف 500→300. الفرضية كانت: «نشيل الخاسر فيرتفع ROAS لـ8». الواقع: نزل لـ2. المعنى أن carousel 3 لم يكن «يسحب» وصايف فقط — كان <strong>يساهم في حجم التحويلات</strong>، وعزله كسر تعلّم المجموعة. CTR ثابت ~2.5% (لا مشكلة جذب) بينما التحويل ينهار = <strong>مشكلة مطابقة منتج/جمهور بعد كسر التعلّم، لا مشكلة كرييتف جذب.</strong> *الجمعة يوم جزئي.
+    </div>
+
+    <!-- مستوى الحملات -->
+    <div class="section-title">TikTok — مستوى الحملات (9–12 يونيو مقابل 5–8 يونيو)</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>الحملة</th><th>الحالة</th><th>صرف</th><th>تحويل</th><th>ROAS منصة</th><th>CPA</th><th>الفترة السابقة (5–8)</th><th>الحكم</th></tr></thead>
+        <tbody>
+          <tr style="background:#fff7f7;">
+            <td><strong>Main | May 2026</strong></td><td><span class="badge green">نشطة</span></td>
+            <td>936</td><td>6</td><td style="font-weight:800;color:#dc2626;">2.64</td><td>156</td>
+            <td>ROAS 5.63 · 27 تحويل</td><td><span class="badge red">انحدار حاد</span></td>
+          </tr>
+          <tr style="background:#fff7f7;">
+            <td><strong>Prospecting Sales | JUN</strong> <span class="badge blue" style="font-size:9px;">وصايف WC — جديدة</span></td><td><span class="badge green">نشطة</span></td>
+            <td>460</td><td>1</td><td style="font-weight:800;color:#dc2626;">0.88</td><td>460</td>
+            <td>—  (أُطلقت 9 يونيو)</td><td><span class="badge red">فشل الإطلاق</span></td>
+          </tr>
+          <tr style="background:#f8fafc;">
+            <td><strong>Gulf Sales | JUN</strong></td><td><span class="badge paused">شبه موقّفة</span></td>
+            <td>173</td><td>0</td><td style="font-weight:800;color:#dc2626;">0</td><td>—</td>
+            <td>ROAS 1.66 · 1 تحويل</td><td><span class="badge gray">أوقفها نهائياً</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="insight red mt8">
+      <strong>حملة وصايف الجديدة = الدرس الأقسى:</strong> بُنيت على «الكرييتف الرابح» (carousel 4 / نسخته C2). في 4 أيام صرفت 460 ر.س وجابت <strong>تحويلاً واحداً فقط</strong> (وهو من مجموعة أصايل التي أُضيفت يوم 11، لا من وصايف). الكرييتف <strong>Wasayef-V2-C2</strong> وحده أكل <strong>359 ر.س بصفر تحويل</strong> رغم CTR ممتاز (8–11%) — كليك كثير بلا شراء = <strong>مطابقة منتج/جمهور خاطئة</strong>، خرق Guardrail #6 (صرف &gt; 2× سقف CPA + صفر تحويل).
+    </div>
+
+    <!-- مستوى المجموعات -->
+    <div class="section-title">TikTok — مستوى المجموعات داخل Main (9–12 يونيو)</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>المجموعة</th><th>الاستراتيجية</th><th>صرف</th><th>تحويل</th><th>ROAS</th><th>CPA</th><th>الحكم</th></tr></thead>
+        <tbody>
+          <tr style="background:#fff7f7;">
+            <td><strong>Wasayef</strong></td><td><span class="badge yellow">Target Cost</span></td>
+            <td>375</td><td>3</td><td style="font-weight:800;color:#dc2626;">3.29</td><td>125</td>
+            <td><span class="badge red">المحرّك القديم يتعب</span></td>
+          </tr>
+          <tr style="background:#fefce8;">
+            <td><strong>Asayel | NTC | looklike</strong></td><td><span class="badge blue">Lookalike</span></td>
+            <td>560</td><td>3</td><td style="font-weight:800;color:#ca8a04;">2.21</td><td>187</td>
+            <td><span class="badge yellow">بارد 9–10، صحا 11–12</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="insight blue mt8">
+      <strong>تشخيص دقيق للمجموعتين:</strong> أصايل Lookalike يبدو ضعيفاً كمتوسط (2.21) لكن هذا <strong>مضلِّل</strong> — يومي 9 و10 صرف 304 ر.س بصفر تحويل (فترة باردة)، ثم 11 و12 رجع <strong>ROAS 5.3 و4.1</strong>. داخله كرييتف صاعد بقوة: <strong>«Asayel New V2 C1»</strong> (يوم 11: ROAS 12.2 · يوم 12: ROAS 18.69 · CTR 6–7%). أما وصايف فمشكلته بنيوية: carousel 4 (أملنا) مات، ولم يبقَ فيه كرييتف رابح حيّ.
+    </div>
+
+    <!-- تشريح الكرييتف -->
+    <div class="section-title">تشريح الكرييتف — سقوط «الرابح» وصعود البديل (8–12 يونيو)</div>
+    <div class="bar-chart">
+      <div class="bar-row">
+        <div class="bar-label" style="color:#16a34a;font-weight:800;">Asayel New V2 C1</div>
+        <div class="bar-track"><div class="bar-fill" style="width:90%;background:#16a34a;">ROAS 12–18 · CTR 6–7% · صاعد</div></div>
+        <div class="bar-value up">✓ البطل الجديد</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label" style="color:#dc2626;font-weight:800;">Image carousel 4</div>
+        <div class="bar-track"><div class="bar-fill" style="width:22%;background:#dc2626;">416 ر.س · 2 تحويل · ROAS 1.97</div></div>
+        <div class="bar-value down">✗ «الرابح» مات</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label" style="color:#dc2626;font-weight:800;">Wasayef-V2-C2</div>
+        <div class="bar-track"><div class="bar-fill" style="width:5%;background:#dc2626;"></div><div style="padding:4px 8px;font-size:10px;color:#dc2626;">359 ر.س · 0 تحويل · CTR 8–11%</div></div>
+        <div class="bar-value down">✗ أوقفه الآن</div>
+      </div>
+    </div>
+    <div class="table-wrap mt12">
+      <table>
+        <thead><tr><th>الكرييتف</th><th>المجموعة</th><th>صرف 8–12</th><th>تحويل</th><th>ROAS</th><th>ملاحظة</th></tr></thead>
+        <tbody>
+          <tr style="background:#f0fdf4;"><td><strong>Asayel New V2 C1</strong></td><td>أصايل LK / الخليج</td><td>~118</td><td>2</td><td style="font-weight:800;color:#16a34a;">12–18</td><td>CTR 6–7% · تردد &lt;2 · يستحق الميزانية</td></tr>
+          <tr style="background:#fefce8;"><td>وصايف تجنن ي بنات</td><td>Wasayef</td><td>~26</td><td>1</td><td style="font-weight:800;color:#16a34a;">51.5</td><td>تحويل واحد يوم 9 ثم سكون — wild card</td></tr>
+          <tr style="background:#fefce8;"><td>Asayel New V2 (صرف صغير)</td><td>أصايل LK</td><td>~12</td><td>1</td><td style="font-weight:800;color:#16a34a;">72.5</td><td>عيّنة صغيرة — راقب</td></tr>
+          <tr style="background:#fff7f7;"><td><strong>Image carousel 4</strong></td><td>Wasayef</td><td>416</td><td>2</td><td style="font-weight:800;color:#dc2626;">1.97</td><td>كان 8.15 — انهار بعد العزل · CPA 208</td></tr>
+          <tr style="background:#fff7f7;"><td><strong>Wasayef-V2-C2</strong></td><td>Prospecting (جديدة)</td><td>359</td><td style="color:#dc2626;font-weight:800;">0</td><td style="font-weight:800;color:#dc2626;">0</td><td>🔴 Guardrail #6 — كليك بلا شراء</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="insight yellow mt8">
+      <strong>الدرس المنهجي (وثّقه):</strong> ROAS 8.15 لـ carousel 4 في تقرير 8 يونيو كان مبنياً على <strong>عيّنة صغيرة (12 تحويل أسبوعي)</strong> — ليس بطلاً مثبتاً. عندما عزلناه في حملة/مجموعة نظيفة، ظهر مستواه الحقيقي (~2). <strong>القاعدة الجديدة: لا نبني حملة كاملة على كرييتف لم يتجاوز 25 تحويل مستقراً.</strong> البطل الحقيقي للحساب (متجرياً وإعلانياً) هو <strong>أصايل</strong>، تماماً كما قالت داتا سلة في 6 يونيو (أصايل = 49% من الإيراد).
+    </div>
+
+    <!-- Snapchat -->
+    <div class="section-title">Snapchat — تأكيد</div>
+    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:14px 18px;display:flex;gap:30px;flex-wrap:wrap;">
+      <div><div style="font-size:10px;color:#64748b;text-transform:uppercase;font-weight:700;">الصرف 9–12</div><div style="font-size:14px;font-weight:800;color:#16a34a;">0 ر.س ✓</div></div>
+      <div><div style="font-size:10px;color:#64748b;text-transform:uppercase;font-weight:700;">إسناد سلة</div><div style="font-size:14px;font-weight:800;color:#16a34a;">0 (غير ظاهرة أصلاً)</div></div>
+      <div><div style="font-size:10px;color:#64748b;text-transform:uppercase;font-weight:700;">الحالة</div><div style="font-size:14px;font-weight:800;color:#64748b;">موقّفة — القرار صحيح ومستمر</div></div>
+    </div>
+
+    <!-- لوحة قرارات نوره -->
+    <div class="section-title">نوره — لوحة القرارات</div>
+    <div class="decision-grid">
+      <div class="decision-card urgent">
+        <div class="d-tag">عاجل — اليوم</div>
+        <div class="d-title">أوقف Wasayef-V2-C2 من حملة Prospecting</div>
+        <div class="d-reason">359 ر.س / 0 تحويل في 4 أيام · CTR 8–11% بلا شراء. Guardrail #6 صريح. الكرييتف C1 الأصلي لم يُخدَم أصلاً (24 ر.س فقط) — TikTok وزّع الميزانية كلها على C2 الخاسر.</div>
+      </div>
+      <div class="decision-card urgent">
+        <div class="d-tag">عاجل — اليوم</div>
+        <div class="d-title">جمّد كل توسيع للميزانية (Guardrail #2)</div>
+        <div class="d-reason">Blended 3.52 &lt; أرضية 4.5. لا زيادة صرف على أي حملة حتى يرجع ROAS فوق 4.5. الإصلاح أولاً ثم التوسيع — لا العكس.</div>
+      </div>
+      <div class="decision-card action">
+        <div class="d-tag">إجراء — اليوم/غداً</div>
+        <div class="d-title">حوّل الثقل لـ Asayel New V2 C1</div>
+        <div class="d-reason">ROAS 12–18 صاعد · CTR 6–7% · تردد &lt;2. ارفع حصته داخل مجموعة أصايل Lookalike بحذر (≤20–30%). هذا البديل الحقيقي عن carousel 4 الميت.</div>
+      </div>
+      <div class="decision-card watch">
+        <div class="d-tag">قرار — هذا الأسبوع</div>
+        <div class="d-title">قرّر مصير carousel 4 و حملة وصايف الجديدة</div>
+        <div class="d-reason">carousel 4: ROAS 1.97 / CPA 208 على 5 أيام = ليس رابحاً. إمّا خفض حاد أو إيقاف. حملة Prospecting (وصايف WC): أعِد تقييمها كلياً — أساسها (الكرييتف الرابح) سقط. الأرجح: حوّلها لاختبار أصايل بدل وصايف.</div>
+      </div>
+      <div class="decision-card ok">
+        <div class="d-tag">مؤكَّد</div>
+        <div class="d-title">أوقف Gulf Sales | JUN نهائياً</div>
+        <div class="d-reason">منذ الإطلاق ~526 ر.س / تحويل واحد. الخليج (9–12): 173 ر.س / 0 تحويل. الميزانية خُفِّضت تلقائياً لـ13 ر.س ثم 0. اعتمد الإيقاف الكامل وحرّر الميزانية لأصايل.</div>
+      </div>
+      <div class="decision-card action">
+        <div class="d-tag">فرصة — مخزّنة</div>
+        <div class="d-title">أطلق Retargeting على أصايل</div>
+        <div class="d-reason">الفجوة الأكبر منذ يونيو 6. أصايل = الأعلى تركاً للسلة. مع انهيار الـ cold، الـ retargeting هو أسرع طريق لرفع Blended فوق الأرضية. ابدأ صغيراً بعد تثبيت الـ cold.</div>
+      </div>
+    </div>
+
+    <!-- Guardrails نوره -->
+    <div class="section-title">نوره — فحص الـ Guardrails</div>
+    <div class="guardrail-grid">
+      <div class="gr-item"><div class="gr-icon fail">✗</div><div class="gr-text"><div class="gr-title">Blended ROAS ≥ 4.5</div><div class="gr-val">3.52 — مخروقة 🔴 (جمّد التوسيع)</div></div></div>
+      <div class="gr-item"><div class="gr-icon fail">✗</div><div class="gr-text"><div class="gr-title">Guardrail #6 (C2)</div><div class="gr-val">359 ر.س + 0 تحويل → أوقف</div></div></div>
+      <div class="gr-item"><div class="gr-icon warn">!</div><div class="gr-text"><div class="gr-title">CPA ≤ 90 (سقف)</div><div class="gr-val">Main 156 — فوق السقف</div></div></div>
+      <div class="gr-item"><div class="gr-icon pass">✓</div><div class="gr-text"><div class="gr-title">سقف شهري ≤ 15K</div><div class="gr-val">توقّع ~13,000 ✓</div></div></div>
+      <div class="gr-item"><div class="gr-icon pass">✓</div><div class="gr-text"><div class="gr-title">Frequency &lt; 3</div><div class="gr-val">المجموعات 2.0–2.4 ✓</div></div></div>
+      <div class="gr-item"><div class="gr-icon pass">✓</div><div class="gr-text"><div class="gr-title">CTR ثابت (لا انهيار جذب)</div><div class="gr-val">~2.5% — المشكلة تحويل لا نقر</div></div></div>
+      <div class="gr-item"><div class="gr-icon pause">⏸</div><div class="gr-text"><div class="gr-title">Snapchat</div><div class="gr-val">0 صرف / 0 إسناد ✓</div></div></div>
+      <div class="gr-item"><div class="gr-icon warn">!</div><div class="gr-text"><div class="gr-title">متابعة قرار 8 يونيو</div><div class="gr-val">النتيجة عكس المتوقع — أُعيد التوجيه</div></div></div>
+    </div>
+
+  </div>
+</div><!-- /noura -->
+
+<!-- ════════ ZAIN ════════ -->
+<div class="client-block">
+  <div class="client-header zain">
+    <div>
+      <div class="client-title">زين — عبايات زين (رغد)</div>
+      <div class="client-sub">TikTok فقط &nbsp;·&nbsp; لا Blended ROAS (سلة غير موصولة) — التقييم على ROAS المنصة</div>
+    </div>
+    <div style="text-align:left">
+      <div style="font-size:11px;color:#6b7280;">سقف شهري</div>
+      <div style="font-size:18px;font-weight:800;color:#0284c7;">15,000 ر.س</div>
+    </div>
+  </div>
+  <div class="client-body">
+
+    <div class="section-title">مؤشرات الفترة 9–12 يونيو</div>
+    <div class="four-col">
+      <div class="kpi-card red">
+        <div class="label">Winners CBO ROAS (9–12)</div>
+        <div class="value">2.94</div>
+        <div class="sub">🔴 نفس الأيام مايو = 11.9 · انهيار −75%</div>
+      </div>
+      <div class="kpi-card yellow">
+        <div class="label">Prospecting الجديدة ROAS</div>
+        <div class="value">2.87</div>
+        <div class="sub">سُكِّلت 100→300 فانهارت من 11.56</div>
+      </div>
+      <div class="kpi-card blue">
+        <div class="label">صرف TikTok (9–12)</div>
+        <div class="value">1,757</div>
+        <div class="sub">ر.س · CBO 935 · Prospecting 822</div>
+      </div>
+      <div class="kpi-card red">
+        <div class="label">تحويلات الفترة</div>
+        <div class="value">13</div>
+        <div class="sub">مقابل 24+ نفس الأيام مايو (CBO وحده)</div>
+      </div>
+    </div>
+
+    <!-- مقارنة شهرية بصرية -->
+    <div class="section-title">المقارنة الحاسمة — Winners CBO: نفس الأيام، شهرين</div>
+    <div class="two-col">
+      <div>
+        <div class="bar-chart">
+          <div class="bar-row">
+            <div class="bar-label" style="color:#16a34a;font-weight:800;">9–12 مايو</div>
+            <div class="bar-track"><div class="bar-fill" style="width:100%;background:#16a34a;">ROAS 11.9 · 24 تحويل · صرف 766</div></div>
+            <div class="bar-value up">CPA 32</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label" style="color:#dc2626;font-weight:800;">9–12 يونيو</div>
+            <div class="bar-track"><div class="bar-fill" style="width:25%;background:#dc2626;">ROAS 2.94 · 6 تحويل · صرف 935</div></div>
+            <div class="bar-value down">CPA 156</div>
+          </div>
+        </div>
+        <div class="insight red mt8">
+          <strong>نفس الحملة، نفس الجمهور، نفس الكرييتف «#fypシ ✨» — لكن صرف أعلى ونصف التحويلات بخُمس الـ ROAS.</strong> هذا تعريف <strong>إجهاد الكرييتف الكتابي</strong>: الكرييتف عاش لحظته في مايو (ROAS 13–15) والآن الجمهور شبع منه. التردد نزل لـ1.6–2.1 (خفّضنا الميزانية) لكن ROAS ما زال ينهار = <strong>المشكلة ليست التردد، بل أن الكرييتف نفسه استُهلك.</strong>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:11px;font-weight:700;color:#374151;margin-bottom:8px;">المسار اليومي — Winners CBO</div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>اليوم</th><th>صرف</th><th>تحويل</th><th>ROAS</th><th>الحكم</th></tr></thead>
+            <tbody>
+              <tr><td class="daycol">9</td><td>338</td><td>5</td><td style="color:#16a34a;font-weight:800;">6.96</td><td><span class="badge yellow">آخر يوم جيد</span></td></tr>
+              <tr style="background:#fff7f7;"><td class="daycol">10</td><td>250</td><td style="color:#dc2626;font-weight:800;">0</td><td style="color:#dc2626;font-weight:800;">0</td><td><span class="badge red">صفر تحويل</span></td></tr>
+              <tr style="background:#fff7f7;"><td class="daycol">11</td><td>200</td><td>1</td><td style="color:#dc2626;font-weight:800;">1.99</td><td><span class="badge red">أرضي</span></td></tr>
+              <tr style="background:#fff7f7;"><td class="daycol">12*</td><td>147</td><td style="color:#dc2626;font-weight:800;">0</td><td style="color:#dc2626;font-weight:800;">0</td><td><span class="badge red">صفر تحويل</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div style="font-size:10px;color:#9ca3af;margin-top:6px;">الكرييتف «#fypシ ✨» وحده: يومان من أربعة بصفر تحويل. *12 يونيو جزئي.</div>
+      </div>
+    </div>
+
+    <!-- Prospecting الجديدة -->
+    <div class="section-title">Prospecting Sales | JUN — كيف يقتل السكيل الخاطئ حملة واعدة</div>
+    <div class="bar-chart">
+      <div class="bar-row"><div class="bar-label">7 يونيو (100/يوم)</div><div class="bar-track"><div class="bar-fill" style="width:100%;background:#16a34a;">ROAS 11.56</div></div><div class="bar-value up">3 تحويل</div></div>
+      <div class="bar-row"><div class="bar-label">8 يونيو (100/يوم)</div><div class="bar-track"><div class="bar-fill" style="width:68%;background:#16a34a;">ROAS 7.81</div></div><div class="bar-value up">2 تحويل</div></div>
+      <div class="bar-row"><div class="bar-label">10 يونيو (200/يوم)</div><div class="bar-track"><div class="bar-fill" style="width:35%;background:#ca8a04;">ROAS 3.98</div></div><div class="bar-value flat">3 تحويل</div></div>
+      <div class="bar-row"><div class="bar-label">12 يونيو (300/يوم)</div><div class="bar-track"><div class="bar-fill" style="width:23%;background:#dc2626;">ROAS 2.65</div></div><div class="bar-value down">2 تحويل</div></div>
+    </div>
+    <div class="insight red mt8">
+      <strong>خطآن في السكيل:</strong> (1) سُكِّلت من 100 إلى 300/يوم في 3 أيام = <strong>+200%</strong>، بينما القاعدة ≤30% كل 2–3 أيام، وقبل بلوغ 15 تحويل. (2) الميزانية الجديدة ذهبت لمجموعات <strong>خاسرة</strong>: «#103-C1» حرق ~324 ر.س بصفر تحويل، ومجموعة #54 الجديدة 0 تحويل — بينما <strong>الرابح الحقيقي مجموعة #52</strong> (كرييتفاتها ROAS 8–53 بصرف صغير) بقيت مجوّعة. السكيل ضخّ وقوداً في المحرّك الخطأ.
+    </div>
+    <div class="table-wrap mt12">
+      <table>
+        <thead><tr><th>المجموعة (Prospecting)</th><th>أفضل كرييتف</th><th>صرف 9–12</th><th>تحويل</th><th>ROAS</th><th>الحكم</th></tr></thead>
+        <tbody>
+          <tr style="background:#f0fdf4;"><td><strong>#52</strong></td><td>#fyp ❤️_#52 · #fypシ#explore_#52</td><td>~285</td><td>6</td><td style="font-weight:800;color:#16a34a;">8–53</td><td><span class="badge green">الرابح — جوّعناه</span></td></tr>
+          <tr style="background:#fff7f7;"><td><strong>#103</strong></td><td>#103-C1</td><td>~324</td><td style="color:#dc2626;font-weight:800;">0</td><td style="font-weight:800;color:#dc2626;">0</td><td><span class="badge red">أوقف #103-C1</span></td></tr>
+          <tr style="background:#fefce8;"><td><strong>#54</strong> (جديدة 12 يونيو)</td><td>#fypシ ✨_#54</td><td>~103</td><td>0</td><td style="color:#9ca3af;">—</td><td><span class="badge yellow">مبكر — راقب</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- لوحة قرارات زين -->
+    <div class="section-title">زين — لوحة القرارات</div>
+    <div class="decision-grid">
+      <div class="decision-card urgent">
+        <div class="d-tag">عاجل — اليوم</div>
+        <div class="d-title">ارجِع ميزانية Prospecting: 300 → ~120/يوم</div>
+        <div class="d-reason">سُكِّلت 3× في 3 أيام فانهار ROAS من 11.56 إلى 2.65. أرجِعها لمستوى ما قبل الانهيار، وأعِد التعلّم. السكيل يستأنف فقط بعد 15 تحويل وبـ≤30%.</div>
+      </div>
+      <div class="decision-card urgent">
+        <div class="d-tag">عاجل — اليوم</div>
+        <div class="d-title">أوقف #103-C1 · ركّز على مجموعة #52</div>
+        <div class="d-reason">#103-C1 حرق ~324 ر.س / 0 تحويل (Guardrail #6). مجموعة #52 هي الرابح (ROAS 8–53) لكنها مجوّعة — حوّل لها الميزانية المحرّرة.</div>
+      </div>
+      <div class="decision-card urgent">
+        <div class="d-tag">عاجل — هذا الأسبوع</div>
+        <div class="d-title">كرييتف بطل جديد لـ Winners CBO</div>
+        <div class="d-reason">«#fypシ ✨» استُهلك: ROAS انهار شهرياً 11.9→2.9، يومان بصفر تحويل. أضِف 2–3 نسخ بطل جديدة (هوك مختلف أول 3 ثوانٍ). لا توقف #54 الرابح — غذِّه بكرييتف طازج. خفّض ميزانية CBO مؤقتاً حتى يجهز البديل.</div>
+      </div>
+      <div class="decision-card ok">
+        <div class="d-tag">ملاحظة</div>
+        <div class="d-title">التردد لم يعد المشكلة</div>
+        <div class="d-reason">في 8 يونيو كان تردد CBO 3.65 (إنذار). الآن 1.6–2.1 بعد خفض الميزانية — لكن ROAS استمر بالهبوط. الدليل القاطع أن العلّة <strong>استهلاك الكرييتف</strong>، لا الإشباع الإعلاني.</div>
+      </div>
+    </div>
+
+    <div class="section-title">زين — فحص الـ Guardrails</div>
+    <div class="guardrail-grid">
+      <div class="gr-item"><div class="gr-icon fail">✗</div><div class="gr-text"><div class="gr-title">TikTok ROAS ≥ 5.0</div><div class="gr-val">CBO 2.94 · Prosp 2.87 🔴</div></div></div>
+      <div class="gr-item"><div class="gr-icon fail">✗</div><div class="gr-text"><div class="gr-title">CPA ≤ 90</div><div class="gr-val">CBO 156 · فوق السقف</div></div></div>
+      <div class="gr-item"><div class="gr-icon fail">✗</div><div class="gr-text"><div class="gr-title">Guardrail #6 (#103-C1)</div><div class="gr-val">~324 ر.س + 0 تحويل → أوقف</div></div></div>
+      <div class="gr-item"><div class="gr-icon fail">✗</div><div class="gr-text"><div class="gr-title">سكيل ≤ 30% كل 2–3 أيام</div><div class="gr-val">+200% في 3 أيام — مخروق</div></div></div>
+      <div class="gr-item"><div class="gr-icon pass">✓</div><div class="gr-text"><div class="gr-title">Frequency &lt; 3</div><div class="gr-val">1.6–2.1 ✓ (لكن ROAS ينهار)</div></div></div>
+      <div class="gr-item"><div class="gr-icon pass">✓</div><div class="gr-text"><div class="gr-title">سقف شهري ≤ 15K</div><div class="gr-val">ضمن المسار ✓</div></div></div>
+    </div>
+
+  </div>
+</div><!-- /zain -->
+
+<!-- ════════ خطة العمل ════════ -->
+<div class="client-block">
+  <div class="client-header" style="background:linear-gradient(135deg,#1e293b,#0f172a);">
+    <div>
+      <div class="client-title" style="color:white;">خطة العمل — مرتّبة بالأولوية</div>
+      <div class="client-sub" style="color:#94a3b8;">عبر العميلتين · 12 يونيو 2026 · منطق: أوقف النزيف → ثبّت → بعدها وسّع</div>
+    </div>
+  </div>
+  <div class="client-body">
+    <div class="two-col">
+      <div>
+        <div class="section-title">الخط الزمني للتنفيذ</div>
+        <div class="timeline">
+          <div class="tl-item"><div class="tl-dot red"></div><div class="tl-time">اليوم — نوره</div><div class="tl-title">أوقف Wasayef-V2-C2 + جمّد التوسيع</div><div class="tl-desc">359 ر.س/0 تحويل (Guardrail #6). Blended 3.52 &lt; 4.5 → لا زيادة صرف على أي حملة حتى التعافي.</div></div>
+          <div class="tl-item"><div class="tl-dot red"></div><div class="tl-time">اليوم — زين</div><div class="tl-title">ارجِع Prospecting 300→120 + أوقف #103-C1</div><div class="tl-desc">السكيل كسر الحملة. أعِد التعلّم وحوّل الميزانية لمجموعة #52 الرابحة.</div></div>
+          <div class="tl-item"><div class="tl-dot yellow"></div><div class="tl-time">اليوم/غداً — نوره</div><div class="tl-title">ارفع حصة Asayel New V2 C1 (≤20–30%)</div><div class="tl-desc">ROAS 12–18 صاعد. البديل الحقيقي عن carousel 4 الميت. سكيل حذر لأن الأرضية مخروقة.</div></div>
+          <div class="tl-item"><div class="tl-dot yellow"></div><div class="tl-time">هذا الأسبوع — زين</div><div class="tl-title">2–3 كرييتف بطل جديد لـ CBO</div><div class="tl-desc">«#fypシ ✨» استُهلك (انهيار شهري). هوك جديد أول 3 ثوانٍ. خفّض CBO مؤقتاً حتى يجهز البديل.</div></div>
+          <div class="tl-item"><div class="tl-dot blue"></div><div class="tl-time">هذا الأسبوع — نوره</div><div class="tl-title">أعِد تقييم حملة وصايف الجديدة كلياً</div><div class="tl-desc">أساسها (carousel 4) سقط. حوّلها لاختبار أصايل، أو أوقفها وادمج ميزانيتها في أصايل Lookalike.</div></div>
+          <div class="tl-item"><div class="tl-dot blue"></div><div class="tl-time">بعد التثبيت — نوره</div><div class="tl-title">أطلق Retargeting على أصايل</div><div class="tl-desc">أسرع رافعة لإعادة Blended فوق 4.5. أصايل = الأعلى تركاً للسلة. ابدأ صغيراً.</div></div>
+          <div class="tl-item"><div class="tl-dot green"></div><div class="tl-time">26 يونيو — الاثنتان</div><div class="tl-title">ذروة الرواتب (26→3) — جهّز مسبقاً</div><div class="tl-desc">لا تدخل الذروة بكرييتفات مستهلكة. ثبّت الـ ROAS فوق الأرضية أولاً، ثم سكّل في أيام الفرصة.</div></div>
+        </div>
+      </div>
+      <div>
+        <div class="section-title">ملخص صحة الحساب</div>
+        <div style="background:#fef2f2;border:1px solid #fecaca;border-radius:10px;padding:14px 16px;margin-bottom:12px;">
+          <div style="font-weight:700;font-size:13px;margin-bottom:10px;color:#991b1b;">نوره — خرق أرضية + فشل فرضية الرابح</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:11px;">
+            <div>Blended ROAS: <strong style="color:#dc2626;">3.52</strong> (تحت 4.5)</div>
+            <div>إيراد 9–12: <strong>5,522 ر.س</strong></div>
+            <div>المسار: <strong style="color:#dc2626;">5.85→5.42→3.52</strong></div>
+            <div>Snapchat: <strong>0 ✓</strong></div>
+            <div>pacing: <strong>~13,000 (سليم)</strong></div>
+            <div>إيقافات مطلوبة: <strong style="color:#dc2626;">C2 + الخليج</strong></div>
+          </div>
+        </div>
+        <div style="background:#fefce8;border:1px solid #fde68a;border-radius:10px;padding:14px 16px;margin-bottom:12px;">
+          <div style="font-weight:700;font-size:13px;margin-bottom:10px;color:#854d0e;">زين — انهيار كرييتف + سكيل خاطئ</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:11px;">
+            <div>CBO ROAS: <strong style="color:#dc2626;">2.94</strong> (مايو 11.9)</div>
+            <div>تحويلات: <strong style="color:#dc2626;">13</strong> (مايو 24+)</div>
+            <div>Prospecting: <strong style="color:#dc2626;">سُكِّل غلط</strong></div>
+            <div>الرابح المجوّع: <strong>#52</strong></div>
+            <div>التردد: <strong>1.6–2.1 ✓</strong></div>
+            <div>المطلوب: <strong style="color:#dc2626;">كرييتف بطل</strong></div>
+          </div>
+        </div>
+        <div class="section-title">القاعدة المستخلصة من 4 الأيام</div>
+        <div class="insight blue" style="margin-top:0;">
+          <strong>درسان متطابقان عند العميلتين:</strong> (1) <strong>لا تبنِ على كرييتف غير مثبت</strong> — carousel 4 (نوره) و#fypシ (زين) كلاهما بدا بطلاً ثم انهار؛ البطل = ما يثبت فوق 25 تحويل. (2) <strong>سكّل الرابح لا الحملة</strong> — زين ضخّ الميزانية في الحملة فذهبت للمجموعة الخاسرة. الميزانية تتبع التحويل المثبت، لا الاسم.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /page-body -->
+
+<div class="page-footer">
+  صدر: 12 يونيو 2026 &nbsp;·&nbsp; الفترة: 9–12 يونيو &nbsp;·&nbsp; المصدر: Windsor.ai (TikTok/Snapchat) + Salla MCP &nbsp;·&nbsp; نظام ads-ops · فزاع
+</div>
+
+</body>
+</html>
