@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>غرفة عمليات الإنقاذ — نوره + زين | يونيو 2026</title>
+<style>
+  :root{
+    --bg:#0f1320; --card:#171c2e; --card2:#1d2338; --ink:#e8ecf5; --muted:#9aa6c2;
+    --line:#2a3350; --green:#1f9d6b; --greenbg:#0e2a20; --amber:#d99a16; --amberbg:#2c2410;
+    --red:#e0524b; --redbg:#2e1414; --blue:#3d7bd9; --bluebg:#10203a; --purple:#8b6ad9;
+    --accent:#36d39a;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Segoe UI","Tahoma",system-ui,sans-serif;line-height:1.6;font-size:15px}
+  .wrap{max-width:1180px;margin:0 auto;padding:24px}
+  h1,h2,h3,h4{line-height:1.3;margin:0 0 8px}
+  h1{font-size:30px}h2{font-size:23px}h3{font-size:18px}
+  a{color:var(--accent)}
+  .sub{color:var(--muted);font-size:14px}
+  header.top{background:linear-gradient(135deg,#1a2138,#11152400);border:1px solid var(--line);border-radius:18px;padding:26px 28px;margin-bottom:20px}
+  .pill{display:inline-block;padding:3px 11px;border-radius:999px;font-size:12px;font-weight:700;margin:2px}
+  .pill.green{background:var(--greenbg);color:#5fe0a8;border:1px solid #1f6b4a}
+  .pill.amber{background:var(--amberbg);color:#f0c456;border:1px solid #6b5316}
+  .pill.red{background:var(--redbg);color:#ff8a84;border:1px solid #7a2b27}
+  .pill.blue{background:var(--bluebg);color:#7fb0f5;border:1px solid #2c5494}
+  .pill.purple{background:#1d1733;color:#bda3f5;border:1px solid #4a3a7a}
+  section{margin:30px 0}
+  .sech{display:flex;align-items:center;gap:10px;border-right:4px solid var(--accent);padding-right:12px;margin-bottom:14px}
+  .sech .n{background:var(--accent);color:#06241a;width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px}
+  .grid{display:grid;gap:16px}
+  .g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:1fr 1fr 1fr}.g4{grid-template-columns:repeat(4,1fr)}
+  @media(max-width:820px){.g2,.g3,.g4{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+  .card.tight{padding:14px}
+  .kpi{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:13px 14px;text-align:center}
+  .kpi .v{font-size:24px;font-weight:800}
+  .kpi .l{font-size:12px;color:var(--muted);margin-top:2px}
+  .kpi .d{font-size:11px;margin-top:3px}
+  .up{color:#5fe0a8}.down{color:#ff8a84}.flat{color:#f0c456}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:6px;overflow:hidden;border-radius:10px}
+  th,td{padding:9px 10px;text-align:right;border-bottom:1px solid var(--line)}
+  th{background:#202840;color:#cdd6ee;font-weight:700;position:sticky;top:0}
+  tr:nth-child(even) td{background:#151a2b}
+  .tag{padding:2px 8px;border-radius:6px;font-size:11.5px;font-weight:700;white-space:nowrap}
+  .t-keep{background:var(--greenbg);color:#5fe0a8}
+  .t-scale{background:#0c3326;color:#6bf0b4;border:1px solid #1f9d6b}
+  .t-cut{background:var(--redbg);color:#ff8a84}
+  .t-fix{background:var(--amberbg);color:#f0c456}
+  .t-watch{background:var(--bluebg);color:#7fb0f5}
+  .t-new{background:#1d1733;color:#bda3f5}
+  .callout{border-radius:12px;padding:16px 18px;border:1px solid;margin:14px 0}
+  .c-red{background:var(--redbg);border-color:#7a2b27}
+  .c-amber{background:var(--amberbg);border-color:#6b5316}
+  .c-green{background:var(--greenbg);border-color:#1f6b4a}
+  .c-blue{background:var(--bluebg);border-color:#2c5494}
+  ul{margin:8px 0;padding-right:20px}li{margin:4px 0}
+  .wa{background:#0c1f17;border:1px solid #1f6b4a;border-radius:12px;padding:14px 16px;margin:10px 0;direction:rtl}
+  .wa .h{color:#5fe0a8;font-weight:800;margin-bottom:6px;font-size:14px}
+  .wa .body{background:#0a2a1e;border-radius:10px;padding:11px 13px;font-size:14px;white-space:pre-line}
+  .dec{background:var(--card2);border:1px solid var(--line);border-right:4px solid var(--blue);border-radius:10px;padding:14px 16px;margin:12px 0}
+  .dec table{margin:0}.dec td{border:none;padding:3px 6px;vertical-align:top}
+  .dec td.k{color:var(--muted);width:130px;font-weight:700}
+  .matrix td{text-align:center;font-weight:700}
+  .day{border:1px solid var(--line);border-radius:12px;margin:10px 0;overflow:hidden}
+  .day .dh{background:#202840;padding:10px 14px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+  .day .db{padding:12px 14px;font-size:13.5px}
+  .day .db b{color:#cdd6ee}
+  .mono{font-variant-numeric:tabular-nums}
+  .big{font-size:17px;font-weight:800}
+  hr{border:none;border-top:1px solid var(--line);margin:18px 0}
+  .legend span{margin-left:12px;font-size:12px;color:var(--muted)}
+  .foot{color:var(--muted);font-size:12.5px;text-align:center;margin-top:30px;border-top:1px solid var(--line);padding-top:16px}
+  @media print{body{background:#fff;color:#111}.card,.kpi,.day,.dec,.wa{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <h1>🚨 غرفة عمليات الإنقاذ — آخر 14 يوم</h1>
+  <div class="sub">تحليل تنفيذي عميق · <b>عبايات نوره</b> + <b>زين / ZAIN Abaya</b> · الهدف: ضغط مبيعات نهاية الشهر نحو 100,000 ر.س لكل عميلة</div>
+  <div style="margin-top:12px">
+    <span class="pill blue">تاريخ التقرير: 2026-06-16</span>
+    <span class="pill amber">مرحلة الدورة: صيانة → ذروة رواتب (26→30)</span>
+    <span class="pill purple">الأيام المتبقية: 14 (17→30 يونيو)</span>
+    <span class="pill green">المصادر: Windsor (TikTok+Snapchat) + سلة (نوره)</span>
+  </div>
+  <div class="sub" style="margin-top:10px">نطاق الداتا: <b>يونيو 1–16 (MTD)</b> مقابل خط أساس <b>مايو 2026</b> الكامل + تاريخ 8–12 شهر. كل الأرقام من المنصات/المتجر — <b>لا أرقام مُخترعة</b>؛ الفجوات مذكورة صراحةً في قسم تدقيق البيانات.</div>
+</header>
+
+<!-- ============ DATA AUDIT ============ -->
+<section>
+  <div class="sech"><span class="n">0</span><h2>تدقيق البيانات أولاً (Data Audit) — اقرأه قبل أي قرار</h2></div>
+  <div class="callout c-amber">
+    <h3>⚠️ ثلاث حقائق تغيّر تفسير "الأرقام السيئة" هذا الشهر</h3>
+    <ol>
+      <li><b>تأخّر اكتمال الطلبات عند نوره ليس انهيار طلب.</b> متجر نوره <b>made-to-order</b> (مدة تجهيز <b>7–10 أيام</b> مثبتة في إعدادات الفروع). لذلك سلة تُظهر <b>15,556 ر.س مكتملة فقط</b> ليونيو 1–16، بينما TikTok منصّياً سجّل <b>65 شراء</b> (مقابل 81 لكل مايو) — أي <b>الحجم يسبق مايو</b>. الطلبات الحديثة "قيد المعالجة" ولم تُحتسب مالياً بعد. التقدير بعد النضوج ≈ <b>27,600 ر.س</b> ليونيو 1–16، مقابل <b>25,138</b> لنفس فترة مايو → <b>مسطّح تقريباً، ليس انهياراً</b>.</li>
+      <li><b>لكن الكفاءة تراجعت فعلاً عند العميلتين</b> (CPA ارتفع، ROAS منصة هبط) — وهذا حقيقي وقابل للإصلاح فوراً (قسم التشخيص).</li>
+      <li><b>فجوة بيانات حرجة: لا يوجد وصول سلة لزين عبر MCP.</b> أرقام زين الشهرية مبنية على TikTok المنصّي + تقدير الهالة من مايو (×1.62). <b>الإجراء المطلوب منك:</b> زوّدنا تقرير سلة زين ليونيو (مبيعات/طلبات/سلات) أو وصّل سلة زين MCP — لرفع دقة قرارات الميزانية.</li>
+    </ol>
+    <div class="sub">قاعدة الحكم (من نظامك): عند التعارض → <b>سلة هي الحقيقة المالية</b>، وأرقام المنصة للتشخيص فقط. Snapchat تضخّم ~5× مقابل سلة (إسناد view-through) فلا نحكم عليها من Manager.</div>
+  </div>
+</section>
+
+<!-- ============ EXECUTIVE SUMMARY ============ -->
+<section>
+  <div class="sech"><span class="n">1</span><h2>الملخص التنفيذي</h2></div>
+  <div class="grid g2">
+    <!-- ZAIN -->
+    <div class="card">
+      <h3>زين / ZAIN Abaya <span class="pill green">TikTok فقط</span></h3>
+      <p class="sub">مايو: صافي <b>74,220</b> · Blended <b>8.36</b> (الأقوى) · 187 طلب · AOV 397. الحساب صحي بنيوياً، المشكلة <b>كفاءة متراجعة + نزيف + غياب Retargeting</b>.</p>
+      <div class="callout c-green" style="margin:10px 0">
+        <b>هل 100K ممكن؟ نعم — هدف عدواني قابل للتحقيق.</b><br>
+        يحتاج صرف ~14.3K ر.س ببليندد ~7.0 (مايو أثبت 8.36). المُسقط الحالي 11.1K → <b>فيه مساحة 3.9K تحت السقف</b>. الشرط: إصلاح الكفاءة + إطلاق Retargeting + تركيز الذروة.
+      </div>
+      <b>أهم 5 مشاكل:</b>
+      <ul>
+        <li>🔴 <b>CPA 94</b> (فوق إنذار 90) و ROAS منصة هبط <b>5.15→4.22</b>.</li>
+        <li>🔴 نزيف: <b>#103-C1</b> (577 ر.س/ROAS 3.4)، <b>#50 C2</b> (307/2.56)، <b>Traffic #68</b> (241/0 شراء).</li>
+        <li>🟠 الحساب يركب على كرييتف واحد <b>«#fypシ ✨»</b> (54% من الشراءات، تردد 2.85 يقترب الإجهاد).</li>
+        <li>🔴 <b>Retargeting غائب</b> — أعلى ROAS تاريخياً (8.3–8.7) ومفقود.</li>
+        <li>🟠 تحويل TikTok→سلة <b>0.08–0.15%</b> فقط (صفحة منتج #54 تسرّب).</li>
+      </ul>
+      <b>أهم 5 قرارات اليوم:</b>
+      <ul>
+        <li>✅ <b>أوقف فوراً:</b> Traffic #68 + #103-C1 + #50 C2 (نزيف ~70 ر.س/يوم).</li>
+        <li>✅ <b>صعّد:</b> #54 (المحرّك) + #52 (المُحيا، ROAS 5.67/CPA 63) +20–30%.</li>
+        <li>✅ <b>أطلق Retargeting</b> (سلات #54/#50/#103 + مشاهدي فيديو 14–30 يوم) بكود «Zain».</li>
+        <li>✅ <b>جدّد هوك</b> «#fypシ ✨» بـ3 نسخ أول-3-ثوانٍ مختلفة.</li>
+        <li>✅ <b>احجز ميزانية الذروة</b> 26–30 على الروابح فقط.</li>
+      </ul>
+    </div>
+    <!-- NOURA -->
+    <div class="card">
+      <h3>عبايات نوره <span class="pill green">TikTok + Snapchat</span></h3>
+      <p class="sub">مايو: صافي <b>52,967</b> · Blended <b>5.85</b> · 139 طلب · AOV 389 · هامش 42%. البطل الفعلي <b>اصايل</b> (49% من الإيراد). هالة قوية (مباشر 64%).</p>
+      <div class="callout c-amber" style="margin:10px 0">
+        <b>هل 100K ممكن؟ ليس ضمن سقف 15K هذا الشهر.</b><br>
+        100K يحتاج صرف ~20K (تجاوز للسقف = قرارك). الواقعي ضمن السقف ≈ <b>65–75K</b>. لكن الرافعة الأكبر <b>ليست الصرف</b>: <b>330,000 ر.س سلات متروكة</b> (100% فيها جوال) + هالة + AOV.
+      </div>
+      <b>أهم 5 مشاكل:</b>
+      <ul>
+        <li>🔴 <b>قرارات 8–9 يونيو ضربت الزخم:</b> إيقاف الكرييتف البطل «Image carousel 3» + خفض Wasayef + إطلاق 4 مجموعات صفرية.</li>
+        <li>🔴 <b>نزيف:</b> Wasayef WC (432 CPA/clickbait)، Gulf (354)، Lamar/Ghroob (0 شراء).</li>
+        <li>🔴 <b>Retargeting غائب</b> رغم 810 سلة متروكة (58% اصايل).</li>
+        <li>🟠 Snapchat تردد <b>5.63</b> (تحسّن من 10.3 لكن يُراقب) وإسناد متجري ضعيف.</li>
+        <li>🟠 CPA 90 (عند الإنذار) و Blended تقديري ~4.2 (قرب الأرضية).</li>
+      </ul>
+      <b>أهم 5 قرارات اليوم:</b>
+      <ul>
+        <li>✅ <b>أوقف فوراً:</b> Wasayef WC + Gulf + Lamar + Ghroob (نزيف ~60 ر.س/يوم).</li>
+        <li>✅ <b>أطلق واتساب استرجاع السلات</b> (أول 200 سلة طازجة، 100% فيها جوال).</li>
+        <li>✅ <b>أطلق Retargeting اصايل</b> (142+ سلة اصايل) بكود + تابي/تمارا.</li>
+        <li>✅ <b>أعد «Image carousel 3»</b> بميزانية مضبوطة 150/يوم (ROAS 4.57 مقبول).</li>
+        <li>✅ <b>Bundle اصايل + نقاب</b> لرفع AOV (النقاب باع 40 قطعة).</li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout c-blue">
+    <b>قراران يحتاجان كلمتك (يغيّران الخطة):</b>
+    <ol style="margin:6px 0">
+      <li><b>الـ100K لكل عميلة أم مجموع الاثنتين؟</b> (مايو المجمّع = 127K، فلو المجموع → متجاوز أصلاً). بنينا الخطة على <b>لكل عميلة</b>.</li>
+      <li><b>سقف نوره 15K — هل يَمرن للذروة؟</b> لو ثابت: الواقعي 65–75K. لو سمحت برفعه لـ~20K في الذروة (26–30) مع Blended ≥4.5: 100K يصبح ممكناً. <b>لم نتجاوز السقف</b> بانتظار قرارك.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ KPI DASHBOARD ============ -->
+<section>
+  <div class="sech"><span class="n">2</span><h2>لوحة المؤشرات (يونيو 1–16 مقابل مايو)</h2></div>
+  <h3 style="margin-top:6px">زين <span class="sub">— TikTok (الصرف الوحيد)</span></h3>
+  <div class="grid g4">
+    <div class="kpi"><div class="v">5,944</div><div class="l">الصرف MTD</div><div class="d flat">مُسقط الشهر ~11,145</div></div>
+    <div class="kpi"><div class="v">~40.7K</div><div class="l">إيراد Blended تقديري</div><div class="d">منصّي 25,080</div></div>
+    <div class="kpi"><div class="v down">4.22</div><div class="l">ROAS منصة</div><div class="d down">▼ من 5.15 (مايو)</div></div>
+    <div class="kpi"><div class="v down">94</div><div class="l">CPA</div><div class="d down">▲ فوق إنذار 90</div></div>
+    <div class="kpi"><div class="v up">4.37%</div><div class="l">CTR</div><div class="d up">ممتاز</div></div>
+    <div class="kpi"><div class="v">211</div><div class="l">Add to Cart</div><div class="d">IC: 385</div></div>
+    <div class="kpi"><div class="v">63</div><div class="l">شراء (منصة)</div><div class="d">AOV ~398</div></div>
+    <div class="kpi"><div class="v">~6.85</div><div class="l">Blended تقديري</div><div class="d flat">هدف 6.5+</div></div>
+  </div>
+  <div class="card tight" style="margin-top:10px"><b>المطلوب يومياً (آخر 14 يوم) للوصول 100K:</b> ~<b>3,571 ر.س/يوم</b> مبيعات · ~<b>9 طلبات/يوم</b> · صرف ~<b>510–650/يوم</b> (أعلى في الذروة) · Blended ≥<b>6.7</b> · CPA مقبول ≤<b>80</b>.</div>
+
+  <h3 style="margin-top:18px">نوره <span class="sub">— TikTok + Snapchat</span></h3>
+  <div class="grid g4">
+    <div class="kpi"><div class="v">7,630</div><div class="l">الصرف MTD</div><div class="d down">مُسقط ~14,306 (قرب السقف)</div></div>
+    <div class="kpi"><div class="v">15,556</div><div class="l">مكتمل سلة MTD</div><div class="d flat">يَنضج لـ~27.6K</div></div>
+    <div class="kpi"><div class="v down">4.65</div><div class="l">ROAS منصّي مدمج</div><div class="d down">Blended ~4.2</div></div>
+    <div class="kpi"><div class="v down">~90</div><div class="l">CPA (TikTok)</div><div class="d down">▲ من 72</div></div>
+    <div class="kpi"><div class="v">3.45%</div><div class="l">CTR (TikTok)</div><div class="d up">جيد</div></div>
+    <div class="kpi"><div class="v">335</div><div class="l">ATC (TikTok)</div><div class="d">IC: 472</div></div>
+    <div class="kpi"><div class="v flat">5.63</div><div class="l">تردد Snapchat</div><div class="d up">▼ من 10.3</div></div>
+    <div class="kpi"><div class="v">339</div><div class="l">AOV يونيو</div><div class="d down">▼ من 389</div></div>
+  </div>
+  <div class="card tight" style="margin-top:10px"><b>المطلوب يومياً (آخر 14 يوم):</b> لاستعادة وتيرة مايو ~<b>2,150 ر.س/يوم</b> (~5.5 طلب) · <b>الرافعة الأسرع: استرجاع السلات</b> (10% من 330K = ~33K شبه مجاني) + رفع AOV (Bundle نقاب) من 339 نحو 420.</div>
+</section>
+
+<!-- ============ BUSINESS PERFORMANCE / SCENARIOS ============ -->
+<section>
+  <div class="sech"><span class="n">3</span><h2>المستوى 1: أداء الأعمال + السيناريوهات</h2></div>
+  <div class="grid g2">
+    <div class="card">
+      <h3>زين — سيناريوهات يونيو</h3>
+      <table>
+        <tr><th>السيناريو</th><th>الصرف</th><th>Blended</th><th>المبيعات</th></tr>
+        <tr><td><span class="tag t-keep">آمن</span> تثبيت + إصلاح كفاءة</td><td class="mono">~11.5K</td><td class="mono">7.0</td><td class="mono big">~80K</td></tr>
+        <tr><td><span class="tag t-watch">واقعي</span> + Retargeting + قص نزيف</td><td class="mono">~13K</td><td class="mono">7.0</td><td class="mono big">~90K</td></tr>
+        <tr><td><span class="tag t-scale">عدواني</span> سقف + ذروة مركّزة</td><td class="mono">~14.3K</td><td class="mono">7.0</td><td class="mono big">~100K</td></tr>
+      </table>
+      <div class="sub" style="margin-top:8px">الحكم: <b>100K واقعي إذا نُفّذت قرارات اليوم</b>. القيد = استعادة الكفاءة (CPA من 94 لـ≤80) لا الميزانية.</div>
+    </div>
+    <div class="card">
+      <h3>نوره — سيناريوهات يونيو</h3>
+      <table>
+        <tr><th>السيناريو</th><th>الصرف</th><th>Blended</th><th>المبيعات</th></tr>
+        <tr><td><span class="tag t-keep">آمن</span> قص نزيف، سقف 15K</td><td class="mono">~14K</td><td class="mono">5.0</td><td class="mono big">~60–65K</td></tr>
+        <tr><td><span class="tag t-watch">واقعي</span> + سلات + AOV + Retargeting</td><td class="mono">~14.5K</td><td class="mono">5.2</td><td class="mono big">~70–78K</td></tr>
+        <tr><td><span class="tag t-scale">عدواني</span> رفع السقف لـ~20K (قرارك)</td><td class="mono">~20K</td><td class="mono">5.0</td><td class="mono big">~95–100K</td></tr>
+      </table>
+      <div class="sub" style="margin-top:8px">الحكم: <b>100K يتطلب تجاوز السقف</b> (قرارك). ضمن السقف، الواقعي 70–78K مع استثمار <b>السلات + الهالة + AOV</b>.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ROOT CAUSE ============ -->
+<section>
+  <div class="sech"><span class="n">4</span><h2>التشخيص الجذري: أين النزيف بالضبط؟</h2></div>
+  <div class="callout c-red">
+    <h3>نوره — «ليش طاح الزخم بعد 7 يونيو؟»</h3>
+    <p>التتابع اليومي للمبيعات (سلة): يونيو 1–6 ≈ <b>2,400 ر.س/يوم</b> ثم يونيو 7–14 ≈ <b>200–400 ر.س/يوم</b>. هذا تزامن مع:</p>
+    <ul>
+      <li>🔴 <b>8 يونيو: إيقاف «Image carousel 3»</b> — الكرييتف الأكبر إنفاقاً وحجماً (مايو: 22 شراء/27%). البيانات الكاملة 1–16 تُظهر ROAS 4.57 و CPA 80 (<b>فوق الأرضية ومقبول</b>) — إيقافه أزال حجماً حقيقياً مقابل تحسين هامشي للكفاءة.</li>
+      <li>🔴 <b>9 يونيو: خفض Wasayef</b> 500→300 + إطلاق <b>Wasayef WC / Lamar / Ghroob / Gulf</b> — أربع مجموعات صرفت ~<b>1,000 ر.س بـ0–1 شراء</b> (استبدلت حجماً مثبتاً بتجارب غير ناضجة).</li>
+      <li>🟡 <b>الجزء الأكبر من «الانهيار» = تأخّر اكتمال الطلبات</b> (made-to-order) لا فقدان طلب — لكن الكفاءة تأثرت فعلاً بالنزيف.</li>
+    </ul>
+    <b>الخلاصة:</b> الإصلاح = <b>أعد الحجم المثبت</b> (carousel 3 مضبوط + Wasayef) + <b>أوقف التجارب الصفرية</b> + <b>وجّه الفائض للروابح والـRetargeting</b>.
+  </div>
+  <div class="callout c-amber">
+    <h3>زين — «الكفاءة تتآكل بصمت»</h3>
+    <p>ROAS منصة 5.15→4.22 و CPA 77→94. المحرّك #54 + المُحيا #52 سليمان، لكن <b>3 مجموعات نزيف</b> تسحب المتوسط: #103-C1 (577 ر.س @ROAS 3.4)، #50 C2 (307 @2.56)، Traffic #68 (241 @0 شراء، CTR 8.46% = ترافيك رخيص لا يحوّل). + الحساب يعتمد على كرييتف واحد بتردد 2.85 (إجهاد قادم). <b>الإصلاح = قص الثلاثة + تجديد الهوك + Retargeting.</b></p>
+  </div>
+
+  <h3 style="margin-top:16px">جدول تسريب المسار (Funnel Leak) — نوره (سلة مايو، نمط ثابت)</h3>
+  <table>
+    <tr><th>المرحلة</th><th>العدد</th><th>المعدل</th><th>التشخيص</th><th>الإجراء</th></tr>
+    <tr><td>زيارة → ATC</td><td class="mono">50,290 → 647</td><td class="mono">1.29%</td><td>ترافيك TikTok بارد يهيمن</td><td><span class="tag t-fix">PDP + Retargeting</span></td></tr>
+    <tr><td>ATC → استعراض سلة</td><td class="mono">647 → 582</td><td class="mono">90%</td><td>سليم</td><td><span class="tag t-keep">—</span></td></tr>
+    <tr><td>سلة → بدء دفع</td><td class="mono">582 → 422</td><td class="mono">72%</td><td>تسرّب متوسط</td><td><span class="tag t-fix">شحن/عرض واضح</span></td></tr>
+    <tr><td><b>بدء دفع → طلب مكتمل</b></td><td class="mono">422 → 139</td><td class="mono down">33%</td><td>🔴 <b>أكبر نزيف</b>: تردد دفع/ثقة/تجهيز</td><td><span class="tag t-cut">تابي/تمارا + واتساب IC</span></td></tr>
+  </table>
+  <div class="sub" style="margin-top:6px">النزيف الأكبر = <b>بدء الدفع → الإتمام (−67%)</b>. علاجه السريع: واتساب لمن وصل الدفع + إبراز تابي/تمارا «تقسّطها 4 دفعات» + طمأنة مدة التجهيز/الاستبدال. (14% يدفعون عند الاستلام → دفعهم لتابي يقلّل التردد.)</div>
+</section>
+
+<!-- ============ CAMPAIGN DECISION TABLE ============ -->
+<section>
+  <div class="sech"><span class="n">5</span><h2>المستوى 2–3: جدول قرارات الحملات والمجموعات</h2></div>
+  <div class="legend" style="margin-bottom:6px">
+    <span><span class="tag t-keep">Keep</span> أبقِ</span><span><span class="tag t-scale">Scale</span> صعّد</span>
+    <span><span class="tag t-fix">Fix</span> أصلح</span><span><span class="tag t-cut">Cut/Pause</span> أوقف</span>
+    <span><span class="tag t-new">New</span> أطلق</span><span><span class="tag t-watch">Watch</span> راقب</span>
+  </div>
+  <h3>زين — TikTok (يونيو 1–16)</h3>
+  <table>
+    <tr><th>الحملة / المجموعة</th><th>صرف</th><th>شراء</th><th>ROAS</th><th>CPA</th><th>ATC</th><th>CTR</th><th>القرار</th></tr>
+    <tr><td>Winners CBO / <b>#54_Cold_Broad</b></td><td class="mono">2,709</td><td class="mono">34</td><td class="mono">5.20</td><td class="mono">80</td><td class="mono">120</td><td class="mono">3.89%</td><td><span class="tag t-scale">Scale +20–30%</span></td></tr>
+    <tr><td>Prospecting JUN / <b>#52</b></td><td class="mono">762</td><td class="mono">12</td><td class="mono up">5.67</td><td class="mono up">63</td><td class="mono">29</td><td class="mono">4.13%</td><td><span class="tag t-scale">Scale (المُحيا يعمل)</span></td></tr>
+    <tr><td>Prospecting JUN / #73</td><td class="mono">269</td><td class="mono">3</td><td class="mono">4.34</td><td class="mono">90</td><td class="mono">4</td><td class="mono">3.30%</td><td><span class="tag t-watch">Watch (عند الحد)</span></td></tr>
+    <tr><td>Prospecting JUN / #54</td><td class="mono">387</td><td class="mono">4</td><td class="mono">4.11</td><td class="mono">97</td><td class="mono">11</td><td class="mono">2.94%</td><td><span class="tag t-fix">Fix كرييتف</span></td></tr>
+    <tr><td>Prospecting JUN / <b>#103</b></td><td class="mono">880</td><td class="mono">6</td><td class="mono down">2.66</td><td class="mono down">147</td><td class="mono">24</td><td class="mono">2.67%</td><td><span class="tag t-fix">Reduce + كرييتف</span></td></tr>
+    <tr><td>Winners CBO / <b>#50_Cold_Broad</b></td><td class="mono">352</td><td class="mono">2</td><td class="mono down">2.23</td><td class="mono down">176</td><td class="mono">13</td><td class="mono">2.80%</td><td><span class="tag t-cut">Pause</span></td></tr>
+    <tr><td>Prospecting|Jun / <b>Traffic #68</b></td><td class="mono">241</td><td class="mono down">0</td><td class="mono down">0.00</td><td class="mono">∞</td><td class="mono">7</td><td class="mono">7.91%</td><td><span class="tag t-cut">Kill (استثناء الصفر)</span></td></tr>
+    <tr><td>#103 EXC (VC30D + Web Purchase)</td><td class="mono">169</td><td class="mono down">0</td><td class="mono down">0.00</td><td class="mono">∞</td><td class="mono">0</td><td class="mono">1.5%</td><td><span class="tag t-cut">Pause (إسناد فقط)</span></td></tr>
+    <tr><td>Winners CBO / #68 New</td><td class="mono">172</td><td class="mono">2</td><td class="mono">4.68</td><td class="mono">86</td><td class="mono">3</td><td class="mono">4.95%</td><td><span class="tag t-keep">Keep صغير</span></td></tr>
+  </table>
+
+  <h3 style="margin-top:18px">نوره — TikTok + Snapchat (يونيو 1–16)</h3>
+  <table>
+    <tr><th>الحملة / المجموعة</th><th>صرف</th><th>شراء</th><th>ROAS</th><th>CPA</th><th>ATC</th><th>CTR</th><th>القرار</th></tr>
+    <tr><td>Main / <b>Wasayef</b> (TikTok)</td><td class="mono">2,100</td><td class="mono">32</td><td class="mono up">5.34</td><td class="mono up">66</td><td class="mono">112</td><td class="mono">3.54%</td><td><span class="tag t-keep">Keep — المحرّك</span></td></tr>
+    <tr><td>Main / <b>Asayel NTC Lookalike</b></td><td class="mono">1,753</td><td class="mono">21</td><td class="mono">5.17</td><td class="mono">83</td><td class="mono">121</td><td class="mono">1.90%</td><td><span class="tag t-scale">Scale (محرّك ثانٍ)</span></td></tr>
+    <tr><td>Snapchat / Wasayef</td><td class="mono">1,780</td><td class="mono">27*</td><td class="mono">5.85*</td><td class="mono">66*</td><td class="mono">143</td><td class="mono">0.73%</td><td><span class="tag t-watch">Watch تردد 5.63</span></td></tr>
+    <tr><td>Main / Asayel (Cold)</td><td class="mono">500</td><td class="mono">3</td><td class="mono down">2.45</td><td class="mono down">167</td><td class="mono">26</td><td class="mono">1.69%</td><td><span class="tag t-fix">Fix كرييتف/زاوية</span></td></tr>
+    <tr><td>Prospecting JUN / <b>Wasayef WC</b></td><td class="mono">432</td><td class="mono down">1</td><td class="mono down">0.96</td><td class="mono down">432</td><td class="mono">23</td><td class="mono">8.90%</td><td><span class="tag t-cut">Pause (clickbait)</span></td></tr>
+    <tr><td><b>Gulf Sales</b> / GCC QAT+UAE</td><td class="mono">354</td><td class="mono down">1</td><td class="mono down">1.27</td><td class="mono down">354</td><td class="mono">8</td><td class="mono">10.95%</td><td><span class="tag t-cut">Pause الخليج</span></td></tr>
+    <tr><td>Prospecting JUN / Asayel EXC WIN</td><td class="mono">250</td><td class="mono">3</td><td class="mono">4.95</td><td class="mono">83</td><td class="mono">16</td><td class="mono">2.10%</td><td><span class="tag t-keep">Keep (Winners pack)</span></td></tr>
+    <tr><td>Prospecting JUN / Najla</td><td class="mono">185</td><td class="mono">2</td><td class="mono">3.90</td><td class="mono">92</td><td class="mono">21</td><td class="mono">0.95%</td><td><span class="tag t-fix">عزل الكرييتف الرابح</span></td></tr>
+    <tr><td>Prospecting JUN / <b>Asayel</b></td><td class="mono">76</td><td class="mono">2</td><td class="mono up">10.33</td><td class="mono up">38</td><td class="mono">3</td><td class="mono">2.79%</td><td><span class="tag t-scale">Scale (مخفي قوي)</span></td></tr>
+    <tr><td>Prospecting JUN / <b>Lamar Launch</b></td><td class="mono">102</td><td class="mono down">0</td><td class="mono down">0.00</td><td class="mono">∞</td><td class="mono">3</td><td class="mono">0.31%</td><td><span class="tag t-cut">Pause (هوك ضعيف)</span></td></tr>
+    <tr><td>Prospecting JUN / <b>Ghroob Launch</b></td><td class="mono">99</td><td class="mono down">0</td><td class="mono down">0.00</td><td class="mono">∞</td><td class="mono">2</td><td class="mono">0.49%</td><td><span class="tag t-cut">Pause</span></td></tr>
+  </table>
+  <div class="sub" style="margin-top:6px">* أرقام Snapchat منصّية (تضخّم ~5× مقابل سلة) — للتشخيص فقط، تُبقى على صيانة. تردد 5.63 تحسّن من 10.3 بعد توسيع الجمهور؛ راقبه أسبوعياً.</div>
+</section>
+
+<!-- ============ CREATIVE DECISION TABLE ============ -->
+<section>
+  <div class="sech"><span class="n">6</span><h2>المستوى 4: تحليل الكرييتف وقراراته</h2></div>
+  <div class="grid g2">
+    <div class="card">
+      <h3>زين — تصنيف الكرييتف</h3>
+      <table>
+        <tr><th>الكرييتف</th><th>صرف</th><th>شراء</th><th>ROAS</th><th>التصنيف</th></tr>
+        <tr><td><b>«#fypシ ✨»</b> #54</td><td class="mono">2,647</td><td class="mono">34</td><td class="mono">14.71</td><td><span class="tag t-keep">Winner (جدّد الهوك)</span></td></tr>
+        <tr><td>«#explore #fyp ❣️» #52</td><td class="mono">351</td><td class="mono">6</td><td class="mono">5.66</td><td><span class="tag t-scale">Winner — صعّد</span></td></tr>
+        <tr><td>«#fyp ❤️» #52</td><td class="mono">50</td><td class="mono">2</td><td class="mono">15.42</td><td><span class="tag t-scale">Potential — وسّع</span></td></tr>
+        <tr><td>«#69C1» #68</td><td class="mono">118</td><td class="mono">2</td><td class="mono">6.83</td><td><span class="tag t-keep">Keep</span></td></tr>
+        <tr><td>«#103-C1»</td><td class="mono">577</td><td class="mono">5</td><td class="mono down">3.40</td><td><span class="tag t-cut">Kill (نزيف كبير)</span></td></tr>
+        <tr><td>«#50 C2 - OU»</td><td class="mono">307</td><td class="mono">2</td><td class="mono down">2.56</td><td><span class="tag t-cut">Kill</span></td></tr>
+        <tr><td>«#68» Traffic</td><td class="mono">214</td><td class="mono down">0</td><td class="mono down">0</td><td><span class="tag t-cut">Clickbait — Kill</span></td></tr>
+        <tr><td>«#73-C1»</td><td class="mono">209</td><td class="mono">2</td><td class="mono down">3.63</td><td><span class="tag t-fix">عزل/Retarget</span></td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3>نوره — تصنيف الكرييتف</h3>
+      <table>
+        <tr><th>الكرييتف</th><th>صرف</th><th>شراء</th><th>ROAS</th><th>التصنيف</th></tr>
+        <tr><td><b>Image carousel 4</b> Wasayef</td><td class="mono">930</td><td class="mono">18</td><td class="mono">6.79</td><td><span class="tag t-keep">Winner (المحرّك)</span></td></tr>
+        <tr><td><b>Image carousel 3</b> Wasayef</td><td class="mono">880</td><td class="mono">11</td><td class="mono">4.57</td><td><span class="tag t-new">Relaunch مضبوط</span></td></tr>
+        <tr><td>Asayel New V2 C1 (LLA)</td><td class="mono">248</td><td class="mono">6</td><td class="mono">9.82</td><td><span class="tag t-scale">Winner — صعّد</span></td></tr>
+        <tr><td>«#نوره…» Asayel (LLA)</td><td class="mono">515</td><td class="mono">8</td><td class="mono">6.46</td><td><span class="tag t-scale">Winner — صعّد</span></td></tr>
+        <tr><td>«شايفين السواد» Najla</td><td class="mono">69</td><td class="mono">2</td><td class="mono">10.52</td><td><span class="tag t-scale">Winner Najla</span></td></tr>
+        <tr><td>«وصايف تجنن»</td><td class="mono">66</td><td class="mono">2</td><td class="mono">12.48</td><td><span class="tag t-keep">Potential</span></td></tr>
+        <tr><td><b>Wasayef-V2-C2</b></td><td class="mono">401</td><td class="mono down">0</td><td class="mono down">0</td><td><span class="tag t-cut">Clickbait — Kill</span></td></tr>
+        <tr><td>Gulf «Asayel V2 C1»</td><td class="mono">274</td><td class="mono down">1</td><td class="mono down">1.63</td><td><span class="tag t-cut">Kill (خليج)</span></td></tr>
+        <tr><td>«الرد على @M» Wasayef</td><td class="mono">224</td><td class="mono">1</td><td class="mono down">0.27</td><td><span class="tag t-cut">Kill</span></td></tr>
+        <tr><td>Lamar / Ghroob Launch</td><td class="mono">201</td><td class="mono down">0</td><td class="mono down">0</td><td><span class="tag t-cut">Kill (هوك ضعيف)</span></td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="grid g2" style="margin-top:14px">
+    <div class="callout c-green" style="margin:0"><b>أفضل 5 كرييتفات للرفع:</b><br>
+      <b>زين:</b> «#fypシ ✨»#54 · «#52»(الزوج الرابح). <b>نوره:</b> Image carousel 4 · Asayel New V2 C1 · «شايفين السواد»Najla.</div>
+    <div class="callout c-red" style="margin:0"><b>أسوأ 5 للقتل/العزل فوراً:</b><br>
+      <b>زين:</b> #103-C1 · #50 C2 · Traffic#68. <b>نوره:</b> Wasayef-V2-C2 (clickbait) · «الرد على @M» (ROAS 0.27).</div>
+  </div>
+  <div class="callout c-amber">
+    <b>إثبات الإجهاد (Creative Fatigue):</b> زين «#fypシ ✨» تردد <b>2.85</b> يقترب الحد (<3) مع اعتماد الحساب عليه (54%) → جدّد الهوك خلال 48 ساعة. نوره Image carousel 4 تردد <b>2.72</b> → جهّز تنويعات. Snapchat نوره كانت 10.3 (عولجت لـ5.63 بتوسيع الجمهور).<br>
+    <b>ملاحظة Clickbait مهمة:</b> Wasayef-V2-C2 (نوره) و Traffic#68 (زين) لهما <b>CTR مرتفع جداً (8–9%) و ATC/IC لكن 0 شراء</b> = ترافيك فضولي رخيص أو تعارض إعلان↔صفحة. لا تصعّدهما — اقتلهما.
+  </div>
+</section>
+
+<!-- ============ PRODUCTS ============ -->
+<section>
+  <div class="sech"><span class="n">7</span><h2>تحليل المنتجات والعروض (نوره — سلة)</h2></div>
+  <table>
+    <tr><th>المنتج</th><th>قطع 90 يوم</th><th>الدور</th><th>القرار</th></tr>
+    <tr><td><b>اصايل (Asayel)</b></td><td class="mono">358</td><td>البطل المطلق (49% إيراد، 142+ سلة)</td><td><span class="tag t-scale">Hero — ركّز + Retarget + Scale</span></td></tr>
+    <tr><td>وصايف (Wasayef)</td><td class="mono">68</td><td>محرّك ثانٍ (مجموعة إعلانية قوية)</td><td><span class="tag t-keep">Keep + carousel</span></td></tr>
+    <tr><td><b>النقاب (وسط/طويل)</b></td><td class="mono">40</td><td>إكسسوار رخيص</td><td><span class="tag t-new">رافعة AOV — Bundle/Upsell</span></td></tr>
+    <tr><td>لمار · نجلاء · غروب</td><td class="mono">12·10·9</td><td>ثانوية واعدة</td><td><span class="tag t-fix">Najla كرييتف رابح موجود</span></td></tr>
+    <tr><td>ناديه · دينا · فاطمه · حسناء · جوري · هيفاء</td><td class="mono">~6 لكلٍّ</td><td>ذيل طويل</td><td><span class="tag t-watch">لا إعلان منفصل الآن</span></td></tr>
+  </table>
+  <div class="grid g3" style="margin-top:12px">
+    <div class="callout c-green" style="margin:0"><b>ركّز فوراً (3–5 منتجات):</b><br>اصايل · وصايف · نجلاء · (لمار اختبار) + النقاب كـAOV.</div>
+    <div class="callout c-blue" style="margin:0"><b>Retargeting product:</b><br><b>اصايل</b> (358 مبيع + الأعلى تركاً للسلة) — نفس درس #54 عند زين.</div>
+    <div class="callout c-amber" style="margin:0"><b>رفع AOV:</b><br>Bundle «اصايل + نقاب» · شحن مجاني فوق 350 · «تطلّع من 99 ر.س مع تابي».</div>
+  </div>
+</section>
+
+<!-- ============ HISTORICAL WINNERS ============ -->
+<section>
+  <div class="sech"><span class="n">8</span><h2>الفائزون تاريخياً — أعِدهم فوراً</h2></div>
+  <table>
+    <tr><th>العميلة</th><th>الأصل المفقود</th><th>الأداء المثبت</th><th>الإجراء الآن</th></tr>
+    <tr><td>زين</td><td><b>Retargeting</b></td><td class="mono">ROAS 8.32 (أكتوبر) · 8.73 (فبراير)</td><td><span class="tag t-new">أطلق اليوم — أعلى رافعة</span></td></tr>
+    <tr><td>زين</td><td>#52 (نجم فبراير)</td><td class="mono">CTR 5% · 28 شراء</td><td><span class="tag t-scale">يعمل الآن (5.67) — صعّد</span></td></tr>
+    <tr><td>زين</td><td>#63 · Cross-sell · Lookalike</td><td class="mono">6.05 · 5.36 · 6.6</td><td><span class="tag t-fix">أحيِ بعد التثبيت</span></td></tr>
+    <tr><td>زين</td><td>أفضل شهر: <b>أكتوبر</b></td><td class="mono">18.2K صرف · ROAS 6.08 · ~111K</td><td><span class="tag t-watch">القالب: صرف + تنوّع طبقات</span></td></tr>
+    <tr><td>نوره</td><td><b>Retargeting</b></td><td class="mono">غائب رغم 810 سلة (330K)</td><td><span class="tag t-new">أطلق اليوم — اصايل</span></td></tr>
+    <tr><td>نوره</td><td>Image carousel 3</td><td class="mono">مايو: 22 شراء · CTR 5.59%</td><td><span class="tag t-new">Relaunch مضبوط 150/يوم</span></td></tr>
+    <tr><td>نوره</td><td>Asayel Pack (عرض باقة)</td><td class="mono">مايو ROAS 5.28</td><td><span class="tag t-fix">أعِد صيغة الباقة</span></td></tr>
+    <tr><td>نوره</td><td>أفضل شهر: <b>أبريل</b></td><td class="mono">11.9K صرف · ROAS 6.79 · 195 شراء</td><td><span class="tag t-watch">القالب: استمرارية بلا انقطاع</span></td></tr>
+  </table>
+  <div class="sub" style="margin-top:6px">درس محوري (لا يُكرَّر): توسيع نوره القفزي سبتمبر 2025 (3→10K دفعة) كسر ROAS من 15 لـ3.7. <b>التوسيع +20–30% كل 2–3 أيام فقط.</b></div>
+</section>
+
+<!-- ============ BUDGET REALLOCATION ============ -->
+<section>
+  <div class="sech"><span class="n">9</span><h2>إعادة توزيع الميزانية (واعية بالذروة)</h2></div>
+  <div class="grid g2">
+    <div class="card">
+      <h3>زين — السقف 15K، مساحة متاحة</h3>
+      <table>
+        <tr><th>من (أوقف)</th><th>~يومي</th><th>إلى</th></tr>
+        <tr><td>Traffic #68 + #103-C1 + #50 C2</td><td class="mono down">~70</td><td>—</td></tr>
+        <tr><td colspan="3" style="background:#0c3326"><b>الوجهة:</b> #54 (+25%) · #52 (+30%) · Retargeting جديد (~15%)</td></tr>
+      </table>
+      <p class="sub">صيانة (17–25): ~420/يوم · <b>ذروة (26–30): ~580/يوم</b> على الروابح فقط. مجموع الشهر ≤ 14.3K (تحت السقف). CBO للروابح + ABO للاختبار.</p>
+    </div>
+    <div class="card">
+      <h3>نوره — قرب السقف: <b>تمويل بالقص لا بالإضافة</b></h3>
+      <table>
+        <tr><th>من (أوقف)</th><th>~يومي</th><th>إلى</th></tr>
+        <tr><td>Wasayef WC + Gulf + Lamar + Ghroob</td><td class="mono down">~60</td><td>—</td></tr>
+        <tr><td colspan="3" style="background:#0c3326"><b>الوجهة:</b> Wasayef · Asayel LLA · carousel 3 (150) · Retargeting اصايل (~15%)</td></tr>
+      </table>
+      <p class="sub">المُسقط 14.3K قرب السقف → <b>لا نضيف، نعيد توزيع</b>. Snapchat يبقى صيانة (~110/يوم). الذروة تُموَّل من قص النزيف + تقليص الصيانة الضعيفة. (رفع السقف لـ20K = قرارك للوصول 100K.)</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 14-DAY PLAN ============ -->
+<section>
+  <div class="sech"><span class="n">10</span><h2>خطة الـ14 يوم — وضع غرفة العمليات (War Room)</h2></div>
+
+  <div class="day"><div class="dh"><b>يوم 1 — الثلاثاء 17 يونيو</b><span class="pill red">وقف النزيف + إطلاق الاسترجاع</span></div>
+    <div class="db"><b>الهدف:</b> إيقاف كل الهدر اليوم + أول دفعة استرجاع سلات. ·
+      <b>أوقف:</b> زين (Traffic#68، #103-C1، #50 C2) · نوره (Wasayef WC، Gulf، Lamar، Ghroob). ·
+      <b>أطلق:</b> واتساب استرجاع — أول 200 سلة طازجة لنوره (نص #2/#3) · جهّز جماهير Retargeting (سلة/ATC/مشاهدة 14–30 يوم). ·
+      <b>متجر:</b> أضف تابي/تمارا فوق زر الشراء + شريط «شحن مجاني فوق 350». ·
+      <b>معيار النجاح آخر اليوم:</b> 0 صرف على المجموعات الموقوفة · ≥30 رد واتساب. ·
+      <b>إذا نجح:</b> كمّل الدفعة. <b>إذا فشل:</b> راجع نص الواتساب/التوقيت.</div></div>
+
+  <div class="day"><div class="dh"><b>يوم 2 — الأربعاء 18</b><span class="pill purple">Retargeting + تجديد الهوك</span></div>
+    <div class="db"><b>أطلق Retargeting (الاثنتان):</b> زين على سلات #54/#50/#103 · نوره على سلات <b>اصايل</b> — بكود خصم + تابي. ميزانية بداية ~15%، تردد <3. ·
+      <b>كرييتف:</b> زين 3 هوكات جديدة لـ«#fypシ ✨» · نوره <b>أعد Image carousel 3</b> (150/يوم) + تنويعة carousel 4. ·
+      <b>معيار:</b> Retargeting أول ATC/IC خلال 24–48 ساعة. <b>إذا CPA<المستهدف:</b> زِد 20%. <b>إذا 0 ATC بعد 1×CPA:</b> بدّل العرض/الكرييتف.</div></div>
+
+  <div class="day"><div class="dh"><b>يوم 3 — الخميس 19</b><span class="pill blue">قياس + زوايا جديدة</span></div>
+    <div class="db"><b>قِس Retargeting</b> (أول إشارات) · واتساب دفعة 2 (سلات 200–400). ·
+      <b>اختبر زوايا:</b> اصايل (إثبات اجتماعي/تفصيل القماش) · زين #54 (عرض/استعجال). ·
+      <b>صعّد الروابح +20–30%</b> إن ثبت ROAS: زين #52/#54 · نوره Asayel LLA/Wasayef. ·
+      <b>معيار:</b> ROAS الروابح ثابت بعد الرفع.</div></div>
+
+  <div class="day"><div class="dh"><b>أيام 4–6 — 20→22 (جمعة–أحد)</b><span class="pill green">تثبيت الهيكل الفائز + AOV</span></div>
+    <div class="db"><b>AOV:</b> فعّل Bundle «اصايل + نقاب» + رسالة تابي «تطلّع من 99 ر.س». ·
+      <b>PDP:</b> وحّد صور اصايل/#54، أبرز مدة التجهيز والاستبدال، طمأنة الثقة. ·
+      <b>Scaling مضبوط:</b> استمر +20–30%/2–3 أيام على الفائزين فقط. ·
+      <b>واتساب:</b> شريحة «عميلة سابقة» (نص #4) + «اشترت عباية → نقاب» (نص #5). ·
+      <b>معيار:</b> AOV نوره يرتفع من 339 نحو 380+ · Blended ≥ الأرضية.</div></div>
+
+  <div class="day"><div class="dh"><b>أيام 7–9 — 23→25 (إثنين–أربعاء)</b><span class="pill amber">تجهيز الذروة + حجز الميزانية</span></div>
+    <div class="db"><b>جهّز عرض نهاية الشهر</b> (خصم محدود/هدية نقاب) + كرييتف «Offer». ·
+      <b>احجز ميزانية الذروة</b> (26–30) على الروابح + Retargeting حصراً. ·
+      <b>واتساب:</b> شريحة «مهتمات بالخصم» (نص #6) تمهيداً. ·
+      <b>زين:</b> راقب تردد «#fypシ ✨»؛ لو >3 ادفع الهوكات الجديدة. ·
+      <b>معيار:</b> مكتبة 6–8 كرييتفات جاهزة + ميزانية ذروة محجوزة.</div></div>
+
+  <div class="day"><div class="dh"><b>أيام 10–14 — 26→30 (ذروة الرواتب 💰)</b><span class="pill red">ضغط مبيعات أقصى</span></div>
+    <div class="db"><b>الهدف:</b> أعلى تركيز صرف على الروابح + Retargeting (لا تجارب). ·
+      <b>زين:</b> ذروة ~580/يوم · نوره: أعِد التوزيع نحو الذروة (وضمن السقف، أو رفع السقف بقرارك). ·
+      <b>Scarcity/Urgency حقيقي:</b> «آخر كمية»، «العرض ينتهي 30». ·
+      <b>واتساب يومي:</b> VIP (نص متجر) + «نهاية الشهر/آخر فرصة» (نص #7) + استرجاع كل من وصل الدفع. ·
+      <b>معيار يومي:</b> زين ≥9 طلبات/يوم · نوره ≥6 + استرجاع سلات يومي. ·
+      <b>إذا فشل يوم:</b> حوّل ميزانيته لأقوى رابح + دفعة واتساب إضافية.</div></div>
+</section>
+
+<!-- ============ SCALING ============ -->
+<section>
+  <div class="sech"><span class="n">11</span><h2>خطة Scaling بدون تهور</h2></div>
+  <div class="grid g2">
+    <div class="card"><h3>قواعد التوسيع</h3>
+      <ul>
+        <li>ارفع <b>+20–30% كل 2–3 أيام</b> على الرابح المثبت فقط (Purchase/ATC قوي).</li>
+        <li><b>Vertical</b> للرابح المستقر (#54، Wasayef) · <b>Horizontal</b> (تكرار/Lookalike) لتوسيع الجمهور.</li>
+        <li><b>CBO</b> للروابح المجمّعة · <b>ABO</b> للاختبار المنفصل. افصل Retargeting عن Cold دائماً.</li>
+        <li>لا ترفع مجموعة لم تثبت · لا تشتّت على منتجات كثيرة · ركّز على اصايل/#54.</li>
+      </ul>
+    </div>
+    <div class="card"><h3>متى نوقف / نزيد / نرجع</h3>
+      <ul>
+        <li><b>زِد:</b> ROAS فوق الهدف بعد الرفع + CPA ≤ السقف.</li>
+        <li><b>أوقف الرفع:</b> Blended تحت 4.5 → أصلح الكرييتف/اللاندنق أولاً.</li>
+        <li><b>ارجع الميزانية:</b> تردد >3 (prospecting) أو CTR ▼15% أسبوعياً = إجهاد → جدّد قبل الزيادة.</li>
+        <li><b>الذروة (26–30):</b> السكيل مدروس مسبقاً لأنها أيام فرصة — لكن على الروابح فقط.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHATSAPP / SALES ============ -->
+<section>
+  <div class="sech"><span class="n">12</span><h2>تفعيل المبيعات خارج الإعلان + نصوص واتساب جاهزة</h2></div>
+  <div class="callout c-green">
+    <b>الفرصة الكبرى لنوره (شبه مجانية):</b> 810 سلة متروكة · <b>100% فيها رقم جوال</b> · متوسط 407 ر.س · إجمالي ~<b>330,000 ر.س</b> (58% اصايل). استرجاع <b>10% = ~33,000 ر.س</b>. + VIP (أعلى عميلة 176 طلب/21,488 ر.س) + قاعدة عملاء سابقين (تكرار 8.6% فقط = فرصة). واتساب المتجر الرسمي: <b>+966544722100</b>.
+  </div>
+  <div class="grid g2">
+    <div class="wa"><div class="h">1) زائرة المنتج ولم تشترِ</div><div class="body">هلا والله 🌸 لاحظنا إعجابك بـ«اصايل». لا زالت متوفرة بمقاسك، وتقدرين تقسّطينها مع تابي/تمارا على 4 دفعات. تحبين أرسل لك المقاسات المتوفرة؟</div></div>
+    <div class="wa"><div class="h">2) أضافت للسلة ولم تكمل</div><div class="body">مساء الخير 🤍 عبايتك لا زالت محجوزة بسلتك، بس الكميات محدودة. أكملي طلبك من هنا 👇 ولو حاب أي مساعدة بالمقاس أنا حاضرة:
+[رابط السلة]</div></div>
+    <div class="wa"><div class="h">3) وصلت الدفع ولم تدفع</div><div class="body">أهلين 🌷 شكلهّ صار معك تعثّر بسيط بالدفع؟ نقدر نكمّل طلبك بتابي/تمارا (قسّطيها على 4) أو الدفع عند الاستلام. أثبّت لك الطلب الحين؟</div></div>
+    <div class="wa"><div class="h">4) عميلة سابقة (لم ترجع)</div><div class="body">اشتقنا لك 🤍 نزلت تصاميم جديدة تناسب ذوقك، وعندنا لك تقدير خاص كعميلة مميزة. تحبين أرسل لك أبرز القطع المطلوبة هالأسبوع؟</div></div>
+    <div class="wa"><div class="h">5) اشترت عباية → اقترح نقاب/إضافة</div><div class="body">عسى عبايتك عجبتك 🌸 يناسبها «نقاب» بنفس الدرجة يكمّل الإطلالة، وسعره رمزي. أضيفه لك بنفس الشحنة؟</div></div>
+    <div class="wa"><div class="h">6) مهتمة بالخصم</div><div class="body">بشرى 🎉 خصّيناك بعرض نهاية الشهر على «اصايل» لفترة محدودة + شحن مجاني فوق 350. أحجز لك قبل لا تخلص الكمية؟</div></div>
+  </div>
+  <div class="wa"><div class="h">7) نهاية الشهر / آخر فرصة (للذروة 26–30)</div><div class="body">آخر فرصة 🚨 عرض نهاية الشهر ينتهي اليوم، والكميات على «اصايل» قاربت تخلص. تقدرين تقسّطينها مع تابي على 4 دفعات بدون فوائد. أجهّز لك الطلب الحين؟</div></div>
+  <div class="card tight"><b>تسلسل التفعيل:</b> Abandoned cart (3 لمسات: ساعة/24س/72س) ← View/ATC/IC Retargeting إعلاني ← Existing customers + VIP ← Best-sellers push (اصايل) ← Bundle/Free-shipping ← Tabby/Tamara messaging ← Limited-time. <b>قنوات نوره الجاهزة:</b> واتساب (رسمي)، Instagram norah_abayaa، TikTok comments، Snapchat.</div>
+</section>
+
+<!-- ============ PRIORITY MATRIX ============ -->
+<section>
+  <div class="sech"><span class="n">13</span><h2>مصفوفة الأولويات</h2></div>
+  <table class="matrix">
+    <tr><th>القرار</th><th>الأثر</th><th>الإلحاح</th><th>الثقة</th><th>الجهد</th><th>الترتيب</th></tr>
+    <tr><td style="text-align:right">إيقاف النزيف (الحسابين)</td><td class="up">عالٍ</td><td class="down">فوري</td><td class="up">عالية</td><td class="up">منخفض</td><td><span class="tag t-cut">1</span></td></tr>
+    <tr><td style="text-align:right">واتساب استرجاع 810 سلة (نوره)</td><td class="up">عالٍ جداً</td><td class="down">فوري</td><td class="up">عالية</td><td class="flat">متوسط</td><td><span class="tag t-cut">1</span></td></tr>
+    <tr><td style="text-align:right">إطلاق Retargeting (الحسابين)</td><td class="up">عالٍ جداً</td><td class="down">فوري</td><td class="up">عالية (8.3+ تاريخياً)</td><td class="flat">متوسط</td><td><span class="tag t-cut">1</span></td></tr>
+    <tr><td style="text-align:right">تصعيد الروابح (#54/#52/Wasayef/Asayel)</td><td class="up">عالٍ</td><td class="flat">24–48س</td><td class="up">عالية</td><td class="up">منخفض</td><td><span class="tag t-fix">2</span></td></tr>
+    <tr><td style="text-align:right">تجديد هوك البطل (إجهاد)</td><td class="flat">متوسط</td><td class="flat">48س</td><td class="up">عالية</td><td class="flat">متوسط</td><td><span class="tag t-fix">2</span></td></tr>
+    <tr><td style="text-align:right">Bundle نقاب + تابي/تمارا (AOV)</td><td class="up">عالٍ</td><td class="flat">72س</td><td class="up">عالية</td><td class="flat">متوسط</td><td><span class="tag t-fix">2</span></td></tr>
+    <tr><td style="text-align:right">Relaunch carousel 3 (نوره)</td><td class="flat">متوسط</td><td class="flat">48س</td><td class="flat">متوسطة</td><td class="up">منخفض</td><td><span class="tag t-watch">3</span></td></tr>
+    <tr><td style="text-align:right">CRO صفحة المنتج (اصايل/#54)</td><td class="up">عالٍ</td><td class="flat">هذا الأسبوع</td><td class="flat">متوسطة</td><td class="down">عالٍ</td><td><span class="tag t-watch">3</span></td></tr>
+  </table>
+</section>
+
+<!-- ============ FINAL DECISION SHEET ============ -->
+<section>
+  <div class="sech"><span class="n">14</span><h2>ورقة القرار النهائية</h2></div>
+  <div class="grid g2">
+    <div class="callout c-red" style="margin:0">
+      <h3>🔴 نفّذ الآن (اليوم)</h3>
+      <ul>
+        <li><b>أوقف زين:</b> Traffic#68 · #103-C1 · #50 C2.</li>
+        <li><b>أوقف نوره:</b> Wasayef WC · Gulf · Lamar · Ghroob.</li>
+        <li><b>واتساب نوره:</b> أول 200 سلة (نص 2/3).</li>
+        <li><b>متجر:</b> تابي/تمارا فوق زر الشراء + شريط شحن مجاني فوق 350.</li>
+      </ul>
+    </div>
+    <div class="callout c-amber" style="margin:0">
+      <h3>🟠 خلال 24 ساعة</h3>
+      <ul>
+        <li><b>أطلق Retargeting</b> (الحسابين) — اصايل/#54 + كود + تابي.</li>
+        <li><b>صعّد الروابح +20–30%</b>: زين #52/#54 · نوره Asayel LLA/Wasayef.</li>
+        <li><b>جدّد هوك</b> «#fypシ ✨» (زين) ×3.</li>
+        <li><b>أعد carousel 3</b> (نوره) 150/يوم.</li>
+      </ul>
+    </div>
+    <div class="callout c-blue" style="margin:0">
+      <h3>🔵 خلال 72 ساعة</h3>
+      <ul>
+        <li><b>Bundle</b> اصايل + نقاب + عرض شحن.</li>
+        <li><b>واتساب:</b> عملاء سابقون + VIP + Upsell نقاب.</li>
+        <li><b>CRO:</b> توحيد صور اصايل/#54 + طمأنة التجهيز/الاستبدال.</li>
+        <li><b>جهّز عرض الذروة</b> (26–30) + احجز ميزانيته.</li>
+      </ul>
+    </div>
+    <div class="callout c-green" style="margin:0">
+      <h3>⚪ لا تنفّذ الآن</h3>
+      <ul>
+        <li>لا تطلق منتجات/حملات جديدة غير مثبتة (درس Lamar/Ghroob).</li>
+        <li>لا تصعّد Snapchat وهو يُراقب (إسناد ضعيف).</li>
+        <li>لا تتجاوز سقف نوره 15K قبل قرارك الصريح.</li>
+        <li>لا تقتل carousel 3 نهائياً — هو حجم مثبت.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FORMATTED DECISION CARDS ============ -->
+<section>
+  <div class="sech"><span class="n">15</span><h2>بطاقات القرار (صيغة جاهزة للتسجيل)</h2></div>
+
+  <div class="dec"><table>
+    <tr><td class="k">القرار</td><td>إيقاف Traffic#68 + #103-C1 + #50 C2 وتحويل ميزانيتها للروابح</td></tr>
+    <tr><td class="k">العميلة</td><td>زين</td></tr>
+    <tr><td class="k">المستوى</td><td>حملة/مجموعة/كرييتف</td></tr>
+    <tr><td class="k">الأولوية</td><td><span class="pill red">Critical</span></td></tr>
+    <tr><td class="k">السبب الرقمي</td><td>Traffic#68: 241 ر.س/0 شراء (استثناء الصفر). #103-C1: ROAS 3.40/CPA 115. #50 C2: ROAS 2.56/CPA 154 — تسحب CPA الحساب لـ94.</td></tr>
+    <tr><td class="k">الإجراء</td><td>إيقاف فوري؛ الميزانية المحرّرة (~70/يوم) لـ#54 و#52 و Retargeting.</td></tr>
+    <tr><td class="k">الأثر المتوقع</td><td>CPA الحساب ينزل نحو ≤80؛ ROAS منصة يرتفع نحو 5+.</td></tr>
+    <tr><td class="k">المخاطرة</td><td>منخفضة (مجموعات خاسرة مثبتة).</td></tr>
+    <tr><td class="k">متى نقيس / نوقف / نزيد</td><td>قياس بعد 48س · نوقف لو ROAS الكلي ما تحسّن · نزيد الروابح لو CPA ≤80.</td></tr>
+    <tr><td class="k">الخطوة التالية</td><td>تنفيذ يدوي اليوم + إنشاء حملة Retargeting.</td></tr>
+  </table></div>
+
+  <div class="dec"><table>
+    <tr><td class="k">القرار</td><td>حملة واتساب لاسترجاع 810 سلة متروكة (تبدأ بأطزجها)</td></tr>
+    <tr><td class="k">العميلة</td><td>نوره</td></tr>
+    <tr><td class="k">المستوى</td><td>واتساب / مبيعات</td></tr>
+    <tr><td class="k">الأولوية</td><td><span class="pill red">Critical</span></td></tr>
+    <tr><td class="k">السبب الرقمي</td><td>810 سلة · 100% فيها جوال · ~330,000 ر.س · 58% اصايل · النزيف الأكبر «بدء دفع→إتمام» 33%.</td></tr>
+    <tr><td class="k">الإجراء</td><td>دفعات يومية (نص 2/3) + تابي/تمارا + كود؛ 3 لمسات (ساعة/24س/72س).</td></tr>
+    <tr><td class="k">الأثر المتوقع</td><td>استرجاع 5–10% = 16,000–33,000 ر.س شبه مجانية هذا الشهر.</td></tr>
+    <tr><td class="k">المخاطرة</td><td>منخفضة (إزعاج لو تكرار زائد — احترم 3 لمسات).</td></tr>
+    <tr><td class="k">متى نقيس / نوقف / نزيد</td><td>قياس يومي (ردود/طلبات) · نزيد الدفعات لو التحويل >5% · نخفّف لو شكاوى.</td></tr>
+    <tr><td class="k">الخطوة التالية</td><td>تصدير السلات (أحدث 200) + بدء الإرسال اليوم.</td></tr>
+  </table></div>
+
+  <div class="dec"><table>
+    <tr><td class="k">القرار</td><td>إطلاق طبقة Retargeting (الحسابين) — تُقاد بـاصايل/#54</td></tr>
+    <tr><td class="k">العميلة</td><td>زين + نوره</td></tr>
+    <tr><td class="k">المستوى</td><td>حملة / Funnel</td></tr>
+    <tr><td class="k">الأولوية</td><td><span class="pill red">Critical</span></td></tr>
+    <tr><td class="k">السبب الرقمي</td><td>أعلى ROAS تاريخياً لزين 8.32–8.73 وغائب؛ نوره 810 سلة (142+ اصايل) بلا طبقة استرجاع.</td></tr>
+    <tr><td class="k">الإجراء</td><td>جمهور: زوار+سلات+ATC+مشاهدو فيديو 14–30 يوم · منفصل عن Cold · كود+تابي · تردد <3 · بداية ~15%.</td></tr>
+    <tr><td class="k">الأثر المتوقع</td><td>أعلى CVR وأقل CPA؛ رافعة المبيعات الأسرع للأسبوعين.</td></tr>
+    <tr><td class="k">المخاطرة</td><td>حجم جمهور محدود (يُدار بالتردد والتتابع).</td></tr>
+    <tr><td class="k">متى نقيس / نوقف / نزيد</td><td>قياس 24–48س · نوقف لو 0 ATC/IC بعد 1×CPA · نزيد لو CPA < المستهدف.</td></tr>
+    <tr><td class="k">الخطوة التالية</td><td>بناء الجماهير اليوم، إطلاق غداً (يوم 2).</td></tr>
+  </table></div>
+
+  <div class="dec"><table>
+    <tr><td class="k">القرار</td><td>إيقاف Wasayef WC (clickbait) + Gulf + Lamar + Ghroob</td></tr>
+    <tr><td class="k">العميلة</td><td>نوره</td></tr>
+    <tr><td class="k">المستوى</td><td>مجموعة / كرييتف</td></tr>
+    <tr><td class="k">الأولوية</td><td><span class="pill red">Critical</span></td></tr>
+    <tr><td class="k">السبب الرقمي</td><td>Wasayef-V2-C2: 401 ر.س/9113 نقرة/20 ATC/<b>0 شراء</b> (CTR 9.19% فضول رخيص). Gulf 354 CPA. Lamar/Ghroob 0 شراء (CTR 0.3% هوك ضعيف).</td></tr>
+    <tr><td class="k">الإجراء</td><td>إيقاف فوري؛ الميزانية لـ Wasayef/Asayel LLA + carousel 3 + Retargeting.</td></tr>
+    <tr><td class="k">الأثر المتوقع</td><td>إيقاف نزيف ~60/يوم؛ CPA الحساب ينزل من 90.</td></tr>
+    <tr><td class="k">المخاطرة</td><td>منخفضة (لا حجم مفقود — كانت صفرية).</td></tr>
+    <tr><td class="k">متى نقيس / نوقف / نزيد</td><td>قياس فوري للصرف · إعادة اختبار لمار/غروب لاحقاً بزاوية/هوك جديد فقط.</td></tr>
+    <tr><td class="k">الخطوة التالية</td><td>تنفيذ اليوم + إعادة carousel 3 المثبت.</td></tr>
+  </table></div>
+</section>
+
+<!-- ============ DATA GAPS ============ -->
+<section>
+  <div class="sech"><span class="n">16</span><h2>الفجوات وما يجب سحبه لرفع الدقة</h2></div>
+  <div class="callout c-blue">
+    <ul>
+      <li>🔴 <b>سلة زين (MCP) — الأهم:</b> لا وصول حالياً → أرقام زين الشهرية تقديرية (هالة مايو). زوّدنا تقرير سلة زين يونيو أو وصّل MCP.</li>
+      <li>🟠 <b>نضوج طلبات نوره يونيو:</b> أعِد حساب Blended النهائي نهاية الشهر بعد اكتمال الطلبات (مدة التجهيز 7–10 أيام).</li>
+      <li>🟠 <b>هامش زين:</b> غير مؤكَّد (الأرضية 4.5 آمنة). اشتقّه من تكلفة منتجات سلة لإحكام نقطة التعادل.</li>
+      <li>🟡 <b>سرعة/جوال صفحة المنتج:</b> تحتاج فحص أداء فعلي (نوره/زين mobile-first 98%).</li>
+      <li>🟡 <b>مخزون اصايل/#54:</b> تأكيد توفّر الكميات قبل تركيز الصرف في الذروة.</li>
+    </ul>
+  </div>
+</section>
+
+<div class="foot">
+  أُعدّ بواسطة نظام «فزاع» — مساعد Media Buying · الأرقام من Windsor.ai (TikTok+Snapchat) وسلة (نوره) · نطاق: يونيو 1–16 2026 مقابل مايو 2026 · العملة SAR.<br>
+  ⚠️ القرارات مواصفات جاهزة للتنفيذ اليدوي في Ads Manager/سلة/واتساب · فحص الـGuardrails مُضمَّن · الحالة تُحفَظ في decisions.md.
+</div>
+
+</div>
+</body>
+</html>
