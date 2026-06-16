@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feeder / Traffic Campaign — Build Spec (Zain + Noura) · TikTok 2026</title>
+<style>
+  :root{
+    --bg:#0f1320;--card:#171c2e;--card2:#1d2338;--ink:#e8ecf5;--muted:#9aa6c2;--line:#2a3350;
+    --green:#1f9d6b;--greenbg:#0e2a20;--amber:#d99a16;--amberbg:#2c2410;--red:#e0524b;--redbg:#2e1414;
+    --blue:#3d7bd9;--bluebg:#10203a;--purple:#8b6ad9;--accent:#36d39a;--zain:#3d7bd9;--noura:#c0567e;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Segoe UI",system-ui,sans-serif;line-height:1.6;font-size:15px}
+  .wrap{max-width:1140px;margin:0 auto;padding:24px}
+  h1,h2,h3,h4{line-height:1.3;margin:0 0 8px}
+  h1{font-size:29px}h2{font-size:22px}h3{font-size:18px}h4{font-size:15px;color:#cdd6ee}
+  .sub{color:var(--muted);font-size:14px}
+  .ar{direction:rtl;font-family:"Tahoma","Segoe UI",sans-serif}
+  header.top{background:linear-gradient(135deg,#1a2138,#11152400);border:1px solid var(--line);border-radius:18px;padding:26px 28px;margin-bottom:20px}
+  .pill{display:inline-block;padding:3px 11px;border-radius:999px;font-size:12px;font-weight:700;margin:2px}
+  .pill.green{background:var(--greenbg);color:#5fe0a8;border:1px solid #1f6b4a}
+  .pill.amber{background:var(--amberbg);color:#f0c456;border:1px solid #6b5316}
+  .pill.red{background:var(--redbg);color:#ff8a84;border:1px solid #7a2b27}
+  .pill.blue{background:var(--bluebg);color:#7fb0f5;border:1px solid #2c5494}
+  .pill.purple{background:#1d1733;color:#bda3f5;border:1px solid #4a3a7a}
+  section{margin:28px 0}
+  .sech{display:flex;align-items:center;gap:10px;border-left:4px solid var(--accent);padding-left:12px;margin-bottom:14px}
+  .sech .n{background:var(--accent);color:#06241a;width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800}
+  .grid{display:grid;gap:16px}.g2{grid-template-columns:1fr 1fr}
+  @media(max-width:860px){.g2{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+  .card.zain{border-top:3px solid var(--zain)}.card.noura{border-top:3px solid var(--noura)}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:6px;border-radius:10px;overflow:hidden}
+  th,td{padding:9px 11px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:#202840;color:#cdd6ee;font-weight:700}
+  tr:nth-child(even) td{background:#151a2b}
+  td.k{color:var(--muted);font-weight:700;width:230px}
+  .tag{padding:2px 8px;border-radius:6px;font-size:11.5px;font-weight:700;white-space:nowrap;display:inline-block}
+  .t-on{background:var(--greenbg);color:#5fe0a8}.t-win{background:#0c3326;color:#6bf0b4;border:1px solid #1f9d6b}
+  .t-set{background:var(--bluebg);color:#7fb0f5}.t-warn{background:var(--amberbg);color:#f0c456}
+  .callout{border-radius:12px;padding:16px 18px;border:1px solid;margin:14px 0}
+  .c-red{background:var(--redbg);border-color:#7a2b27}.c-amber{background:var(--amberbg);border-color:#6b5316}
+  .c-green{background:var(--greenbg);border-color:#1f6b4a}.c-blue{background:var(--bluebg);border-color:#2c5494}
+  ul,ol{margin:8px 0;padding-left:22px}li{margin:4px 0}
+  code{background:#0a0e1a;border:1px solid var(--line);border-radius:5px;padding:1px 7px;font-size:13px;color:#8fe7c4;font-family:"Consolas",monospace}
+  .cap{background:#0c1f17;border:1px solid #1f6b4a;border-radius:10px;padding:10px 13px;margin:7px 0}
+  .cap .body{direction:rtl;font-family:"Tahoma",sans-serif;font-size:14px;background:#0a2a1e;border-radius:8px;padding:9px 12px;margin-top:5px}
+  .step{counter-increment:s;display:flex;gap:12px;align-items:flex-start;margin:9px 0}
+  .step::before{content:counter(s);background:var(--accent);color:#06241a;min-width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px}
+  .steps{counter-reset:s}
+  .glance{background:var(--card2);border:1px dashed var(--accent);border-radius:12px;padding:14px 16px}
+  .glance table{margin:0}.glance td{border:none;padding:4px 8px}
+  .foot{color:var(--muted);font-size:12.5px;text-align:center;margin-top:30px;border-top:1px solid var(--line);padding-top:16px}
+  hr{border:none;border-top:1px solid var(--line);margin:16px 0}
+  .chk{list-style:none;padding-left:0}.chk li{padding-left:26px;position:relative}
+  .chk li::before{content:"☐";position:absolute;left:0;color:var(--accent);font-size:16px}
+  @media print{body{background:#fff;color:#111}.card,.callout,.glance{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <h1>🧲 Feeder / Traffic Campaign — Build &amp; Execution Spec</h1>
+  <div class="sub">Clients: <b>Zain (رغد)</b> &amp; <b>Noura (نورة)</b> · Platform: <b>TikTok Ads Manager (June 2026 UI)</b> · This file is your hands-on build reference.</div>
+  <div style="margin-top:12px">
+    <span class="pill blue">Created: 2026-06-16</span>
+    <span class="pill amber">Cycle: maintenance → payroll peak (26→30)</span>
+    <span class="pill green">Decision owner: Media Buyer (data-backed)</span>
+    <span class="pill purple">Captions in Arabic · Settings in English</span>
+  </div>
+</header>
+
+<!-- DECISION -->
+<section>
+  <div class="sech"><span class="n">1</span><h2>The Decision (and why I stand behind it)</h2></div>
+  <div class="callout c-green">
+    <h3>✅ DECISION: Build a lean, always-on <u>Feeder / Traffic</u> campaign under each Sales campaign — running the <u>proven winning creative</u> on the <u>hero product</u>, at a small fixed budget.</h3>
+    <p>This <b>reverses my earlier "kill the traffic campaign" call</b>. I judged the old traffic campaign on its <i>direct</i> ROAS (0 purchases) — wrong lens. The right lens is its <b>assist/halo effect on the Sales campaign</b>, which the data proves is large and consistent.</p>
+  </div>
+  <h4>Evidence (same Sales engine «Winners CBO / #54», days Traffic ON vs OFF):</h4>
+  <table>
+    <tr><th>Window (confound-controlled)</th><th>Traffic ON</th><th>Traffic OFF</th><th>Lift on Sales campaign</th></tr>
+    <tr><td><b>May only</b> (fully matured — cleanest)</td><td>ROAS <b>8.20</b> · CPA <b>49</b> · 3.4 ord/day</td><td>ROAS <b>4.41</b> · CPA <b>88</b> · 2.5 ord/day</td><td class="t-win" style="padding:6px">ROAS +86% · CPA −44%</td></tr>
+    <tr><td>Matured (May1–Jun11)</td><td>ROAS 7.04 · CPA 57</td><td>ROAS 4.18 · CPA 95</td><td>ROAS +68% · CPA −40%</td></tr>
+    <tr><td>Around Jun-7 shutoff</td><td>ROAS 5.91 · CPA 68</td><td>ROAS 3.00 · CPA 148</td><td>ROAS +97%</td></tr>
+  </table>
+  <p class="sub">Robust across 3 independent cuts. The OFF period even included the payroll-peak days (26→30) that should have favored it — and still lost. Mechanism: cheap broad reach (CPM ~1.3, CTR ~8%) feeds the pixel with qualified visits + builds a warm/aware pool → the Conversion campaign's algorithm finds buyers faster (lower CPA) and the halo lifts direct sales (Salla: Direct = 64% of revenue). <b>Caveat:</b> still correlational → we run a clean ON/OFF test (Section 6) to confirm and decide keep-vs-kill.</p>
+</section>
+
+<!-- WHAT THE OLD ONE WAS -->
+<section>
+  <div class="sech"><span class="n">2</span><h2>What the OLD traffic campaign actually contained (audit)</h2></div>
+  <div class="grid g2">
+    <div class="card zain">
+      <h3>Zain — old <code>Prospecting | Jun</code></h3>
+      <table>
+        <tr><td class="k">Objective</td><td>Traffic (broad clicks)</td></tr>
+        <tr><td class="k">Ad group</td><td><code>Traffic | Broad | KSA-F | All | 31 Mar</code></td></tr>
+        <tr><td class="k">CPM / CTR</td><td>~1.3 SAR · ~8.1% (very cheap reach)</td></tr>
+        <tr><td class="k">Ads / creative</td><td>#68, #69-C1-OW, #63, #103 — <b>weak / random products</b></td></tr>
+        <tr><td class="k">Direct result</td><td>272 SAR · <b>0 purchases</b></td></tr>
+        <tr><td class="k">Verdict</td><td><span class="tag t-warn">Right idea, wrong creative/product</span></td></tr>
+      </table>
+    </div>
+    <div class="card noura">
+      <h3>Noura — closest equivalents</h3>
+      <table>
+        <tr><td class="k">Status</td><td>No clean standalone <i>Traffic-objective</i> feeder in June; the cheap-traffic role leaked into clickbait ad groups</td></tr>
+        <tr><td class="k">Symptom</td><td><code>Wasayef-V2-C2</code>: CTR 9.2%, 9,113 clicks, 20 ATC, <b>0 purchases</b> (junk inside a Sales campaign)</td></tr>
+        <tr><td class="k">Fix</td><td>Pull that cheap-reach role <b>out</b> of Sales into a clean Feeder with <b>winning</b> creative</td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="callout c-amber"><b>Core lesson:</b> the feeder strategy worked; the <b>content</b> (weak product #68, junk clickbait) was the problem. The new build keeps the cheap-reach feeder mechanic but runs <b>only proven winners</b> pointed at the <b>hero product</b>, so the visits it feeds are high-intent.</div>
+</section>
+
+<!-- ZAIN BUILD -->
+<section>
+  <div class="sech"><span class="n">3</span><h2>Build Spec — ZAIN (رغد)</h2></div>
+  <div class="glance">
+    <h4>At a glance (what you asked for)</h4>
+    <table>
+      <tr><td class="k">Campaign name</td><td><code>Feeder | Traffic | JUN 2026</code></td></tr>
+      <tr><td class="k">Ad groups (count)</td><td><b>2</b> — (A) LPV-optimized · (B) Click-optimized broad</td></tr>
+      <tr><td class="k">Daily budget</td><td><b>60 SAR/day</b> total = A:40 + B:20 (ABO). Additive — Zain projected 11.1K, well under 15K cap.</td></tr>
+      <tr><td class="k">Ads</td><td><b>3 ads</b> total, reusing account winners (see creative table)</td></tr>
+      <tr><td class="k">Creative</td><td>Champion <code>#fypシ ✨</code> (#54) + <code>#52</code> winners + 1 fresh hook</td></tr>
+      <tr><td class="k">Landing page</td><td>Hero product <b>#54</b> page (deep link → fires ViewContent on the money product)</td></tr>
+    </table>
+  </div>
+
+  <h4 style="margin-top:16px">Campaign level</h4>
+  <table>
+    <tr><td class="k">Objective</td><td><b>Traffic</b> (not Reach, not Smart+) — manual control for clean testing</td></tr>
+    <tr><td class="k">Campaign name</td><td><code>Feeder | Traffic | JUN 2026</code></td></tr>
+    <tr><td class="k">Special ad categories</td><td>None</td></tr>
+    <tr><td class="k">Campaign Budget Optimization (CBO)</td><td><b>OFF</b> → use <b>Ad-group budget (ABO)</b> for per-group control</td></tr>
+    <tr><td class="k">Campaign type</td><td>Standard (Smart Performance Campaign = OFF)</td></tr>
+  </table>
+
+  <h4 style="margin-top:14px">Ad Group A — <code>KSA | F | 18-45 | Broad | LPV</code> <span class="tag t-set">primary feed</span></h4>
+  <table>
+    <tr><td class="k">Optimization location</td><td>Website</td></tr>
+    <tr><td class="k">Pixel &amp; optimization event</td><td>TikTok Pixel (Zain) · Optimize for <b>Landing Page View (LPV)</b></td></tr>
+    <tr><td class="k">Placements</td><td>Manual → <b>TikTok only</b> (turn OFF Pangle / Global App Bundle / Search)</td></tr>
+    <tr><td class="k">Location</td><td>Saudi Arabia (all regions)</td></tr>
+    <tr><td class="k">Gender / Age</td><td>Female · 18–45</td></tr>
+    <tr><td class="k">Languages</td><td>Arabic</td></tr>
+    <tr><td class="k">Interests &amp; behaviors</td><td><b>Broad</b> (none) — let the algorithm widen the feed</td></tr>
+    <tr><td class="k">Audience exclusion</td><td>Exclude <i>Purchasers — last 30d</i> (keep feed top-funnel &amp; cheap)</td></tr>
+    <tr><td class="k">Budget &amp; schedule</td><td><b>Daily 40 SAR</b> · run 2026-06-17 → 2026-06-30 (then test, Section 6) · all-day</td></tr>
+    <tr><td class="k">Bidding</td><td><b>Lowest Cost</b> (no bid cap) · Standard delivery</td></tr>
+  </table>
+
+  <h4 style="margin-top:14px">Ad Group B — <code>KSA | F | 25-45 | Broad | Click</code> <span class="tag t-set">cheap reach (mirrors what worked)</span></h4>
+  <table>
+    <tr><td class="k">Optimization event</td><td>Optimize for <b>Click</b> (cheapest reach — this is what historically lifted sales)</td></tr>
+    <tr><td class="k">Targeting</td><td>KSA · Female · 25–45 · Arabic · Broad · same placements (TikTok only)</td></tr>
+    <tr><td class="k">Budget</td><td><b>Daily 20 SAR</b> · Lowest Cost</td></tr>
+    <tr><td class="k">Purpose</td><td>Max cheap impressions/visits = strongest pixel + retargeting-pool feed</td></tr>
+  </table>
+
+  <h4 style="margin-top:14px">Ads &amp; Creative (reuse proven winners — already in account)</h4>
+  <table>
+    <tr><th>Ad</th><th>Source creative (proven)</th><th>Proof</th><th>Use in</th></tr>
+    <tr><td>Ad 1</td><td><code>#fypシ ✨</code> (#54 champion video)</td><td>ROAS 14.7 · CTR 3.9% · 34 sales</td><td>A + B</td></tr>
+    <tr><td>Ad 2</td><td><code>#explore #fyp ❣️</code> (#52)</td><td>ROAS 5.66 · CTR 5.1%</td><td>A + B</td></tr>
+    <tr><td>Ad 3</td><td><b>Fresh hook</b> of #54 (new first 3s, same product)</td><td>anti-fatigue (champion freq 2.85)</td><td>A</td></tr>
+  </table>
+  <table style="margin-top:10px">
+    <tr><td class="k">Format</td><td>Single Video · <b>Spark Ad</b> from the @abaya identity if the organic post exists (higher trust + cheaper)</td></tr>
+    <tr><td class="k">CTA</td><td>Shop Now / اطلبي الآن</td></tr>
+    <tr><td class="k">Destination URL</td><td>Hero #54 product page · add <code>?utm_source=tiktok&amp;utm_medium=feeder</code></td></tr>
+    <tr><td class="k">Tracking</td><td>TikTok Pixel (Zain) — all events fire (VC/ATC/IC/Purchase) to build the retargeting pool</td></tr>
+  </table>
+  <h4 style="margin-top:12px">Fresh hook script (Ad 3) — Arabic caption</h4>
+  <div class="cap"><div class="body">العباية اللي كل البنات تسأل عنها 🔥 رقم 54 — قصّة تنحف وخامة تجنّن. متوفرة بالموقع وتقسّطيها مع تابي. اضغطي وشوفي 👇</div></div>
+</section>
+
+<!-- NOURA BUILD -->
+<section>
+  <div class="sech"><span class="n">4</span><h2>Build Spec — NOURA (نورة)</h2></div>
+  <div class="glance">
+    <h4>At a glance</h4>
+    <table>
+      <tr><td class="k">Campaign name</td><td><code>Feeder | Traffic | JUN 2026</code></td></tr>
+      <tr><td class="k">Ad groups (count)</td><td><b>2</b> — (A) LPV-optimized · (B) Click-optimized broad</td></tr>
+      <tr><td class="k">Daily budget</td><td><b>60 SAR/day</b> total = A:40 + B:20. <span class="tag t-warn">Funded by the killed burners</span> (Wasayef WC + Gulf + Lamar + Ghroob ≈ 60/day) → <b>net-zero, stays under 15K cap</b>.</td></tr>
+      <tr><td class="k">Ads</td><td><b>3 ads</b>, reusing account winners</td></tr>
+      <tr><td class="k">Creative</td><td><code>Image carousel 4</code> + <code>Asayel New V2 C1</code> + Najla winner</td></tr>
+      <tr><td class="k">Landing page</td><td>Hero <b>اصايل (Asayel)</b> product page on abay-nora.com</td></tr>
+    </table>
+  </div>
+
+  <h4 style="margin-top:16px">Campaign level</h4>
+  <table>
+    <tr><td class="k">Objective</td><td><b>Traffic</b> · Standard (Smart+ OFF)</td></tr>
+    <tr><td class="k">Campaign name</td><td><code>Feeder | Traffic | JUN 2026</code> <span class="sub">(⚠️ Zain has a same-named campaign — keep them in separate ad accounts, never mix)</span></td></tr>
+    <tr><td class="k">CBO</td><td>OFF → Ad-group budget (ABO)</td></tr>
+  </table>
+
+  <h4 style="margin-top:14px">Ad Group A — <code>KSA | F | 18-45 | Broad | LPV</code></h4>
+  <table>
+    <tr><td class="k">Optimization</td><td>Website · TikTok Pixel (Noura) · <b>Landing Page View</b></td></tr>
+    <tr><td class="k">Placements</td><td>TikTok only (Pangle/Global OFF)</td></tr>
+    <tr><td class="k">Targeting</td><td>Saudi Arabia · Female · 18–45 · Arabic · Broad</td></tr>
+    <tr><td class="k">Exclusion</td><td>Exclude Purchasers — last 30d</td></tr>
+    <tr><td class="k">Budget &amp; schedule</td><td><b>Daily 40 SAR</b> · 2026-06-17 → 2026-06-30 · Lowest Cost</td></tr>
+  </table>
+
+  <h4 style="margin-top:14px">Ad Group B — <code>KSA | F | 25-45 | Broad | Click</code></h4>
+  <table>
+    <tr><td class="k">Optimization</td><td>Click · Lowest Cost · TikTok only</td></tr>
+    <tr><td class="k">Targeting</td><td>KSA · Female · 25–45 · Arabic · Broad</td></tr>
+    <tr><td class="k">Budget</td><td><b>Daily 20 SAR</b></td></tr>
+  </table>
+
+  <h4 style="margin-top:14px">Ads &amp; Creative (proven winners — already in account)</h4>
+  <table>
+    <tr><th>Ad</th><th>Source creative (proven)</th><th>Proof</th><th>Use in</th></tr>
+    <tr><td>Ad 1</td><td><code>Image carousel 4</code> (Wasayef champion)</td><td>ROAS 6.79 · CPA 52 · 18 sales</td><td>A + B</td></tr>
+    <tr><td>Ad 2</td><td><code>Asayel New V2 C1</code></td><td>ROAS 9.82 · CPA 41</td><td>A + B</td></tr>
+    <tr><td>Ad 3</td><td><code>شايفين السواد والجمال لنجلاء</code> (Najla)</td><td>ROAS 10.52 · CPA 34</td><td>A</td></tr>
+  </table>
+  <table style="margin-top:10px">
+    <tr><td class="k">Format</td><td>Carousel / Single Video · Spark Ad from @abaya_norah identity where possible</td></tr>
+    <tr><td class="k">CTA</td><td>Shop Now / اطلبي الآن</td></tr>
+    <tr><td class="k">Destination URL</td><td>Hero <b>اصايل</b> page · <code>?utm_source=tiktok&amp;utm_medium=feeder</code></td></tr>
+    <tr><td class="k">Tracking</td><td>TikTok Pixel (Noura) — feeds the 810-cart retargeting pool</td></tr>
+  </table>
+  <h4 style="margin-top:12px">Fresh hook script (optional Ad 4) — Arabic caption</h4>
+  <div class="cap"><div class="body">«اصايل» الأكثر طلباً عندنا 🖤 خامة ثقيلة وقصّة ملكية تناسب كل المناسبات. متوفرة بالموقع + شحن مجاني فوق 350 وتقسيط تابي/تمارا. شوفيها 👇</div></div>
+</section>
+
+<!-- SHARED 2026 REFERENCE -->
+<section>
+  <div class="sech"><span class="n">5</span><h2>TikTok 2026 settings — quick reference &amp; rationale</h2></div>
+  <table>
+    <tr><th>Setting</th><th>Choice</th><th>Why</th></tr>
+    <tr><td>Objective</td><td>Traffic</td><td>Cheapest qualified visits; feeds pixel + retargeting pool. Not "Reach" (too shallow), not Smart+ (no control for the test).</td></tr>
+    <tr><td>Budget model</td><td>ABO</td><td>Lock each ad group's spend so the feeder can't run away; clean measurement.</td></tr>
+    <tr><td>Optimization event</td><td>LPV (A) + Click (B)</td><td>LPV = quality visits (real site loads); Click = cheapest volume. Run both, keep the better feeder.</td></tr>
+    <tr><td>Placement</td><td>TikTok only</td><td>Pangle/Global App = junk impressions that pollute the pixel. Exclude.</td></tr>
+    <tr><td>Bid</td><td>Lowest Cost (no cap)</td><td>Feeder wants max cheap volume, not a CPA target.</td></tr>
+    <tr><td>Targeting</td><td>Broad, KSA, Female 18-45</td><td>Buyer base is female; broad lets the algo widen the warm pool.</td></tr>
+    <tr><td>Identity / format</td><td>Spark Ad</td><td>Uses the real account post = more trust + cheaper CPM than non-spark.</td></tr>
+    <tr><td>Creative</td><td>Proven winners only</td><td>The old failure was weak creative (#68/junk), not the traffic mechanic.</td></tr>
+  </table>
+  <div class="callout c-blue"><b>Upgrade (do once Retargeting is live):</b> the highest-value version of a feeder is one whose audience flows into a <b>Retargeting</b> campaign (currently missing). The feeder fills the pool; retargeting harvests it at ROAS 8+. Together they compound. Keep the feeder's pixel events ON so the retargeting audiences (VC/ATC/cart, 14–30d) auto-populate.</div>
+</section>
+
+<!-- TEST + MEASUREMENT -->
+<section>
+  <div class="sech"><span class="n">6</span><h2>Measurement &amp; clean ON/OFF test (how I'll prove it)</h2></div>
+  <div class="grid g2">
+    <div class="card">
+      <h4>Phase 1 — Run + read against the existing baseline (now → Jun 30)</h4>
+      <p class="sub">Turn the feeder ON during the month-end push (evidence says it helps; cost is tiny). I compare the <b>Sales campaign's</b> CPA/ROAS in the feeder-ON window vs the recent feeder-OFF baseline we already have:</p>
+      <ul>
+        <li><b>Baseline (feeder OFF, Jun 8–16):</b> Winners CBO ≈ ROAS 3.0 / CPA 148 (Zain).</li>
+        <li><b>Target with feeder ON:</b> ROAS back toward 5–7 / CPA ≤ 80.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>Phase 2 — Clean A/B (early July, post-peak)</h4>
+      <p class="sub">To remove timing confounds, a deliberate switch test while the Sales campaign is unchanged:</p>
+      <ul>
+        <li><b>Week ON</b> (feeder live) vs <b>Week OFF</b> (feeder paused).</li>
+        <li>Metric = Sales-campaign <b>CPA &amp; ROAS</b> + blended (Salla) delta.</li>
+        <li><b>Decision rule:</b> if ON beats OFF by ≥15% on CPA → <b>keep &amp; scale feeder</b>; if no difference → <b>kill it</b> (it was a coincidence); if worse → kill.</li>
+      </ul>
+    </div>
+  </div>
+  <table>
+    <tr><th>KPI I will track (on the Sales campaign)</th><th>Feeder works if…</th></tr>
+    <tr><td>Sales-campaign CPA</td><td>Drops vs OFF baseline (target ≤80 Zain / ≤75 Noura)</td></tr>
+    <tr><td>Sales-campaign platform ROAS</td><td>Rises (target ≥5.0)</td></tr>
+    <tr><td>Blended ROAS (Salla)</td><td>Holds/rises above floor 4.5</td></tr>
+    <tr><td>Feeder cost share</td><td>Stays ≤ 5% of account spend (cheap insurance)</td></tr>
+    <tr><td>Retargeting pool growth</td><td>VC/ATC audiences grow (feeder is doing its job)</td></tr>
+  </table>
+</section>
+
+<!-- BUILD CHECKLIST -->
+<section>
+  <div class="sech"><span class="n">7</span><h2>Build checklist (do in order)</h2></div>
+  <div class="grid g2">
+    <div class="card">
+      <h4>Per client, in Ads Manager</h4>
+      <ul class="chk">
+        <li>Create campaign <code>Feeder | Traffic | JUN 2026</code> · Objective Traffic · CBO off</li>
+        <li>Ad Group A: Website · LPV · TikTok-only · KSA/F/18-45/Arabic/Broad · exclude purchasers 30d · 40 SAR/day · Lowest Cost</li>
+        <li>Ad Group B: Click · KSA/F/25-45/Broad · 20 SAR/day</li>
+        <li>Add 3 winning ads (Spark) · CTA Shop Now · hero product URL + utm</li>
+        <li>Confirm Pixel is firing (Test Events) before publish</li>
+        <li>Publish · note exact start time/date</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>Guardrails check ✅</h4>
+      <ul>
+        <li><b>Budget cap:</b> Zain additive (under 15K). Noura <b>funded by killed burners</b> → net-zero, under 15K. ✅</li>
+        <li><b>Scaling rule:</b> feeder is fixed/lean, not scaled wildly. ✅</li>
+        <li><b>Zero-exception:</b> feeder is judged on <i>assist</i>, not direct sales — exempt from the "0-conversion kill" rule <i>by design</i>, but capped at ≤5% spend. ✅</li>
+        <li><b>Attribution:</b> success measured on the <b>Sales campaign</b> + Salla, not the feeder's own ROAS. ✅</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- DOCUMENTATION -->
+<section>
+  <div class="sech"><span class="n">8</span><h2>After you execute — what I'll do</h2></div>
+  <div class="callout c-green">
+    <ol>
+      <li><b>Tell me "done" + the start date/time</b> for each client's feeder.</li>
+      <li>I log the decision to <code>clients/&lt;client&gt;/decisions.md</code> (append-only) with the exact baseline frozen (so the before/after is honest).</li>
+      <li>I pull fresh data at <b>+72h</b> and <b>+7 days</b>, compare the Sales campaign <b>with feeder vs the OFF baseline</b>, and report: <b>keep / scale / kill</b> — with the numbers.</li>
+      <li>If the clean A/B (Phase 2) shows no lift → I'll tell you straight and we kill it. No ego in the data.</li>
+    </ol>
+  </div>
+</section>
+
+<div class="foot">
+  Build spec for manual execution in TikTok Ads Manager · Data: Windsor (TikTok) May 1 – Jun 16 2026 + Salla (Noura) · Currency SAR.<br>
+  Creative names reference existing winning videos in each account (map by name). Captions are Arabic for the Saudi audience; all settings labels match the English TikTok UI.
+</div>
+
+</div>
+</body>
+</html>
