@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>غرفة عمليات واتساب — عبايات نوره (CRM)</title>
+<style>
+  :root{--bg:#0f1320;--card:#171c2e;--card2:#1d2338;--ink:#e8ecf5;--muted:#9aa6c2;--line:#2a3350;
+    --green:#1f9d6b;--greenbg:#0e2a20;--amber:#d99a16;--amberbg:#2c2410;--red:#e0524b;--redbg:#2e1414;
+    --blue:#3d7bd9;--bluebg:#10203a;--purple:#8b6ad9;--accent:#36d39a;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Segoe UI","Tahoma",system-ui,sans-serif;line-height:1.65;font-size:15px}
+  .wrap{max-width:1140px;margin:0 auto;padding:24px}
+  h1,h2,h3,h4{line-height:1.3;margin:0 0 8px}h1{font-size:27px}h2{font-size:21px}h3{font-size:17px}
+  .sub{color:var(--muted);font-size:14px}
+  header.top{background:linear-gradient(135deg,#1a2138,#11152400);border:1px solid var(--line);border-radius:18px;padding:24px 26px;margin-bottom:18px}
+  .pill{display:inline-block;padding:3px 11px;border-radius:999px;font-size:12px;font-weight:700;margin:2px}
+  .pill.green{background:var(--greenbg);color:#5fe0a8;border:1px solid #1f6b4a}
+  .pill.amber{background:var(--amberbg);color:#f0c456;border:1px solid #6b5316}
+  .pill.red{background:var(--redbg);color:#ff8a84;border:1px solid #7a2b27}
+  .pill.blue{background:var(--bluebg);color:#7fb0f5;border:1px solid #2c5494}
+  section{margin:26px 0}
+  .sech{display:flex;align-items:center;gap:10px;border-right:4px solid var(--accent);padding-right:12px;margin-bottom:12px}
+  .sech .n{background:var(--accent);color:#06241a;width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800}
+  .grid{display:grid;gap:14px}.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:1fr 1fr 1fr}.g4{grid-template-columns:repeat(4,1fr)}
+  @media(max-width:820px){.g2,.g3,.g4{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+  .kpi{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center}
+  .kpi .v{font-size:22px;font-weight:800}.kpi .l{font-size:12px;color:var(--muted)}
+  table{width:100%;border-collapse:collapse;font-size:13px;margin-top:6px;border-radius:10px;overflow:hidden}
+  th,td{padding:8px 9px;text-align:right;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:#202840;color:#cdd6ee;font-weight:700}
+  tr:nth-child(even) td{background:#151a2b}
+  .tag{padding:2px 8px;border-radius:6px;font-size:11px;font-weight:700;white-space:nowrap;display:inline-block}
+  .t-h{background:var(--redbg);color:#ff8a84}.t-m{background:var(--amberbg);color:#f0c456}.t-l{background:var(--bluebg);color:#7fb0f5}
+  .t-no{background:#2a2336;color:#bda3f5}
+  .callout{border-radius:12px;padding:15px 17px;border:1px solid;margin:12px 0}
+  .c-red{background:var(--redbg);border-color:#7a2b27}.c-amber{background:var(--amberbg);border-color:#6b5316}
+  .c-green{background:var(--greenbg);border-color:#1f6b4a}.c-blue{background:var(--bluebg);border-color:#2c5494}
+  ul,ol{margin:8px 0;padding-right:20px}li{margin:4px 0}
+  .wa{background:#0c1f17;border:1px solid #1f6b4a;border-radius:12px;padding:13px 15px;margin:10px 0}
+  .wa .h{color:#5fe0a8;font-weight:800;margin-bottom:6px;font-size:14px}
+  .wa .b{background:#0a2a1e;border-radius:9px;padding:10px 12px;font-size:14px;white-space:pre-line;margin:5px 0}
+  .wa .lbl{font-size:11px;color:var(--muted);font-weight:700}
+  code{background:#0a0e1a;border:1px solid var(--line);border-radius:5px;padding:1px 6px;font-size:12px;color:#8fe7c4;font-family:"Consolas",monospace}
+  .day{border:1px solid var(--line);border-radius:12px;margin:9px 0;overflow:hidden}
+  .day .dh{background:#202840;padding:9px 13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;font-weight:700}
+  .day .db{padding:10px 13px;font-size:13px}
+  .foot{color:var(--muted);font-size:12px;text-align:center;margin-top:28px;border-top:1px solid var(--line);padding-top:14px}
+  @media print{body{background:#fff;color:#111}.card,.callout,.wa,.day{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <h1>📲 غرفة عمليات واتساب — عبايات نوره</h1>
+  <div class="sub">تحليل CRM على مستوى العميلة/السلة/المنتج/المدينة/التوقيت لاستخراج أقرب فلوس بأقل إزعاج وأعلى احتمال شراء.</div>
+  <div style="margin-top:10px">
+    <span class="pill blue">2026-06-16</span>
+    <span class="pill green">المصدر: سلة (Salla MCP) — 744 سلة + تقارير العملاء/التقييمات/المدن</span>
+    <span class="pill amber">يراعي الرسالة التلقائية المفعّلة (لا تكرار)</span>
+  </div>
+</header>
+
+<!-- DATA AUDIT / DEDUP -->
+<section>
+  <div class="callout c-amber">
+    <h3>⚠️ قاعدة الدمج مع الرسالة التلقائية (الأهم) + فجوات بيانات</h3>
+    <ul>
+      <li><b>واجهة سلة لا تكشف</b> أي سلة استلمت الرسالة التلقائية (<code>reminder=null</code> لكل السلات). لذلك نستخدم <b>الحداثة كبديل ذكي</b>: السلة الطازجة = الرسالة التلقائية لتوّها اشتغلت → <b>لا نلمسها</b>.</li>
+      <li><b>السلات &lt;3 أيام (27 سلة) = منطقة الرسالة التلقائية → مُستبعدة كلياً من حملاتنا الآن.</b> نتدخّل فقط على <b>≥3 أيام</b> بزاوية وتوقيت مختلفين (Follow-up #2).</li>
+      <li><b>فجوة:</b> "وصلت الدفع ولم تكمل" — كل السلات حالتها <code>new</code> فلا نقدر نميّزها من الواجهة. (نعالجها عبر شريحة القيمة العالية + الملاحظات.)</li>
+      <li><b>فجوة:</b> "آخر تاريخ شراء لكل عميلة" غير متاح في تقارير الـMCP الحالية → شرائح العملاء الخامدين (60/90/180) تحتاج <b>تصدير عملاء من لوحة سلة</b> (العمود متوفر هناك). نوفّر المواصفات.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- EXEC SUMMARY -->
+<section>
+  <div class="sech"><span class="n">1</span><h2>الملخص التنفيذي — أقوى 5 فرص الآن</h2></div>
+  <div class="grid g4">
+    <div class="kpi"><div class="v">744</div><div class="l">سلة محلّلة (من 779)</div></div>
+    <div class="kpi"><div class="v">305K</div><div class="l">قيمة السلات (ر.س)</div></div>
+    <div class="kpi"><div class="v">100%</div><div class="l">فيها رقم جوال</div></div>
+    <div class="kpi"><div class="v">80%</div><div class="l">سلات منتج Hero (اصايل غالباً)</div></div>
+  </div>
+  <table style="margin-top:12px">
+    <tr><th>#</th><th>الفرصة</th><th>الحجم</th><th>قيمة الفرصة</th><th>تقدير الاسترجاع</th><th>الأولوية</th><th>القرار</th></tr>
+    <tr><td>1</td><td><b>سلات فيها ملاحظة + منتج Hero</b> (طلب قماش/مقاس)</td><td class="mono">139</td><td class="mono">59,600</td><td class="mono">~9–12K</td><td><span class="tag t-h">Critical</span></td><td>ابدأ اليوم — رد شخصي يحل اعتراضها</td></tr>
+    <tr><td>2</td><td><b>سلات عالية القيمة ≥500</b></td><td class="mono">41</td><td class="mono">33,148</td><td class="mono">~4–5K</td><td><span class="tag t-h">Critical</span></td><td>تدخّل يدوي راقٍ + تابي/تمارا</td></tr>
+    <tr><td>3</td><td><b>Hero حديثة 3–30 يوم</b> (اصايل/وصايف)</td><td class="mono">76</td><td class="mono">30,089</td><td class="mono">~3–4K</td><td><span class="tag t-m">High</span></td><td>Scarcity «آخر كمية»</td></tr>
+    <tr><td>4</td><td><b>إحياء بارد 30–90 يوم</b> (أكبر بركة)</td><td class="mono">288</td><td class="mono">109,572</td><td class="mono">~5–6K</td><td><span class="tag t-m">Medium</span></td><td>عرض نهاية الشهر + تشكيلة جديدة</td></tr>
+    <tr><td>5</td><td><b>عملاء VIP/سابقون</b> (تكرار 14%)</td><td class="mono">~380</td><td class="mono">عالية</td><td class="mono">~5–8K</td><td><span class="tag t-m">High</span></td><td>رسالة VIP بلا خصم قوي</td></tr>
+  </table>
+  <div class="callout c-green" style="margin-top:10px"><b>الإجمالي القابل للاسترجاع المتوقع خلال الأسبوعين ≈ 20–30 ألف ر.س</b> (محافظ)، شبه مجاني عبر واتساب — رافعة مباشرة لهدف نهاية الشهر، مع <b>صفر إزعاج</b> (استبعدنا الطازج، وكل عميلة في شريحة واحدة فقط).</div>
+</section>
+
+<!-- SEGMENTS TABLE -->
+<section>
+  <div class="sech"><span class="n">2</span><h2>جدول الشرائح (حصرية متبادلة — كل عميلة في شريحة واحدة)</h2></div>
+  <table>
+    <tr><th>الشريحة</th><th>شرط الدخول</th><th>العدد</th><th>القيمة</th><th>المنتج/العرض</th><th>زاوية الرسالة</th><th>التوقيت</th><th>أولوية</th><th>الملف</th></tr>
+    <tr><td><b>A — نية عالية + Hero</b></td><td>عمر ≥3ي + فيها ملاحظة + منتج Hero</td><td class="mono">139</td><td class="mono">59,600</td><td>نفس منتجها (اصايل غالباً)</td><td>رد شخصي على ملاحظتها (كتان/مقاس) + تأكيد توفّر + تابي</td><td>7–10م</td><td><span class="tag t-h">High</span></td><td><code>01_high_intent…</code></td></tr>
+    <tr><td>A2 — ملاحظة (غير Hero)</td><td>≥3ي + ملاحظة</td><td class="mono">19</td><td class="mono">6,509</td><td>منتجها</td><td>رد على ملاحظتها</td><td>7–10م</td><td><span class="tag t-h">High</span></td><td><code>02_intent…</code></td></tr>
+    <tr><td><b>B — قيمة عالية ≥500</b></td><td>≥3ي + قيمة ≥500</td><td class="mono">41</td><td class="mono">33,148</td><td>سلتها + اقتراح إكمال</td><td>تدخّل راقٍ + تابي/تمارا (قسّطيها)</td><td>7–10م</td><td><span class="tag t-h">High</span></td><td><code>03_high_value…</code></td></tr>
+    <tr><td><b>C — Hero حديثة 3–30ي</b></td><td>3–30ي + Hero</td><td class="mono">76</td><td class="mono">30,089</td><td>اصايل/وصايف</td><td>Scarcity «آخر كمية/مقاسك بينفد»</td><td>8–10م</td><td><span class="tag t-m">Medium</span></td><td><code>04_hero_recent…</code></td></tr>
+    <tr><td><b>D — إحياء 30–90ي</b></td><td>30–90ي</td><td class="mono">288</td><td class="mono">109,572</td><td>اصايل + تشكيلة جديدة</td><td>«نزلت تصاميم» + عرض نهاية الشهر خفيف</td><td>8–10م</td><td><span class="tag t-m">Medium</span></td><td><code>05_revive_30to90…</code></td></tr>
+    <tr><td>E — إحياء بارد 90ي+</td><td>≥90ي</td><td class="mono">130</td><td class="mono">48,481</td><td>عام</td><td>عرض نهاية الشهر (آخر فرصة)</td><td>8–10م</td><td><span class="tag t-l">Low</span></td><td><code>06_revive_90d…</code></td></tr>
+    <tr><td>F — متابعة عامة</td><td>≥3ي متبقّي</td><td class="mono">24</td><td class="mono">7,118</td><td>منتجها</td><td>متابعة لطيفة</td><td>—</td><td><span class="tag t-l">Low</span></td><td><code>07_other…</code></td></tr>
+    <tr><td style="color:#ff8a84"><b>مستبعد — طازج &lt;3ي</b></td><td>عمر &lt;3 أيام</td><td class="mono">27</td><td class="mono">—</td><td colspan="4">🚫 منطقة الرسالة التلقائية — <b>لا نرسل لها يدوياً</b> (منع تكرار)</td><td><span class="tag t-no">Skip</span></td></tr>
+  </table>
+  <div class="sub" style="margin-top:6px">ملاحظة قياس مهمة: <b>0 عميلة عندها أكثر من سلة متروكة</b> (لا تردد متكرر) — كل سلة عميلة مختلفة، فالاستهداف نظيف بلا تداخل.</div>
+</section>
+
+<!-- PRODUCTS / CITIES / TIMING -->
+<section>
+  <div class="sech"><span class="n">3</span><h2>المنتجات · المدن · التوقيت (من البيانات)</h2></div>
+  <div class="grid g3">
+    <div class="card"><h3>المنتجات داخل السلات</h3>
+      <table>
+        <tr><th>المنتج</th><th>سلات</th><th>قيمة~</th></tr>
+        <tr><td><b>اصايل</b> ★</td><td class="mono">433</td><td class="mono">166,533</td></tr>
+        <tr><td><b>وصايف</b> ★</td><td class="mono">137</td><td class="mono">51,676</td></tr>
+        <tr><td><b>نقاب وسط</b></td><td class="mono">62</td><td class="mono">12,816</td></tr>
+        <tr><td>نجلاء ★</td><td class="mono">21</td><td class="mono">6,061</td></tr>
+        <tr><td>حسناء / جوري / لمار ★</td><td class="mono">17/10/10</td><td class="mono">—</td></tr>
+      </table>
+      <div class="sub" style="margin-top:6px"><b>القرار:</b> Hero واتساب = <b>اصايل</b>. عرض استرجاع = اصايل/وصايف. رافع AOV = <b>النقاب</b> (62 سلة تضيفه!). لا نضيّع رسائل على الذيل الطويل.</div>
+    </div>
+    <div class="card"><h3>المدن (سلات / مبيعات 90ي)</h3>
+      <table>
+        <tr><th>المدينة</th><th>سلات</th><th>مبيعات90ي</th></tr>
+        <tr><td><b>الرياض</b></td><td class="mono">145</td><td class="mono">62,325</td></tr>
+        <tr><td>جدة</td><td class="mono">59</td><td class="mono">11,615</td></tr>
+        <tr><td>مكة</td><td class="mono">47</td><td class="mono">7,705</td></tr>
+        <tr><td>المدينة</td><td class="mono">37</td><td class="mono">9,118</td></tr>
+        <tr><td>الدمام</td><td class="mono">34</td><td class="mono">14,145</td></tr>
+      </table>
+      <div class="sub" style="margin-top:6px"><b>الرياض تهيمن</b> (سلات ومبيعات). الدمام قيمة طلب عالية. ابدأ الدفعات بالرياض (أكبر بركة + توصيل أسرع = تردد أقل).</div>
+    </div>
+    <div class="card"><h3>التوقيت (من أوقات ترك السلة)</h3>
+      <ul>
+        <li>ذروة النشاط: <b>7–11 مساءً</b> + قفزة منتصف الليل (12ص).</li>
+        <li>الأضعف: 9–11 صباحاً.</li>
+        <li>الأيام: الأحد–الخميس أعلى قليلاً من نهاية الأسبوع.</li>
+      </ul>
+      <div class="callout c-blue" style="margin:6px 0;padding:10px"><b>أرسل واتساب 7:00–10:00 مساءً، أيام الأسبوع.</b> هذا وقت تصفّحها الفعلي = أعلى رد.</div>
+    </div>
+  </div>
+  <div class="callout c-amber"><b>إشارة ذهبية من الملاحظات (165 سلة):</b> <b>75 طلب قماش</b> (كتان/كريب لندن) + <b>52 طلب مقاس</b> غير متوفر. هؤلاء ما تردّدوا بالسعر — ترددوا بسؤال غير مُجاب. <b>رسالة شخصية تجاوب «نعم نوفرها كتان بمقاسك» تقفل البيع.</b> كثير منهم كتبوا «أبيها مستعجل» و«أول مرة أطلب ومتحمسة».</div>
+</section>
+
+<!-- CUSTOMERS / REVIEWS -->
+<section>
+  <div class="sech"><span class="n">4</span><h2>العملاء القدامى + التقييمات</h2></div>
+  <div class="grid g2">
+    <div class="card"><h3>قاعدة العملاء</h3>
+      <ul>
+        <li>تكرار الشراء <b>13.87%</b> (2,354 عميلة/سنة · 379 طلب متكرر) = قاعدة كبيرة منخفضة التكرار = فرصة retention.</li>
+        <li><b>VIP بارزون:</b> «ن.م» 176 طلب/21,488 و«N.A» 32/13,609 (يرجّح <b>إعادة بيع/جملة</b> — تعامل خاص). · مكررات حقيقيات: «حنين» 6 طلبات/1,568.</li>
+        <li><b>شريحة خليج عالية القيمة:</b> أسماء إماراتية بطلب واحد عالي (2,120 / 1,798 / 1,235) — كولكشن راقٍ بلا خصم.</li>
+      </ul>
+      <div class="sub"><b>القرار:</b> رسالة VIP راقية (بلا خصم قوي) لأعلى المنفقات · إعادة تفعيل المكررات بعرض نهاية الشهر.</div>
+    </div>
+    <div class="card"><h3>التقييمات (راضون جداً)</h3>
+      <ul>
+        <li><b>533 تقييم نجوم</b> (غالبها 5★) + <b>948 سؤال</b> قبل الشراء.</li>
+        <li>النبرة: «تجنن»، «قماشها يجنن»، «<b>مو آخر مرة أطلب</b>» — وعود بإعادة شراء غير مُستغَلّة.</li>
+        <li>⚠️ <b>غالبها من 2022</b> (قديمة) → استخدمها كـ«جمهور راضٍ» للترشيح/العرض، لكن أعِد سحب التقييمات الحديثة لجمهور أطزج.</li>
+      </ul>
+      <div class="sub"><b>القرار:</b> شريحة «راضية 5★» → رسالة VIP + طلب ترشيح/مشاركة (UGC) بعد عرض لطيف.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 7-DAY PLAN -->
+<section>
+  <div class="sech"><span class="n">5</span><h2>خطة واتساب — 7 أيام</h2></div>
+  <div class="day"><div class="dh"><span>يوم 1 (اليوم) — شريحة A: نية عالية + Hero</span><span class="pill red">139 عميلة</span></div>
+    <div class="db"><b>الدفعة:</b> أول 50 (الرياض أولاً) من <code>01_high_intent</code>. · <b>الرسالة:</b> رد شخصي يجاوب ملاحظتها (كتان/مقاس) + توفّر + تابي. · <b>الهدف:</b> حل الاعتراض = إقفال. · <b>KPI 24س:</b> ≥20% رد، ≥8% طلب مؤكد. · <b>نجح؟</b> أكمل الـ89 الباقية. · <b>فشل؟</b> راجع النص/التوقيت قبل التوسع.</div></div>
+  <div class="day"><div class="dh"><span>يوم 2 — شريحة B: قيمة عالية ≥500</span><span class="pill red">41 عميلة</span></div>
+    <div class="db"><b>كامل الشريحة</b> (صغيرة، تستحق يدوي راقٍ) من <code>03_high_value</code>. · رسالة VIP + تابي/تمارا «قسّطيها 4 دفعات». · <b>KPI:</b> ≥12% تحويل. · نجح؟ كرّر الأسلوب على B لاحقاً. فشل؟ أضف حافز شحن مجاني.</div></div>
+  <div class="day"><div class="dh"><span>يوم 3 — شريحة C: Hero حديثة 3–30ي</span><span class="pill amber">76 عميلة</span></div>
+    <div class="db"><code>04_hero_recent</code> · زاوية Scarcity «مقاسك بينفد على اصايل». · <b>KPI:</b> ≥10%. · أضف Bundle نقاب لرفع AOV.</div></div>
+  <div class="day"><div class="dh"><span>يوم 4 — VIP + راضون 5★</span><span class="pill amber">دفعة 50</span></div>
+    <div class="db">رسالة VIP راقية (بلا خصم قوي) + كولكشن جديد · للخليج: قطع راقية. · <b>KPI:</b> فتح حوار + ≥6% شراء.</div></div>
+  <div class="day"><div class="dh"><span>أيام 5–6 — شريحة D: إحياء 30–90ي</span><span class="pill amber">288 عميلة (دفعات 100/يوم)</span></div>
+    <div class="db"><code>05_revive_30to90</code> · «نزلت تصاميم جديدة» + عرض نهاية الشهر خفيف + تابي. · <b>KPI:</b> ≥5%. · ركّز الرياض/جدة أولاً.</div></div>
+  <div class="day"><div class="dh"><span>يوم 7 — Cross-sell نقاب + إحياء بارد E</span><span class="pill blue">حسب الطاقة</span></div>
+    <div class="db">للي اشترت عباية: «يكمّلها نقاب». + شريحة E (90ي+) عرض «آخر فرصة نهاية الشهر». · <b>KPI:</b> رفع AOV + استرجاع بارد ≥3%.</div></div>
+</section>
+
+<!-- SCRIPTS -->
+<section>
+  <div class="sech"><span class="n">6</span><h2>نصوص واتساب (نسخة لطيفة + نسخة أقوى للبيع)</h2></div>
+
+  <div class="wa"><div class="h">A) نية عالية + ملاحظة (قماش/مقاس) — الأهم</div>
+    <div class="lbl">لطيفة:</div><div class="b">هلا [الاسم] 🌸 شفت ملاحظتك على «اصايل» إنك تبينها كتان — متوفرة كتان وبمقاسك تمام. أحجزها لك؟</div>
+    <div class="lbl">أقوى للبيع:</div><div class="b">هلا [الاسم] 🌸 جهّزنا لك «اصايل» كتان بمقاسك زي ما طلبتي، والكمية محدودة. أثبّت لك الطلب الحين وتوصلك بأسرع وقت؟ وتقدرين تقسّطينها مع تابي 🤍</div></div>
+
+  <div class="wa"><div class="h">B) قيمة عالية ≥500</div>
+    <div class="lbl">لطيفة:</div><div class="b">مساء الخير [الاسم] 🤍 سلتك لا زالت محجوزة. حاب أساعدك تكمّلين طلبك؟</div>
+    <div class="lbl">أقوى:</div><div class="b">مساء الخير [الاسم] 🤍 خصصنا لك تجهيز طلبك + تقسيط تابي/تمارا على 4 دفعات بدون فوائد. أكمّله لك الحين قبل لا تخلص الكمية؟</div></div>
+
+  <div class="wa"><div class="h">C) Hero حديثة (Scarcity)</div>
+    <div class="lbl">لطيفة:</div><div class="b">[الاسم] «اصايل» اللي عجبتك لا زالت متوفرة بمقاسك 🖤 تحبين أحجزها؟</div>
+    <div class="lbl">أقوى:</div><div class="b">[الاسم] مقاسك من «اصايل» قارب ينفد ⏳ أحجزه لك الحين؟ شحن مجاني فوق 350 وتقسيط تابي.</div></div>
+
+  <div class="wa"><div class="h">D) إحياء 30–90 يوم</div>
+    <div class="lbl">لطيفة:</div><div class="b">اشتقنا لك [الاسم] 🌷 نزلت تصاميم جديدة تناسب ذوقك، أرسل لك أبرزها؟</div>
+    <div class="lbl">أقوى:</div><div class="b">[الاسم] 🌷 عرض نهاية الشهر على «اصايل» لفترة محدودة + شحن مجاني فوق 350. أجهّز لك طلبك قبل ينتهي؟</div></div>
+
+  <div class="wa"><div class="h">VIP / راضية 5★</div>
+    <div class="lbl">لطيفة:</div><div class="b">[الاسم] 🤍 كعميلة مميزة عندنا، حابين نوريك تشكيلتنا الجديدة قبل الكل. تحبين؟</div>
+    <div class="lbl">أقوى:</div><div class="b">[الاسم] 🤍 لأنك من أعز عميلاتنا، خصصنا لك أولوية تجهيز + قطع راقية جديدة. أرسل لك المختارات؟</div></div>
+
+  <div class="wa"><div class="h">Cross-sell نقاب (بعد شراء عباية)</div>
+    <div class="b">عسى عبايتك عجبتك [الاسم] 🌸 يكمّل إطلالتك «نقاب» بنفس الدرجة وسعره رمزي — أضيفه لك بنفس الشحنة؟</div></div>
+
+  <div class="wa"><div class="h">نهاية الشهر / آخر فرصة (E)</div>
+    <div class="b">آخر فرصة 🚨 عرض نهاية الشهر على «اصايل» ينتهي قريب والكمية قاربت تخلص. تقسيط تابي متاح. أجهّز لك الطلب؟</div></div>
+</section>
+
+<!-- ANTI SPAM -->
+<section>
+  <div class="sech"><span class="n">7</span><h2>قواعد منع الإزعاج (إلزامية)</h2></div>
+  <div class="callout c-red">
+    <ul>
+      <li>🚫 <b>لا نرسل لسلة عمرها &lt;3 أيام</b> (منطقة الرسالة التلقائية).</li>
+      <li>🚫 <b>من اشترت آخر 48 ساعة</b> لا تدخل حملة بيع — فقط Cross-sell نقاب لطيف.</li>
+      <li>🚫 <b>كل عميلة في شريحة واحدة فقط</b> (الملفات حصرية متبادلة بالفعل) — لا تستقبل رسالتين.</li>
+      <li>🚫 <b>حد أقصى رسالة بيع واحدة كل 72 ساعة</b> لنفس الرقم.</li>
+      <li>🚫 من لديها <b>طلب قيد التنفيذ</b> لا تُزعج بعرض جديد (إلا Cross-sell مناسب).</li>
+      <li>✅ سقف دفعة يومية للشرائح عالية اللمس (A/B) = <b>50/يوم</b> ليتسنّى الرد الشخصي.</li>
+      <li>✅ النبرة سعودية راقية، بلا مبالغة، وبلا خصم إلا بسبب (نهاية شهر/كمية).</li>
+    </ul>
+  </div>
+</section>
+
+<!-- CSV EXPORTS -->
+<section>
+  <div class="sech"><span class="n">8</span><h2>ملفات التصدير (CSV)</h2></div>
+  <div class="callout c-green"><b>✅ جاهزة ومرفقة (مولّدة من الداتا الفعلية، فيها الجوال):</b> 7 ملفات شرائح حصرية — <code>01_high_intent_note_hero</code> · <code>02_intent_note_other</code> · <code>03_high_value_500plus</code> · <code>04_hero_recent_3to30d</code> · <code>05_revive_30to90d</code> · <code>06_revive_90dplus</code> · <code>07_other_followup</code>.<br>
+  الأعمدة: <code>customer_name, mobile, city, cart_value, cart_age_days, product_names, note, has_coupon, segment_name, recommended_message, priority, exclusion_reason</code>.<br>
+  <span class="sub">(لم تُرفع للمستودع — بيانات شخصية، تُسلَّم لك مباشرة فقط.)</span></div>
+  <div class="callout c-blue"><b>⏳ تحتاج تصدير من لوحة سلة</b> (عمود «آخر طلب» غير متاح عبر MCP):
+    <ul>
+      <li><code>old_customers_vip.csv</code> · <code>old_customers_inactive_60_90_180.csv</code> · <code>high_rating_customers.csv</code> · <code>cross_sell_niqab_candidates.csv</code> (من اشترى عباية بلا نقاب).</li>
+      <li>نفس الأعمدة + <code>last_order_date, order_count, total_spent, avg_order_value</code>.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- FINAL DECISION -->
+<section>
+  <div class="sech"><span class="n">9</span><h2>القرار النهائي</h2></div>
+  <div class="callout c-green">
+    <b>أول 3 حملات تُطلق فوراً:</b>
+    <ol>
+      <li><b>A — نية عالية + Hero</b> (ابدأ بها). الدفعة الأولى = <b>50 عميلة</b> (الرياض أولاً) من <code>01_high_intent</code>. الوقت: <b>الليلة 7–10م</b>. النص: «رد شخصي على ملاحظتها (كتان/مقاس) + توفّر + تابي». العرض: لا خصم — <b>حل الاعتراض + تأكيد توفّر</b>. <b>KPI 24س:</b> ≥20% رد و≥8% طلب مؤكد. <b>أوقف/أكمل:</b> لو ≥8% → أكمل الـ89 الباقية + انتقل لـB؛ لو &lt;4% → عدّل النص قبل التوسع.</li>
+      <li><b>B — قيمة عالية ≥500</b> (غداً، كامل الـ41 يدوي).</li>
+      <li><b>C — Hero حديثة 3–30ي</b> (Scarcity) + بدء <b>D</b> دفعات 100/يوم.</li>
+    </ol>
+    <b>المستبعد الآن:</b> الطازج &lt;3 أيام (27) · من اشترى آخر 48س · أي شريحة مكررة لنفس الرقم.
+  </div>
+</section>
+
+<div class="foot">CRM WhatsApp War-Room · المصدر: Salla MCP (744 سلة + تقارير العملاء/التقييمات/المدن/التوقيت) · العملة SAR · الأرقام كلها من المتجر، الفجوات موضّحة.<br>الملفات الشخصية (CSV) تُسلَّم مباشرة ولا تُحفظ في المستودع.</div>
+</div>
+</body>
+</html>
