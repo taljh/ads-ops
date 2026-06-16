@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Retargeting — Build Spec (Zain + Noura) · PRIORITY #1</title>
+<style>
+  :root{--bg:#0f1320;--card:#171c2e;--card2:#1d2338;--ink:#e8ecf5;--muted:#9aa6c2;--line:#2a3350;
+    --green:#1f9d6b;--greenbg:#0e2a20;--amber:#d99a16;--amberbg:#2c2410;--red:#e0524b;--redbg:#2e1414;
+    --blue:#3d7bd9;--bluebg:#10203a;--purple:#8b6ad9;--accent:#36d39a;--zain:#3d7bd9;--noura:#c0567e;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Segoe UI",system-ui,sans-serif;line-height:1.6;font-size:15px}
+  .wrap{max-width:1100px;margin:0 auto;padding:24px}
+  h1,h2,h3,h4{line-height:1.3;margin:0 0 8px}h1{font-size:27px}h2{font-size:21px}h3{font-size:17px}h4{font-size:15px;color:#cdd6ee}
+  .sub{color:var(--muted);font-size:14px}
+  header.top{background:linear-gradient(135deg,#1a2138,#11152400);border:1px solid var(--line);border-radius:18px;padding:24px 26px;margin-bottom:18px}
+  .pill{display:inline-block;padding:3px 11px;border-radius:999px;font-size:12px;font-weight:700;margin:2px}
+  .pill.green{background:var(--greenbg);color:#5fe0a8;border:1px solid #1f6b4a}
+  .pill.amber{background:var(--amberbg);color:#f0c456;border:1px solid #6b5316}
+  .pill.red{background:var(--redbg);color:#ff8a84;border:1px solid #7a2b27}
+  .pill.blue{background:var(--bluebg);color:#7fb0f5;border:1px solid #2c5494}
+  .pill.purple{background:#1d1733;color:#bda3f5;border:1px solid #4a3a7a}
+  section{margin:24px 0}
+  .sech{display:flex;align-items:center;gap:10px;border-left:4px solid var(--accent);padding-left:12px;margin-bottom:12px}
+  .sech .n{background:var(--accent);color:#06241a;width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800}
+  .grid{display:grid;gap:16px}.g2{grid-template-columns:1fr 1fr}@media(max-width:860px){.g2{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+  .card.zain{border-top:3px solid var(--zain)}.card.noura{border-top:3px solid var(--noura)}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:6px;border-radius:10px;overflow:hidden}
+  th,td{padding:8px 10px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:#202840;color:#cdd6ee;font-weight:700}
+  tr:nth-child(even) td{background:#151a2b}
+  td.k{color:var(--muted);font-weight:700;width:220px}
+  code{background:#0a0e1a;border:1px solid var(--line);border-radius:5px;padding:1px 7px;font-size:12.5px;color:#8fe7c4;font-family:"Consolas",monospace}
+  .tag{padding:2px 8px;border-radius:6px;font-size:11.5px;font-weight:700;white-space:nowrap;display:inline-block}
+  .t1{background:#0c3326;color:#6bf0b4;border:1px solid #1f9d6b}.t2{background:var(--bluebg);color:#7fb0f5}.t3{background:#1d1733;color:#bda3f5}
+  .callout{border-radius:12px;padding:15px 17px;border:1px solid;margin:12px 0}
+  .c-red{background:var(--redbg);border-color:#7a2b27}.c-amber{background:var(--amberbg);border-color:#6b5316}
+  .c-green{background:var(--greenbg);border-color:#1f6b4a}.c-blue{background:var(--bluebg);border-color:#2c5494}
+  ul,ol{margin:8px 0;padding-left:22px}li{margin:4px 0}
+  .glance{background:var(--card2);border:1px dashed var(--accent);border-radius:12px;padding:14px 16px}
+  .glance table{margin:0}.glance td{border:none;padding:4px 8px}
+  .cap{background:#0c1f17;border:1px solid #1f6b4a;border-radius:8px;padding:8px 12px;margin:6px 0;direction:rtl;font-family:"Tahoma";font-size:13.5px}
+  .foot{color:var(--muted);font-size:12.5px;text-align:center;margin-top:28px;border-top:1px solid var(--line);padding-top:16px}
+  @media print{body{background:#fff;color:#111}.card,.callout,.glance{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <h1>🎯 Retargeting — Build Spec <span style="color:var(--accent)">(PRIORITY #1)</span></h1>
+  <div class="sub">The highest-confidence, fastest lever for the last 14 days. Proven historically; harvests an audience that already exists.</div>
+  <div style="margin-top:10px">
+    <span class="pill green">Zain RT historical ROAS 8.32–8.73</span>
+    <span class="pill purple">Noura: 810 carts · ~330K SAR · 100% have mobile</span>
+    <span class="pill blue">TikTok 2026 · captions Arabic</span>
+  </div>
+</header>
+
+<section>
+  <div class="callout c-green">
+    <b>Why this comes before the feeder:</b> Retargeting <u>harvests</u> the warm pool that already exists (visitors, cart-adders, video viewers). It is the most proven layer in both accounts and needs no unproven halo assumption. <b>Evidence (Fact):</b> Zain Retargeting ROAS <b>8.32</b> (Oct) &amp; <b>8.73</b> (Feb) — and it is <b>currently missing</b>. Noura has <b>810 abandoned carts (~330K SAR, 58% Asayel)</b> with <b>100% mobile</b> — a large, untouched intent pool. Sources: Windsor history + Salla.
+  </div>
+</section>
+
+<!-- ZAIN -->
+<section>
+  <div class="sech"><span class="n">1</span><h2>ZAIN — Retargeting</h2></div>
+  <div class="glance">
+    <table>
+      <tr><td class="k">Campaign name</td><td><code>Retargeting | Sales | JUN 2026</code> · Objective <b>Product Sales / Website Conversions</b> · ABO · <b>separate from cold</b></td></tr>
+      <tr><td class="k">Optimization event</td><td><b>Complete Payment</b> (if volume too thin → optimize <b>Initiate Checkout</b> first, then switch)</td></tr>
+      <tr><td class="k">Ad groups (count)</td><td><b>2</b> — (A) DPA/Catalog dynamic · (B) Static offer</td></tr>
+      <tr><td class="k">Daily budget</td><td><b>~80 SAR/day</b> (~15% of account; additive, under 15K with feeder 40)</td></tr>
+      <tr><td class="k">Frequency cap</td><td>&lt; 3 (creative &lt; 2.5×) · Placements TikTok only</td></tr>
+    </table>
+  </div>
+  <h4 style="margin-top:12px">Audiences (warm, layered by intent — highest first)</h4>
+  <table>
+    <tr><th>Audience</th><th>Window</th><th>Priority</th></tr>
+    <tr><td>Initiate Checkout + Add-to-Cart (pixel)</td><td>last 14d</td><td><span class="tag t1">Highest intent</span></td></tr>
+    <tr><td>Product page viewers / website visitors</td><td>last 14–30d</td><td><span class="tag t2">High</span></td></tr>
+    <tr><td>Video viewers (6s/15s) + profile/page engagers</td><td>last 14–30d</td><td><span class="tag t3">Warm</span></td></tr>
+    <tr><td><b>Exclude:</b> Purchasers</td><td>last 30–180d</td><td>—</td></tr>
+  </table>
+  <h4 style="margin-top:12px">Ad groups &amp; creative (= CLOSERS, the high-ROAS ones)</h4>
+  <table>
+    <tr><th>Ad group</th><th>Audience</th><th>Creative</th><th>Landing</th></tr>
+    <tr><td><b>A — DPA / Catalog</b> (Video Shopping Ads)</td><td>visitors + ATC 14–30d</td><td>Dynamic catalog → auto-shows the product each user viewed (no mismatch)</td><td>auto (viewed product)</td></tr>
+    <tr><td><b>B — Static Offer</b></td><td>IC + ATC 14d</td><td><code>كود الخصم (Zain)</code> (offer/code, ROAS 5.05) + <code>#fyp ❤️_#52</code> (ROAS 13.7) + <code>VID 4</code> (8.36)</td><td>#54 / #52 product page</td></tr>
+  </table>
+  <div class="cap">العرض اللي طلبتيه لسا متوفر 🤍 استخدمي كود «Zain» وتقسّطيها مع تابي. الكمية محدودة — أكملي طلبك 👇</div>
+  <div class="sub">Why these creatives: they are <b>closers</b> (high ROAS / strong hook) — the right tool for a warm audience that already knows the product. Keep cheap "openers" out of here.</div>
+</section>
+
+<!-- NOURA -->
+<section>
+  <div class="sech"><span class="n">2</span><h2>NOURA — Retargeting (the 810-cart goldmine)</h2></div>
+  <div class="glance">
+    <table>
+      <tr><td class="k">Campaign name</td><td><code>Retargeting | Sales | JUN 2026</code> <span class="sub">(⚠️ Zain has same name — separate accounts, never mix)</span></td></tr>
+      <tr><td class="k">Optimization event</td><td>Complete Payment (fallback: Add-to-Cart / Initiate Checkout while volume builds)</td></tr>
+      <tr><td class="k">Ad groups (count)</td><td><b>2</b> — (A) DPA/Catalog · (B) Static offer (Asayel-led)</td></tr>
+      <tr><td class="k">Daily budget</td><td><b>~80–100 SAR/day — FUNDED by the killed burners</b> (Wasayef WC + Gulf + Lamar + Ghroob ≈ 60/day) + maintenance trim → net stays ≤ 15K</td></tr>
+      <tr><td class="k">Frequency cap</td><td>&lt; 3 · TikTok only</td></tr>
+    </table>
+  </div>
+  <h4 style="margin-top:12px">Audiences</h4>
+  <table>
+    <tr><th>Audience</th><th>Window</th><th>Priority</th></tr>
+    <tr><td>Add-to-Cart / Initiate Checkout (pixel) — esp. <b>Asayel</b></td><td>last 14–30d</td><td><span class="tag t1">Highest (810 carts live)</span></td></tr>
+    <tr><td>Product page viewers / website visitors</td><td>last 14–30d</td><td><span class="tag t2">High</span></td></tr>
+    <tr><td>Video viewers (6s/15s) + engagers</td><td>last 14–30d</td><td><span class="tag t3">Warm</span></td></tr>
+    <tr><td><b>Exclude:</b> Purchasers</td><td>last 30–180d</td><td>—</td></tr>
+  </table>
+  <h4 style="margin-top:12px">Ad groups &amp; creative (CLOSERS)</h4>
+  <table>
+    <tr><th>Ad group</th><th>Audience</th><th>Creative</th><th>Landing</th></tr>
+    <tr><td><b>A — DPA / Catalog</b></td><td>visitors + ATC 14–30d</td><td>Dynamic catalog (Asayel/Wasayef/Najla) → auto-matches viewed product</td><td>auto</td></tr>
+    <tr><td><b>B — Static Offer (Asayel-led)</b></td><td>IC + ATC 14d</td><td><code>اصايل الاكثر طلبا</code> (6.94) · <code>وصايف تجنن</code> (19.18) · <code>شايفين السواد/نجلاء</code> (11.49) + offer overlay</td><td><b>each creative → its own product page</b> (Asayel→Asayel, Najla→Najla)</td></tr>
+  </table>
+  <div class="cap">عبايتك «اصايل» لا زالت محجوزة بسلتك 🖤 شحن مجاني فوق 350 وتقسيط تابي/تمارا. الكمية محدودة — أكملي طلبك 👇</div>
+  <div class="callout c-blue"><b>Omni-channel (do both):</b> the same 810 carts also get the <b>WhatsApp</b> recovery sequence (scripts in the main rescue report) — TikTok RT + WhatsApp = two touches on the warmest, highest-value pool. 100% of carts have a mobile number.</div>
+</section>
+
+<!-- SETTINGS REF -->
+<section>
+  <div class="sech"><span class="n">3</span><h2>TikTok 2026 settings &amp; rationale</h2></div>
+  <table>
+    <tr><th>Setting</th><th>Choice</th><th>Why</th></tr>
+    <tr><td>Objective</td><td>Product Sales / Website Conversions</td><td>Warm audience → optimize straight for purchase.</td></tr>
+    <tr><td>Separation</td><td>Standalone campaign, never inside cold</td><td>Prevents cold/warm budget &amp; learning contamination.</td></tr>
+    <tr><td>Budget</td><td>ABO, ~15% of account</td><td>Warm pools are small — cap spend to avoid frequency blowout.</td></tr>
+    <tr><td>DPA / Catalog</td><td>Primary ad group</td><td>Auto-matches each user to the product they viewed → solves ad↔LP mismatch, lifts CVR.</td></tr>
+    <tr><td>Frequency</td><td>&lt; 3 (creative &lt; 2.5×)</td><td>Lesson from history: above ~3, ROAS drops (Zain JAN freq 3.68 → 4.40 vs RT 2.32 → 8.73).</td></tr>
+    <tr><td>Bidding</td><td>Lowest Cost → Cost Cap once stable</td><td>Protect CPA as it scales.</td></tr>
+    <tr><td>Offer</td><td>Code + Tabby/Tamara + month-end urgency</td><td>Warm + offer = the fastest conversions in the last 14 days.</td></tr>
+  </table>
+</section>
+
+<!-- MEASUREMENT -->
+<section>
+  <div class="sech"><span class="n">4</span><h2>Measurement &amp; Kill/Keep rules</h2></div>
+  <table>
+    <tr><th>Checkpoint</th><th>Keep / Scale</th><th>Pause / Fix</th></tr>
+    <tr><td><b>+48–72h</b></td><td>First ATC/IC appearing; CPA trending ≤ target (Zain ≤75 / Noura ≤75)</td><td>0 ATC/IC after spending 1× target CPA → swap creative/offer</td></tr>
+    <tr><td><b>+7 days</b></td><td>RT ROAS ≥ 6 (target 8 per history); freq &lt; 3 → <b>scale +20–30%</b></td><td>ROAS &lt; floor 4.5 → fix offer/creative before any increase</td></tr>
+    <tr><td><b>Pool exhaustion</b></td><td>—</td><td>Freq &gt; 3 or CTR ▼ → widen window (30→45d) or refresh creative</td></tr>
+  </table>
+  <div class="sub" style="margin-top:6px">Truth check on Salla (blended), not platform alone. Note: warm conversions can be fast (same-day), so RT reads quicker than cold — but still respect the 7-day window before a final ROAS verdict.</div>
+</section>
+
+<!-- BUDGET FIT -->
+<section>
+  <div class="sech"><span class="n">5</span><h2>Budget fit within the 15K cap</h2></div>
+  <div class="grid g2">
+    <div class="card zain"><h4>Zain</h4><ul>
+      <li>Month projected (current pace): ~11.1K</li>
+      <li>+ Retargeting ~80/day × ~14 ≈ +1.1K</li>
+      <li>+ Feeder test 40/day ≈ +0.56K</li>
+      <li><b>Total ≈ 12.8K — under 15K ✅</b> (additive OK, headroom exists)</li>
+    </ul></div>
+    <div class="card noura"><h4>Noura</h4><ul>
+      <li>Month projected: ~14.3K (near cap)</li>
+      <li>Retargeting <b>funded by reallocation</b>: killed burners ≈ 60/day + maintenance/Snapchat trim ≈ 20/day</li>
+      <li>Feeder = on hold (no cost)</li>
+      <li><b>Net stays ≤ 15K ✅</b> — no new budget, just moved from waste to warm</li>
+    </ul></div>
+  </div>
+</section>
+
+<div class="foot">Retargeting Build Spec · Priority #1 · Source: Windsor history (Zain RT 8.32/8.73) + Salla (810 carts, Asayel hero) · captions Arabic / settings English · SAR.<br>Manual build in TikTok Ads Manager + Salla/WhatsApp. After you launch, tell me "done" + start time — I'll freeze the baseline and measure.</div>
+</div>
+</body>
+</html>
