@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feeder Creative — Deep Selection Analysis (Zain + Noura)</title>
+<style>
+  :root{--bg:#0f1320;--card:#171c2e;--card2:#1d2338;--ink:#e8ecf5;--muted:#9aa6c2;--line:#2a3350;
+    --green:#1f9d6b;--greenbg:#0e2a20;--amber:#d99a16;--amberbg:#2c2410;--red:#e0524b;--redbg:#2e1414;
+    --blue:#3d7bd9;--bluebg:#10203a;--purple:#8b6ad9;--accent:#36d39a;--zain:#3d7bd9;--noura:#c0567e;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Segoe UI",system-ui,sans-serif;line-height:1.6;font-size:15px}
+  .wrap{max-width:1160px;margin:0 auto;padding:24px}
+  h1,h2,h3,h4{line-height:1.3;margin:0 0 8px}h1{font-size:28px}h2{font-size:22px}h3{font-size:18px}h4{font-size:15px;color:#cdd6ee}
+  .sub{color:var(--muted);font-size:14px}
+  .ar{direction:rtl;font-family:"Tahoma","Segoe UI",sans-serif}
+  header.top{background:linear-gradient(135deg,#1a2138,#11152400);border:1px solid var(--line);border-radius:18px;padding:26px 28px;margin-bottom:20px}
+  .pill{display:inline-block;padding:3px 11px;border-radius:999px;font-size:12px;font-weight:700;margin:2px}
+  .pill.green{background:var(--greenbg);color:#5fe0a8;border:1px solid #1f6b4a}
+  .pill.amber{background:var(--amberbg);color:#f0c456;border:1px solid #6b5316}
+  .pill.blue{background:var(--bluebg);color:#7fb0f5;border:1px solid #2c5494}
+  .pill.purple{background:#1d1733;color:#bda3f5;border:1px solid #4a3a7a}
+  section{margin:28px 0}
+  .sech{display:flex;align-items:center;gap:10px;border-left:4px solid var(--accent);padding-left:12px;margin-bottom:14px}
+  .sech .n{background:var(--accent);color:#06241a;width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800}
+  .grid{display:grid;gap:16px}.g2{grid-template-columns:1fr 1fr}.g4{grid-template-columns:repeat(4,1fr)}
+  @media(max-width:860px){.g2,.g4{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+  table{width:100%;border-collapse:collapse;font-size:13px;margin-top:6px;border-radius:10px;overflow:hidden}
+  th,td{padding:8px 9px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:#202840;color:#cdd6ee;font-weight:700}
+  tr:nth-child(even) td{background:#151a2b}
+  td.k{color:var(--muted);font-weight:700}
+  .mono{font-variant-numeric:tabular-nums}
+  .tag{padding:2px 8px;border-radius:6px;font-size:11px;font-weight:700;white-space:nowrap;display:inline-block}
+  .t-feed{background:#0c3326;color:#6bf0b4;border:1px solid #1f9d6b}
+  .t-sales{background:var(--bluebg);color:#7fb0f5;border:1px solid #2c5494}
+  .t-vers{background:#1d1733;color:#bda3f5;border:1px solid #4a3a7a}
+  .t-kill{background:var(--redbg);color:#ff8a84}
+  .callout{border-radius:12px;padding:16px 18px;border:1px solid;margin:14px 0}
+  .c-red{background:var(--redbg);border-color:#7a2b27}.c-amber{background:var(--amberbg);border-color:#6b5316}
+  .c-green{background:var(--greenbg);border-color:#1f6b4a}.c-blue{background:var(--bluebg);border-color:#2c5494}
+  ul,ol{margin:8px 0;padding-left:22px}li{margin:4px 0}
+  code{background:#0a0e1a;border:1px solid var(--line);border-radius:5px;padding:1px 7px;font-size:12.5px;color:#8fe7c4;font-family:"Consolas",monospace}
+  .quad{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+  .q{border:1px solid var(--line);border-radius:12px;padding:14px}
+  .q.tl{background:#0c1f17;border-color:#1f6b4a}.q.tr{background:#101a2e;border-color:#2c5494}
+  .q.bl{background:#1a1330;border-color:#4a3a7a}.q.br{background:#241313;border-color:#7a2b27}
+  .src{font-size:12px;color:var(--muted);border-left:2px solid var(--accent);padding-left:8px;margin-top:4px}
+  .cap{background:#0c1f17;border:1px solid #1f6b4a;border-radius:10px;padding:8px 12px;margin:6px 0;direction:rtl;font-family:"Tahoma";font-size:13.5px}
+  .foot{color:var(--muted);font-size:12.5px;text-align:center;margin-top:30px;border-top:1px solid var(--line);padding-top:16px}
+  @media print{body{background:#fff;color:#111}.card,.callout,.q{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <h1>🎯 Feeder Creative — Deep Selection Analysis</h1>
+  <div class="sub">Which existing creatives belong in the Feeder/Traffic campaign — and why. Clients: <b>Zain</b> &amp; <b>Noura</b>.</div>
+  <div style="margin-top:12px">
+    <span class="pill blue">2026-06-16</span>
+    <span class="pill green">Source: Windsor.ai · TikTok ad-level · May 1 – Jun 16 2026</span>
+    <span class="pill purple">Creatives with ≥80 SAR spend (reliable read)</span>
+  </div>
+</header>
+
+<!-- THE LOGIC -->
+<section>
+  <div class="sech"><span class="n">1</span><h2>The core principle: a Feeder creative is NOT a Sales creative</h2></div>
+  <div class="callout c-green">
+    A Conversion (Sales) campaign needs a <b>closer</b>: a creative that converts (high ROAS, strong hook).<br>
+    A Feeder (Traffic) campaign needs an <b>opener</b>: a creative that delivers the <b>most qualified visits per riyal</b> (cheap CPC, high Landing-Page-Views) so it floods the pixel + warm pool that the Sales/Retargeting campaign then harvests.<br>
+    <b>➜ Therefore the Feeder is selected on cost-of-traffic, NOT on ROAS.</b> Judging a feeder creative by its own ROAS is the exact mistake that got the cheap-reach creative («#68», «Wasayef-V2-C2») wrongly flagged as junk.
+  </div>
+  <h4>Selection criteria (ranked) — and the source/reference behind each</h4>
+  <table>
+    <tr><th>#</th><th>Criterion</th><th>Why it decides a feeder</th><th>Source / reference</th></tr>
+    <tr><td>1</td><td><b>Cost of qualified traffic</b> — CPC &amp; LPV per 100 SAR</td><td>The literal output of a Traffic objective = cheap landing-page-views feeding pixel &amp; pool</td><td class="src">Windsor fields <code>cpc</code>, <code>total_landing_page_view</code>; TikTok Traffic-objective logic</td></tr>
+    <tr><td>2</td><td><b>On the HERO product</b></td><td>A pool of visitors to the best-seller is what the Sales/RT campaign can actually convert</td><td class="src">Salla: Asayel = 358 units/49% rev · Zain #54 = 53% of sales + top cart-abandon</td></tr>
+    <tr><td>3</td><td><b>Intent per 100 SAR</b> (ATC + IC)</td><td>Builds a richer retargeting pool (cart-adders, not just viewers)</td><td class="src">Windsor <code>web_event_add_to_cart</code> + <code>initiate_checkout</code></td></tr>
+    <tr><td>4</td><td><b>Hook / thumbstop</b> (2s view %)</td><td>Secondary. Note: the cheapest openers are image/outbound format (2s%=0) — judged on CPC/LPV instead</td><td class="src">Windsor <code>play_duration_2s</code> ÷ impressions</td></tr>
+    <tr><td>5</td><td><b>NOT ROAS</b></td><td>Excluded by design — conversion is the Sales campaign's job</td><td class="src">Proof feeder value is the <i>assist</i>: Sales ROAS +86% when feeder ON (day-split analysis)</td></tr>
+  </table>
+</section>
+
+<!-- QUADRANT -->
+<section>
+  <div class="sech"><span class="n">2</span><h2>The decision model: Openers vs Closers (a 2×2)</h2></div>
+  <p class="sub">Split every creative on two axes — <b>cost of traffic</b> (CPC) and <b>conversion</b> (ROAS). The role is decided by where it lands:</p>
+  <div class="quad">
+    <div class="q tl"><b>Cheap traffic + Converts</b> <span class="tag t-vers">VERSATILE</span><br>Ideal feeder primary — fills the pool <i>and</i> sells. <br><span class="sub">Zain: #69C1 · Noura: Asayel New V2 C1, Image carousel 3</span></div>
+    <div class="q tr"><b>Expensive traffic + Converts</b> <span class="tag t-sales">CLOSER → SALES</span><br>Keep in the Sales/RT campaign. Wasting these in a feeder burns their conversion power on cold cheap clicks.<br><span class="sub">Zain: #fypシ ✨, #fyp ❤️_#52 · Noura: وصايف تجنن, نجلاء, carousel 4</span></div>
+    <div class="q bl"><b>Cheap traffic + Low ROAS</b> <span class="tag t-feed">OPENER → FEEDER</span><br>The feeder workhorse. Low ROAS is irrelevant here — its job is cheap reach.<br><span class="sub">Zain: #54-C1-OW, #103-C1-OW · Noura: Wasayef-V2-C2</span></div>
+    <div class="q br"><b>Expensive traffic + Low ROAS</b> <span class="tag t-kill">KILL / relaunch</span><br>No role. Kill or rebuild with a new angle.<br><span class="sub">e.g. #50 C2-OU, الرد على @M variants</span></div>
+  </div>
+</section>
+
+<!-- ZAIN MATRIX -->
+<section>
+  <div class="sech"><span class="n">3</span><h2>Zain — creative matrix &amp; verdict</h2></div>
+  <table>
+    <tr><th>Creative (ad_name)</th><th>Spend</th><th>CPC</th><th>LPV/100</th><th>CTR</th><th>Intent/100</th><th>ROAS</th><th>Role</th></tr>
+    <tr><td><code>#54 - C1 - OW</code> (hero #54)</td><td class="mono">358</td><td class="mono">0.03</td><td class="mono">797</td><td class="mono">5.5%</td><td class="mono">16.8</td><td class="mono">3.22</td><td><span class="tag t-feed">FEEDER ★ primary</span></td></tr>
+    <tr><td><code>#103 - C1 - OW</code></td><td class="mono">140</td><td class="mono">0.03</td><td class="mono">801</td><td class="mono">5.6%</td><td class="mono">21.4</td><td class="mono">2.91</td><td><span class="tag t-feed">FEEDER secondary</span></td></tr>
+    <tr><td><code>#69C1</code></td><td class="mono">118</td><td class="mono">0.04</td><td class="mono">212</td><td class="mono">7.9%</td><td class="mono">11.0</td><td class="mono">6.83</td><td><span class="tag t-vers">VERSATILE (feeder + sells)</span></td></tr>
+    <tr><td><code>#fypシ ✨</code> (the engine)</td><td class="mono">6,114</td><td class="mono">0.22</td><td class="mono">77</td><td class="mono">3.1%</td><td class="mono">13.1</td><td class="mono">6.46</td><td><span class="tag t-sales">CLOSER → keep in Sales</span></td></tr>
+    <tr><td><code>#fyp ❤️_#52</code></td><td class="mono">72</td><td class="mono">0.66</td><td class="mono">35</td><td class="mono">0.9%</td><td class="mono">20.8</td><td class="mono">13.74</td><td><span class="tag t-sales">CLOSER (best ROAS)</span></td></tr>
+    <tr><td><code>VID 4</code> · <code>#fyp 🤍</code> · <code>كود الخصم (Zain)</code></td><td class="mono">—</td><td class="mono">0.2–0.4</td><td class="mono">low</td><td class="mono">—</td><td class="mono">high</td><td class="mono">8.4 / 8.6 / 5.1</td><td><span class="tag t-sales">CLOSER / Offer</span></td></tr>
+    <tr><td><code>#50 C2 - OU</code> · <code>#103-5.jpg</code></td><td class="mono">—</td><td class="mono">0.3–0.6</td><td class="mono">low</td><td class="mono">—</td><td class="mono">low</td><td class="mono">3.2 / 0</td><td><span class="tag t-kill">KILL</span></td></tr>
+  </table>
+  <div class="callout c-green">
+    <b>Zain Feeder line-up (final):</b>
+    <ol>
+      <li><b><code>#54 - C1 - OW</code></b> → primary. <b>Why:</b> CPC 0.03 = ~30× cheaper traffic than the engine, ~800 hero-product visits per 100 SAR. <b>Source:</b> Windsor ad-level, hero = Salla #54 = 53% of sales.</li>
+      <li><b><code>#69C1</code></b> → add. <b>Why:</b> cheap (CPC 0.04) <i>and</i> still converts (ROAS 6.83) — a free bonus in the pool.</li>
+      <li><b><code>#103 - C1 - OW</code></b> → optional 3rd for extra cheap reach (CPC 0.03, 801 LPV/100).</li>
+    </ol>
+  </div>
+</section>
+
+<!-- NOURA MATRIX -->
+<section>
+  <div class="sech"><span class="n">4</span><h2>Noura — creative matrix &amp; verdict</h2></div>
+  <table>
+    <tr><th>Creative (ad_name)</th><th>Spend</th><th>CPC</th><th>LPV/100</th><th>CTR</th><th>Intent/100</th><th>ROAS</th><th>Role</th></tr>
+    <tr><td><code>Asayel New V2 C1</code> (hero Asayel)</td><td class="mono">750</td><td class="mono">0.06</td><td class="mono">252</td><td class="mono">5.8%</td><td class="mono">16.0</td><td class="mono">5.88</td><td><span class="tag t-vers">FEEDER ★ primary (also sells)</span></td></tr>
+    <tr><td><code>Image carousel 3</code> <span class="sub">(killed Jun 8)</span></td><td class="mono">2,799</td><td class="mono">0.08</td><td class="mono">234</td><td class="mono">5.3%</td><td class="mono">18.7</td><td class="mono">4.72</td><td><span class="tag t-vers">FEEDER (revive!) + sells</span></td></tr>
+    <tr><td><code>Wasayef-V2-C2</code> <span class="sub">(was "clickbait")</span></td><td class="mono">401</td><td class="mono">0.04</td><td class="mono">320</td><td class="mono">9.2%</td><td class="mono">12.0</td><td class="mono">0.00</td><td><span class="tag t-feed">FEEDER (pure reach, de-prio)</span></td></tr>
+    <tr><td><code>Image carousel 4</code> (champion)</td><td class="mono">1,366</td><td class="mono">0.13</td><td class="mono">155</td><td class="mono">3.7%</td><td class="mono">14.0</td><td class="mono">5.70</td><td><span class="tag t-sales">CLOSER → keep in Sales</span></td></tr>
+    <tr><td><code>وصايف الرهيييييبه</code></td><td class="mono">92</td><td class="mono">0.20</td><td class="mono">145</td><td class="mono">4.8%</td><td class="mono">43.6</td><td class="mono">27.30</td><td><span class="tag t-sales">CLOSER (top ROAS)</span></td></tr>
+    <tr><td><code>وصايف تجنن</code> · <code>شايفين السواد (نجلاء)</code></td><td class="mono">—</td><td class="mono">0.5–0.6</td><td class="mono">41–50</td><td class="mono">—</td><td class="mono">34</td><td class="mono">19.2 / 11.5</td><td><span class="tag t-sales">CLOSER</span></td></tr>
+    <tr><td><code>Asayel New V1_Asayel</code> · <code>الرد @naz</code></td><td class="mono">—</td><td class="mono">0.7–0.9</td><td class="mono">29–48</td><td class="mono">—</td><td class="mono">low</td><td class="mono">3.7 / 3.9</td><td><span class="tag t-kill">KILL / relaunch</span></td></tr>
+  </table>
+  <div class="callout c-green">
+    <b>Noura Feeder line-up (final):</b>
+    <ol>
+      <li><b><code>Asayel New V2 C1</code></b> → primary. <b>Why:</b> CPC 0.04–0.06 (cheapest hero traffic), 224–252 LPV per 100 SAR on the #1 product, <i>and</i> ROAS 5.3–5.9 (converts too). <b>Source:</b> Windsor ad-level + Salla hero = Asayel 358 units.</li>
+      <li><b><code>Image carousel 3</code></b> → revive into the feeder. <b>Why:</b> CPC 0.08, 234 LPV/100, ROAS 4.72 (above floor). Killing it on Jun 8 removed a strong feeder <i>and</i> a decent closer at once — this is the single biggest fixable miss.</li>
+      <li><b><code>Wasayef-V2-C2</code></b> → optional pure-reach only. <b>Why:</b> cheapest clicks (CPC 0.04) but ROAS 0 and not hero — use only if you want max raw reach; otherwise skip in favor of Asayel.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- CORRECTION -->
+<section>
+  <div class="sech"><span class="n">5</span><h2>What this changes (correcting my earlier spec)</h2></div>
+  <div class="callout c-amber">
+    <table>
+      <tr><th>Client</th><th>My 1st pick (build spec)</th><th>Corrected pick (this analysis)</th><th>Why the change</th></tr>
+      <tr><td>Zain</td><td><code>#fypシ ✨</code> + #52</td><td><code>#54-C1-OW</code> + <code>#69C1</code></td><td>#fypシ ✨ is a CLOSER (CPC 0.22, ROAS 6.46) — its job is selling. The feeder needs the CPC-0.03 hero opener.</td></tr>
+      <tr><td>Noura</td><td>Image carousel 4 + Najla</td><td><code>Asayel New V2 C1</code> + <code>Image carousel 3</code></td><td>carousel 4 &amp; Najla are CLOSERS (convert at ROAS 5.7–11.5). Feeder wants the cheap Asayel opener.</td></tr>
+    </table>
+    <b>Net effect:</b> the feeder now runs the right creatives (cheap hero-product openers), and the proven closers stay where they earn — in the Sales/Retargeting campaign. No winning creative gets wasted on cold cheap traffic.
+  </div>
+  <p class="sub">Build-spec settings (campaign name, 2 ad groups, 60 SAR/day, LPV+Click, TikTok-only, hero landing page) are unchanged — only the <b>creative selection</b> is upgraded. Captions stay Arabic; the openers above are already in each account (map by ad_name).</p>
+</section>
+
+<!-- METHOD / SOURCES -->
+<section>
+  <div class="sech"><span class="n">6</span><h2>Method &amp; sources (so you can audit every call)</h2></div>
+  <div class="grid g2">
+    <div class="card">
+      <h4>Data</h4>
+      <ul>
+        <li><b>Source:</b> Windsor.ai → TikTok connector, ad-level.</li>
+        <li><b>Accounts:</b> Zain <code>7494645342479319056</code> · Noura <code>7401593626448363521</code>.</li>
+        <li><b>Window:</b> 2026-05-01 → 2026-06-16 (for stable creative reads).</li>
+        <li><b>Filter:</b> creatives with ≥80 SAR spend (≥40 in detail table).</li>
+        <li><b>Fields:</b> <code>spend, clicks, ctr, cpc, total_landing_page_view, play_duration_2s/6s, web_event_add_to_cart, initiate_checkout, complete_payment, total_complete_payment_rate</code>.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>Derivations &amp; cross-checks</h4>
+      <ul>
+        <li>LPV/100 = LPV ÷ spend × 100 · Intent/100 = (ATC+IC) ÷ spend × 100.</li>
+        <li>Thumbstop = 2s-views ÷ impressions (image/OW creatives = 0 by format).</li>
+        <li>Hero product: cross-referenced to <b>Salla</b> top-sellers (Asayel 358u; Zain #54 53% of sales + top cart-abandon).</li>
+        <li>Feeder's strategic value: the <b>day-split natural experiment</b> (Sales ROAS 8.2 vs 4.4 with feeder ON vs OFF, May).</li>
+        <li><b>Caveat:</b> ad_name = caption/theme (may map to &gt;1 video). Confirm the exact video in-account by name before launch.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="foot">
+  Creative selection is data-driven and reproducible from the fields above. Settings labels = English TikTok UI; ad captions = Arabic (Saudi audience). · Currency SAR.
+</div>
+
+</div>
+</body>
+</html>
