@@ -88,11 +88,15 @@ Build the report with `tools/render_report.py` (design language from `tools/brie
 color = signal only). Report language is **English** (renders cleanly, no RTL issues).
 
 ```
-python3 tools/render_report.py <data.json> clients/<c>/data/reports/<date>.html
+python3 tools/render_report.py reports/<date>/data.json reports/<date>/daily-brief.html \
+    --email reports/<date>/daily-brief-email.html
+python3 tools/send_email.py reports/<date>/daily-brief-email.html --subject "Daily Brief — <date>"
 ```
 
 Present it **visually** (open/render the file), never as a wall of text. On the scheduled cloud run,
-also write it under `clients/<c>/data/reports/` and commit; optionally push a Telegram/email link.
+commit the report and **email it via `tools/send_email.py`** (Gmail SMTP; needs `GMAIL_ADDRESS` +
+`GMAIL_APP_PASSWORD` secrets — see `SCHEDULING.md`). Fallback: `mcp__Gmail__create_draft`. Never paste
+the app password into a prompt.
 
 ## 8) Guardrails for this skill
 

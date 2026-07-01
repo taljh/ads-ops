@@ -47,16 +47,32 @@ In the Claude Code web dashboard for this repo, create a scheduled session:
 - **Network egress:** MCP traffic is fine. Only the `insightfulpipe` *CLI* needs
   `app.insightfulpipe.com` on the egress allowlist (the MCP does not).
 
-## B) Email delivery
+## B) Email delivery — SMTP auto-send (chosen)
 
-- **Now (zero setup):** the run creates a **Gmail draft** to `t.aljh98@gmail.com`
-  with the inline-styled summary (see `tools/render_report.py --email`). You open
-  Gmail → Drafts to read it.
-- **True auto-send (optional, ~5 min):** create a Gmail **App Password**, store it as
-  a secret (e.g. `GMAIL_APP_PASSWORD`), and the run can SMTP-send the email instead
-  of drafting. Say the word and this gets wired into `tools/run_daily.sh`.
-- **Alternative:** Slack delivery *can* auto-send (Slack MCP has a send tool) if you
-  prefer a Slack DM over email.
+Real auto-send is wired via `tools/send_email.py` (Gmail SMTP). One-time setup:
+
+1. Google Account → **Security → App passwords** → create one for "Mail". You get a
+   16-char password (needs 2-Step Verification enabled).
+2. Store two **env secrets** in the environment config (do NOT paste in prompts):
+   - `GMAIL_ADDRESS` = `t.aljh98@gmail.com`
+   - `GMAIL_APP_PASSWORD` = the 16-char app password
+3. The daily run then sends automatically:
+
+   ```
+   python3 tools/render_report.py reports/<date>/data.json \
+       reports/<date>/daily-brief.html --email reports/<date>/daily-brief-email.html
+   python3 tools/send_email.py reports/<date>/daily-brief-email.html \
+       --subject "Daily Brief — <date>"        # --to defaults to GMAIL_ADDRESS
+   ```
+
+Test without sending: add `--dry-run`. Exit codes: 0 ok · 2 missing creds · 3 send error.
+
+> Update the scheduled-session prompt's final step to: *"…then send the email version
+> via `python3 tools/send_email.py <email_html> --subject 'Daily Brief — <today>'`."*
+> (replaces the Gmail-draft step). A daily Gmail **draft** remains available as a
+> fallback via `mcp__Gmail__create_draft` if SMTP creds are ever missing.
+
+- **Alternative:** Slack delivery can auto-send (Slack MCP) if you prefer a DM.
 
 ## C) Local fallback (your own machine)
 
