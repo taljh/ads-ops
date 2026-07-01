@@ -71,11 +71,17 @@
           "campaigns": [
             {"name": "ZA_META_SALES_PROSPECTING_KSA", "spend": 177.25, "conversions": 5, "cpa": 35.45, "frequency": 1.30, "ctr": "4.73", "spend_7d": null, "cpa_ceiling": 90, "status": "ok"}
           ],
+          "creatives": [
+            {"name": "AD04 · video-static · bw-colorblock", "spend": 259.73, "ctr": "4.66", "cpm": "29.81", "frequency": 1.22},
+            {"name": "AD03 · single-image · organza-sleeve", "spend": 111.76, "ctr": "5.03", "cpm": "23.60", "frequency": 1.27},
+            {"name": "AD01 · carousel · ugc-bestseller", "spend": 84.96, "ctr": "4.60", "cpm": "28.54", "frequency": 1.27},
+            {"name": "AD02 · multiprod-carousel · 50/103/54", "spend": 11.73, "ctr": "5.44", "cpm": "24.54", "frequency": 1.14}
+          ],
           "lenses": [
             {"title": "Performance", "points": ["Most efficient channel: ROAS 11.3, CPA 35 — but only 12% of ad budget."]},
             {"title": "Audience", "points": ["Single KSA prospecting campaign; CTR 4.73% strong; no fragmentation/overlap."]},
-            {"title": "Creative", "points": ["Freq 1.30 fresh, CTR 4.73% — no fatigue, headroom to scale."]},
-            {"title": "Budget", "points": ["Prime reallocation target — absorb budget from TikTok SCALE."]}
+            {"title": "Creative", "points": ["4 creatives, all fresh (freq 1.1–1.3), CTR 4.6–5.4% — zero fatigue.", "Best hook: AD02 carousel (CTR 5.4%) but starved at 12 SAR; AD03 single-image most efficient (CPM 23.6). Scale the winners."]},
+            {"title": "Budget", "points": ["Prime reallocation target — absorb budget from TikTok SCALE into AD03/AD02."]}
           ]
         },
         {
@@ -90,6 +96,7 @@
             {"name": "SCALE | Best Sellers | Purchase", "spend": 1154.63, "conversions": 7, "cpa": 164.95, "frequency": 2.91, "ctr": "2.43", "spend_7d": 274.04, "cpa_ceiling": 90, "status": "fail"},
             {"name": "Prospecting Sales | JUN", "spend": 122.47, "conversions": 3, "cpa": 40.82, "frequency": 2.17, "ctr": "1.53", "spend_7d": 199.78, "cpa_ceiling": 90, "status": "ok"}
           ],
+          "creatives_pending": "TikTok creative-level pending — InsightfulPipe source reconnect (or pipeboard auth). Structure ready; fills automatically. Note: SCALE campaign freq 2.9 already flags creative fatigue at campaign level.",
           "lenses": [
             {"title": "Performance", "points": ["Volume engine (2.3× Meta spend) but ROAS 2.6 < 4.5 target; SCALE is the drag."]},
             {"title": "Targeting", "points": ["Prospecting Sales efficient (CPA 41); SCALE broad best-sellers overspending."]},
@@ -160,6 +167,7 @@
           "campaigns": [
             {"name": "Prospecting Sales | JUN", "spend": 1267.32, "conversions": 17, "cpa": 74.55, "frequency": 1.68, "ctr": "1.90", "spend_7d": 908.57, "cpa_ceiling": 90, "status": "ok"}
           ],
+          "creatives_pending": "TikTok creative-level pending — InsightfulPipe source reconnect (or pipeboard auth). Structure ready; fills automatically. Campaign freq 1.68 = no fatigue signal.",
           "lenses": [
             {"title": "Performance", "points": ["17 conversions at CPA 74.5 (under 90) — solid on a peak day."]},
             {"title": "Creative", "points": ["Freq 1.68 fresh, CTR 1.90 acceptable — no fatigue."]},

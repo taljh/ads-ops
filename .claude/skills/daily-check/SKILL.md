@@ -97,9 +97,17 @@ then let the lens say what to do. This is pure enhancement; nothing already buil
 
 ## 5) Hierarchy — campaign → ad group → ad → creative
 
-Render every level with the triple delta. **Creatives** get a card grid: thumbnail
-(`get_tiktok_video_info`/`image_info`) + CTR + frequency + spend, with a **🔴 fatigue** badge when
-`frequency ≥ 2.5×` (creative-refresh guardrail). This is where creative decisions are made.
+Each ads platform drills to a **creative card grid**: CTR + frequency + CPM + spend
+(+ thumbnail when available), with a **🔴 fatigue** badge when `frequency ≥ 2.5×`
+(creative-refresh guardrail). This is where creative decisions are made.
+
+- **Meta creatives:** `ads_get_ad_entities` level=`ad` (account `1686054965972322`, last 7d,
+  `sort=spend_descending`). Ad names encode the creative (format/product/version).
+- **TikTok creatives:** via InsightfulPipe `data_level=AUCTION_AD` + `ads_metadata`
+  (or pipeboard `get_tiktok_ads`/`get_tiktok_video_info`). If that source is disconnected,
+  render `creatives_pending` — a graceful placeholder that **fills automatically** when the
+  source returns; the campaign-level `frequency` still flags fatigue meanwhile. Never break
+  the report because one source is down — degrade gracefully, say what's pending.
 
 ## 6) Today's decision
 

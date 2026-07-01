@@ -123,6 +123,26 @@ def render_campaigns(rows):
             f'<tbody>{trs}</tbody></table>')
 
 
+def render_creatives(creatives, pending=None):
+    if pending:
+        return (f'<div class="sub-label">Creatives</div>'
+                f'<div class="plat-none">⏳ {pending}</div>')
+    if not creatives:
+        return ""
+    cards = ""
+    for c in creatives:
+        freq = c.get("frequency")
+        fatigue = ' <span class="mini-flag">fatigue</span>' if freq and freq >= 2.5 else ""
+        thumb = c.get("thumb")
+        img = (f'<img src="{thumb}" class="thumb"/>' if thumb
+               else '<div class="thumb thumb-blank">no preview</div>')
+        cards += (f'<div class="cr-card">{img}'
+                  f'<div class="cr-name">{c.get("name")}{fatigue}</div>'
+                  f'<div class="cr-meta">CTR {c.get("ctr","—")}% · freq {f"{freq:.2f}" if freq else "—"} · '
+                  f'CPM {c.get("cpm","—")} · {money(c.get("spend"))} SAR</div></div>')
+    return f'<div class="sub-label">Creatives — last 7d</div><div class="cr-grid">{cards}</div>'
+
+
 def render_lenses(lenses):
     if not lenses:
         return ""
@@ -173,6 +193,7 @@ def render_platform(p):
       {render_chips(ch)}
       <div class="sub-label">Campaigns — today</div>
       {camp_b}
+      {render_creatives(p.get('creatives'), p.get('creatives_pending'))}
       {render_lenses(p.get('lenses'))}
     </div>"""
 
@@ -310,6 +331,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .gr-item{display:flex;gap:8px;border:1px solid var(--border);border-radius:8px;padding:8px 10px}
 .gr-fail{background:#fef2f2;border-color:#fecaca}.gr-warn{background:#fffbeb;border-color:#fde68a}.gr-ok{background:#f0fdf4;border-color:#bbf7d0}
 .gr-name{font-size:12px;font-weight:600}.gr-detail{font-size:11px;color:var(--ink3)}
+.cr-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:10px;margin-top:4px}
+.cr-card{border:1px solid var(--border);border-radius:8px;overflow:hidden;background:#fff}
+.thumb{width:100%;height:100px;object-fit:cover;display:block}
+.thumb-blank{display:flex;align-items:center;justify-content:center;height:100px;background:#f3f4f6;color:#9ca3af;font-size:11px}
+.cr-name{font-size:11px;font-weight:600;padding:6px 8px 2px;word-break:break-word}
+.cr-meta{font-size:10px;color:var(--ink3);padding:0 8px 8px}
 .foot{max-width:1040px;margin:16px auto 0;padding:0 20px;font-size:11px;color:var(--ink3)}
 """
 
