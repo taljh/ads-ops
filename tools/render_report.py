@@ -305,13 +305,83 @@ def build_html(data):
 </body></html>"""
 
 
+# ── email version (inline styles — Gmail strips <head>/<style>) ──
+def build_email_html(data):
+    def dl(cur, ref, hib=True):
+        p = pct(cur, ref)
+        if p is None:
+            return '<span style="color:#6b7280">—</span>'
+        good = (p >= 0) == hib
+        col = "#16a34a" if good else "#dc2626"
+        return f'<span style="color:{col};font-weight:700">{"▲" if p>=0 else "▼"} {abs(p):.0f}%</span>'
+    blocks = ""
+    for c in data.get("clients", []):
+        dec = c.get("decision", {})
+        bar = {"high": "#dc2626", "med": "#d97706", "low": "#16a34a"}.get(dec.get("priority"), "#2563eb")
+        t = c.get("truth", {}); rev = t.get("revenue", {}); orders = t.get("orders", {})
+        srows = ""
+        for s in c.get("sources", []):
+            star = " 🏆" if s.get("source") == c.get("best_source") else ""
+            roas = f'{s["roas"]:.2f}x' if s.get("roas") else "—"
+            srows += (f'<tr><td style="padding:3px 8px;text-transform:capitalize">{s.get("source")}{star}</td>'
+                      f'<td style="padding:3px 8px;text-align:right">{money(s.get("revenue"))}</td>'
+                      f'<td style="padding:3px 8px;text-align:right">{s.get("share",0):.0f}%</td>'
+                      f'<td style="padding:3px 8px;text-align:right">{roas}</td></tr>')
+        crows = ""
+        for r in c.get("ad_platform", {}).get("campaigns", []):
+            flag = ""
+            if r.get("cpa") and r.get("cpa_ceiling") and r["cpa"] > r["cpa_ceiling"]:
+                flag += ' <b style="color:#dc2626">CPA↑</b>'
+            if r.get("frequency", 0) >= 2.5:
+                flag += ' <b style="color:#dc2626">fatigue</b>'
+            crows += (f'<tr><td style="padding:3px 8px">{r.get("name")}{flag}</td>'
+                      f'<td style="padding:3px 8px;text-align:right">{money(r.get("spend"))}</td>'
+                      f'<td style="padding:3px 8px;text-align:right">{r.get("conversions")}</td>'
+                      f'<td style="padding:3px 8px;text-align:right">{r.get("cpa",0):.0f}</td>'
+                      f'<td style="padding:3px 8px;text-align:right">{r.get("frequency","—")}</td></tr>')
+        blocks += f"""
+        <div style="border:1px solid #e5e7eb;border-radius:10px;padding:16px;margin:14px 0">
+          <div style="font-size:16px;font-weight:700">{c.get('name')} <span style="font-size:10px;background:#e5e7eb;color:#374151;padding:2px 7px;border-radius:8px">{c.get('settlement','').upper()}</span></div>
+          <div style="border-left:4px solid {bar};background:#f8fafc;border-radius:8px;padding:10px 12px;margin:10px 0">
+            <div style="font-size:10px;font-weight:700;letter-spacing:.06em;color:#6b7280">🎯 TODAY'S DECISION</div>
+            <div style="font-size:14px;font-weight:700;margin:2px 0">{dec.get('title','')}</div>
+            <div style="font-size:12px;color:#374151">{dec.get('detail','')}</div>
+          </div>
+          <div style="font-size:13px;margin:6px 0">
+            <b>Revenue</b> {money(rev.get('today'))} SAR &nbsp; vs1d {dl(rev.get('today'),rev.get('yesterday'))}
+            &nbsp; vs7d {dl(rev.get('today'),rev.get('d7'))} &nbsp;·&nbsp;
+            <b>Orders</b> {orders.get('today')} &nbsp; vs1d {dl(orders.get('today'),orders.get('yesterday'))}
+          </div>
+          <table style="border-collapse:collapse;font-size:12px;width:100%;margin-top:6px">
+            <tr style="color:#6b7280;text-align:left"><th style="padding:3px 8px">Source</th><th style="padding:3px 8px;text-align:right">Revenue</th><th style="padding:3px 8px;text-align:right">Share</th><th style="padding:3px 8px;text-align:right">ROAS</th></tr>
+            {srows}
+          </table>
+          <table style="border-collapse:collapse;font-size:12px;width:100%;margin-top:8px">
+            <tr style="color:#6b7280;text-align:left"><th style="padding:3px 8px">Campaign (today)</th><th style="padding:3px 8px;text-align:right">Spend</th><th style="padding:3px 8px;text-align:right">Conv</th><th style="padding:3px 8px;text-align:right">CPA</th><th style="padding:3px 8px;text-align:right">Freq</th></tr>
+            {crows}
+          </table>
+        </div>"""
+    return f"""<div style="font-family:-apple-system,Segoe UI,sans-serif;max-width:680px;margin:0 auto;color:#111827">
+      <div style="background:#0f172a;color:#fff;padding:14px 18px;border-radius:10px">
+        <div style="font-size:17px;font-weight:700">Daily Brief — {data.get('date','')}</div>
+        <div style="font-size:11px;color:#94a3b8">cycle: {data.get('cycle_phase','')} · backfill last {data.get('backfill_window',4)}d · monitor-only</div>
+      </div>
+      {blocks}
+      <div style="font-size:11px;color:#6b7280;margin-top:10px">{data.get('footer','')}</div>
+    </div>"""
+
+
 def main():
     if len(sys.argv) < 3:
-        print("usage: render_report.py <data.json> <out.html>")
+        print("usage: render_report.py <data.json> <out.html> [--email <email_out.html>]")
         sys.exit(1)
     data = json.loads(Path(sys.argv[1]).read_text(encoding="utf-8"))
     Path(sys.argv[2]).write_text(build_html(data), encoding="utf-8")
     print(f"wrote {sys.argv[2]}")
+    if "--email" in sys.argv:
+        eout = sys.argv[sys.argv.index("--email") + 1]
+        Path(eout).write_text(build_email_html(data), encoding="utf-8")
+        print(f"wrote {eout}")
 
 
 if __name__ == "__main__":
