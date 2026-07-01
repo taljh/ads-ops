@@ -1,0 +1,316 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily Brief — 2026-07-01 (Wed)</title><style>
+:root{--ink:#111827;--ink3:#6b7280;--bg:#f3f4f6;--surface:#fff;--border:#e5e7eb;
+--green:#16a34a;--amber:#d97706;--red:#dc2626;--blue:#2563eb;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--ink);font-size:13px;line-height:1.5;padding-bottom:40px}
+.header{background:#0f172a;color:#fff;padding:18px 32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.header h1{font-size:18px}.header .sub{font-size:11px;color:#94a3b8;margin-top:2px}
+.pills{display:flex;gap:6px}.pill{background:#e5e7eb;color:#374151;font-size:10px;font-weight:600;padding:3px 8px;border-radius:10px;letter-spacing:.03em}
+.header .pill{background:#1e293b;color:#cbd5e1}
+.page{max-width:1000px;margin:0 auto;padding:0 20px}
+.client{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:22px;margin-top:20px}
+.client-head{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.client-head h2{font-size:17px}
+.decision{border-radius:10px;padding:14px 16px;margin-bottom:18px;border-left:4px solid var(--blue);background:#f8fafc}
+.dec-high{border-left-color:var(--red);background:#fef2f2}.dec-med{border-left-color:var(--amber);background:#fffbeb}.dec-low{border-left-color:var(--green);background:#f0fdf4}
+.dec-tag{font-size:10px;font-weight:700;letter-spacing:.08em;color:var(--ink3)}
+.dec-title{font-size:15px;font-weight:700;margin:3px 0 4px}.dec-detail{font-size:12.5px;color:var(--ink3)}
+.section{margin-top:18px}
+.section-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--ink);border-bottom:1px solid var(--border);padding-bottom:5px;margin-bottom:10px}
+.section-sub{text-transform:none;letter-spacing:0;font-weight:400;color:var(--ink3);font-size:11px;margin-left:6px}
+.sub-label{font-size:11px;font-weight:700;color:var(--ink3);margin:12px 0 6px}
+.kpi-row{display:flex;gap:12px;flex-wrap:wrap}
+.kpi{flex:1;min-width:180px;border:1px solid var(--border);border-radius:8px;padding:12px}
+.kpi-label{font-size:11px;color:var(--ink3)}.kpi-value{font-size:24px;font-weight:700;margin:2px 0}
+.kpi-unit{font-size:12px;font-weight:400;color:var(--ink3);margin-left:4px}
+.kpi-deltas{display:flex;gap:10px;flex-wrap:wrap;font-size:10.5px;color:var(--ink3)}
+.delta{font-weight:700}.delta-up{color:var(--green)}.delta-down{color:var(--red)}.delta-na{color:var(--ink3)}
+.tbl{width:100%;border-collapse:collapse;font-size:12.5px}
+.tbl th,.tbl td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--border)}
+.tbl th{font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--ink3)}
+.num{text-align:right;font-variant-numeric:tabular-nums}.src-name{font-weight:600;text-transform:capitalize}
+.muted{color:var(--ink3);font-style:italic}
+.trend{display:flex;align-items:flex-end;gap:8px;height:80px;padding-top:6px}
+.bar-col{display:flex;flex-direction:column;align-items:center;gap:4px;flex:1}
+.bar{width:70%;background:#cbd5e1;border-radius:3px 3px 0 0}.bar-last{background:var(--blue)}
+.bar-x{font-size:9px;color:var(--ink3)}
+.gr-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px}
+.gr-item{display:flex;gap:8px;border:1px solid var(--border);border-radius:8px;padding:8px 10px}
+.gr-fail{background:#fef2f2;border-color:#fecaca}.gr-warn{background:#fffbeb;border-color:#fde68a}.gr-ok{background:#f0fdf4;border-color:#bbf7d0}
+.gr-name{font-size:12px;font-weight:600}.gr-detail{font-size:11px;color:var(--ink3)}
+.dq{margin-left:18px;color:var(--ink3);font-size:12px}.dq li{margin:3px 0}
+.pending{border:1px dashed #cbd5e1;border-radius:8px;padding:14px;background:#f8fafc}
+.pending-title{font-weight:700;color:var(--amber);font-size:12.5px}
+.pending-body{font-size:12px;color:var(--ink3);margin:6px 0}
+.pending-scaffold{font-size:11px;color:#94a3b8;border-top:1px dashed #e5e7eb;padding-top:6px;margin-top:6px}
+.cr-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.cr-card{border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.thumb{width:100%;height:110px;object-fit:cover;display:block}
+.thumb-blank{display:flex;align-items:center;justify-content:center;background:#f3f4f6;color:#9ca3af;font-size:11px}
+.cr-name{font-size:11.5px;font-weight:600;padding:6px 8px 2px}.cr-meta{font-size:10.5px;color:var(--ink3);padding:0 8px 8px}
+.badge-fatigue{font-size:9px;color:var(--red);font-weight:700}
+.foot{max-width:1000px;margin:16px auto 0;padding:0 20px;font-size:11px;color:var(--ink3)}
+</style></head>
+<body>
+  <div class="header">
+    <div><h1>Daily Brief</h1><div class="sub">2026-07-01 (Wed) · generated daily-check skill</div></div>
+    <div class="pills">
+      <span class="pill">2 clients</span>
+      <span class="pill">cycle: PEAK (payroll 26→3)</span>
+      <span class="pill">backfill: last 4d</span>
+    </div>
+  </div>
+  <div class="page">
+    <section class="client">
+      <div class="client-head">
+        <h2>Raghad (Zain Abayas)</h2>
+        <span class="pill">PREPAID</span>
+      </div>
+
+      <div class="decision dec-med">
+        <div class="dec-tag">🎯 TODAY'S DECISION</div>
+        <div class="dec-title">Peak day accelerating — fund what converts, cut nothing.</div>
+        <div class="dec-detail">Revenue 6,938 SAR (16 orders), +67% vs yesterday and +341% vs same weekday last week. TikTok drives 48% of sales; Meta (FB+IG) adds 2,010 SAR at the highest visit-to-purchase efficiency. It is a peak day — verify TikTok & Meta budgets are pacing to demand. No cuts. Ad-spend/ROAS confirmation pending a spend source.</div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">Store Truth <span class="section-sub">Salla — ground truth</span></div>
+        <div class="kpi-row">
+          
+      <div class="kpi">
+        <div class="kpi-label">Revenue (today)</div>
+        <div class="kpi-value">6,938<span class="kpi-unit">SAR</span></div>
+        <div class="kpi-deltas">
+          <span class="dl">vs 1d <span class="delta delta-up">▲ 67%</span></span>
+          <span class="dl">vs 3d <span class="delta delta-up">▲ 87%</span></span>
+          <span class="dl">vs 7d <span class="delta delta-up">▲ 341%</span></span>
+        </div>
+      </div>
+          
+      <div class="kpi">
+        <div class="kpi-label">Orders (today)</div>
+        <div class="kpi-value">16<span class="kpi-unit"></span></div>
+        <div class="kpi-deltas">
+          <span class="dl">vs 1d <span class="delta delta-up">▲ 60%</span></span>
+          <span class="dl">vs 3d <span class="delta delta-up">▲ 78%</span></span>
+          <span class="dl">vs 7d <span class="delta delta-up">▲ 220%</span></span>
+        </div>
+      </div>
+          
+      <div class="kpi">
+        <div class="kpi-label">AOV</div>
+        <div class="kpi-value">434<span class="kpi-unit">SAR</span></div>
+        <div class="kpi-deltas">
+          <span class="dl">vs 1d <span class="delta delta-up">▲ 5%</span></span>
+          <span class="dl">vs 3d <span class="delta delta-up">▲ 6%</span></span>
+          <span class="dl">vs 7d <span class="delta delta-up">▲ 10%</span></span>
+        </div>
+      </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">Source Attribution <span class="section-sub">who drove the sales</span></div>
+        
+      <table class="tbl">
+        <thead><tr>
+          <th>Source</th><th class="num">Revenue</th><th class="num">Purchases</th>
+          <th class="num">Share</th><th class="num">ROAS</th>
+        </tr></thead>
+        <tbody>
+          <tr>
+            <td class="src-name">tiktok 🏆</td>
+            <td class="num">3,326</td>
+            <td class="num">7</td>
+            <td class="num">48%</td>
+            <td class="num"><span class="muted">needs spend</span></td>
+          </tr>
+          <tr>
+            <td class="src-name">direct</td>
+            <td class="num">1,602</td>
+            <td class="num">4</td>
+            <td class="num">23%</td>
+            <td class="num"><span class="muted">needs spend</span></td>
+          </tr>
+          <tr>
+            <td class="src-name">facebook</td>
+            <td class="num">1,234</td>
+            <td class="num">3</td>
+            <td class="num">18%</td>
+            <td class="num"><span class="muted">needs spend</span></td>
+          </tr>
+          <tr>
+            <td class="src-name">instagram</td>
+            <td class="num">776</td>
+            <td class="num">2</td>
+            <td class="num">11%</td>
+            <td class="num"><span class="muted">needs spend</span></td>
+          </tr></tbody>
+      </table>
+      </div>
+
+      <div class="section">
+        <div class="section-label">8-Day Revenue Trend</div>
+        <div class="trend"><div class="bar-col"><div class="bar" style="height:17px" title="2026-06-24: 1,572"></div><div class="bar-x">06-24</div></div><div class="bar-col"><div class="bar" style="height:54px" title="2026-06-25: 6,527"></div><div class="bar-x">06-25</div></div><div class="bar-col"><div class="bar" style="height:22px" title="2026-06-26: 2,187"></div><div class="bar-x">06-26</div></div><div class="bar-col"><div class="bar" style="height:17px" title="2026-06-27: 1,592"></div><div class="bar-x">06-27</div></div><div class="bar-col"><div class="bar" style="height:33px" title="2026-06-28: 3,701"></div><div class="bar-x">06-28</div></div><div class="bar-col"><div class="bar" style="height:30px" title="2026-06-29: 3,311"></div><div class="bar-x">06-29</div></div><div class="bar-col"><div class="bar" style="height:37px" title="2026-06-30: 4,150"></div><div class="bar-x">06-30</div></div><div class="bar-col"><div class="bar bar-last" style="height:58px" title="2026-07-01: 6,938"></div><div class="bar-x">07-01</div></div></div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">Guardrails</div>
+        <div class="gr-grid">
+          <div class="gr-item gr-na">
+            <span class="gr-icon">⚪</span>
+            <div><div class="gr-name">Blended ROAS floor (4.5)</div>
+            <div class="gr-detail">Needs ad spend — pending source</div></div>
+          </div>
+          <div class="gr-item gr-na">
+            <span class="gr-icon">⚪</span>
+            <div><div class="gr-name">Budget cap pacing (15k)</div>
+            <div class="gr-detail">Needs spend; MTD revenue 6,938 on day 1</div></div>
+          </div>
+          <div class="gr-item gr-na">
+            <span class="gr-icon">⚪</span>
+            <div><div class="gr-name">CPA ceiling (90)</div>
+            <div class="gr-detail">Needs spend + conversions</div></div>
+          </div>
+          <div class="gr-item gr-ok">
+            <span class="gr-icon">🟢</span>
+            <div><div class="gr-name">Store data integrity</div>
+            <div class="gr-detail">Prepaid: orders = paid sales, same-day clean</div></div>
+          </div></div>
+      </div>
+
+      <div class="section"><div class="section-label">Data Quality & Backfill</div><ul class="dq"><li>Prepaid store: sales_summary (6,938) reconciles exactly with source attribution (3,326+1,602+1,234+776). No settlement lag.</li><li>Source attribution window may be rolling-30d, not strict MTD — treat per-source ROAS as directional until spend is joined.</li></ul></div>
+
+      <div class="section">
+        <div class="section-label">Ad Platform <span class="section-sub">campaign → ad group → ad → creative</span></div>
+        
+      <div class="pending">
+        <div class="pending-title">⏳ Ad-platform layer pending — no live spend source today</div>
+        <div class="pending-body">TikTok pipeboard hit its usage cap (33/30). Meta has no direct MCP here — it routes through Porter (query_data), which starts billing your accounts. Choose: (a) wait for pipeboard reset, or (b) opt in to Porter for TikTok+Meta spend.</div>
+        <div class="pending-scaffold">Will render: Campaign → Ad Group → Ad → Creative
+        (spend · ROAS · CTR · CPM · frequency + fatigue badge · thumbnails), each with 1d/3d/7d deltas.</div>
+      </div>
+      </div>
+    </section>
+    <section class="client">
+      <div class="client-head">
+        <h2>Noura</h2>
+        <span class="pill">COD</span>
+      </div>
+
+      <div class="decision dec-high">
+        <div class="dec-tag">🎯 TODAY'S DECISION</div>
+        <div class="dec-title">Hold judgment — COD settlement lag, revenue will restate up.</div>
+        <div class="dec-detail">19 orders placed today but only 40 SAR settled (COD pays on delivery). Yesterday shows 0 settled against 17 orders — this backfills upward over 2–3 days. Demand is steady (17–22 orders/day). TikTok = 78% of attributed sales. Do NOT act on today's revenue; re-check in 2 days once COD clears before any budget move.</div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">Store Truth <span class="section-sub">Salla — ground truth</span></div>
+        <div class="kpi-row">
+          
+      <div class="kpi">
+        <div class="kpi-label">Revenue (today)</div>
+        <div class="kpi-value">40<span class="kpi-unit">SAR</span></div>
+        <div class="kpi-deltas">
+          <span class="dl">vs 1d <span class="delta delta-na">—</span></span>
+          <span class="dl">vs 3d <span class="delta delta-down">▼ 85%</span></span>
+          <span class="dl">vs 7d <span class="delta delta-down">▼ 97%</span></span>
+        </div>
+      </div>
+          
+      <div class="kpi">
+        <div class="kpi-label">Orders (today)</div>
+        <div class="kpi-value">19<span class="kpi-unit"></span></div>
+        <div class="kpi-deltas">
+          <span class="dl">vs 1d <span class="delta delta-up">▲ 12%</span></span>
+          <span class="dl">vs 3d <span class="delta delta-down">▼ 14%</span></span>
+          <span class="dl">vs 7d <span class="delta delta-up">▲ 58%</span></span>
+        </div>
+      </div>
+          
+      <div class="kpi">
+        <div class="kpi-label">AOV</div>
+        <div class="kpi-value">40<span class="kpi-unit">SAR</span></div>
+        <div class="kpi-deltas">
+          <span class="dl">vs 1d <span class="delta delta-na">—</span></span>
+          <span class="dl">vs 3d <span class="delta delta-down">▼ 85%</span></span>
+          <span class="dl">vs 7d <span class="delta delta-down">▼ 85%</span></span>
+        </div>
+      </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">Source Attribution <span class="section-sub">who drove the sales</span></div>
+        
+      <table class="tbl">
+        <thead><tr>
+          <th>Source</th><th class="num">Revenue</th><th class="num">Purchases</th>
+          <th class="num">Share</th><th class="num">ROAS</th>
+        </tr></thead>
+        <tbody>
+          <tr>
+            <td class="src-name">tiktok 🏆</td>
+            <td class="num">6,070</td>
+            <td class="num">13</td>
+            <td class="num">78%</td>
+            <td class="num"><span class="muted">needs spend</span></td>
+          </tr>
+          <tr>
+            <td class="src-name">direct</td>
+            <td class="num">1,699</td>
+            <td class="num">6</td>
+            <td class="num">22%</td>
+            <td class="num"><span class="muted">needs spend</span></td>
+          </tr></tbody>
+      </table>
+      </div>
+
+      <div class="section">
+        <div class="section-label">8-Day Revenue Trend</div>
+        <div class="trend"><div class="bar-col"><div class="bar" style="height:58px" title="2026-06-24: 1,306"></div><div class="bar-x">06-24</div></div><div class="bar-col"><div class="bar" style="height:18px" title="2026-06-25: 325"></div><div class="bar-x">06-25</div></div><div class="bar-col"><div class="bar" style="height:18px" title="2026-06-26: 310"></div><div class="bar-x">06-26</div></div><div class="bar-col"><div class="bar" style="height:35px" title="2026-06-27: 753"></div><div class="bar-x">06-27</div></div><div class="bar-col"><div class="bar" style="height:16px" title="2026-06-28: 270"></div><div class="bar-x">06-28</div></div><div class="bar-col"><div class="bar" style="height:44px" title="2026-06-29: 965"></div><div class="bar-x">06-29</div></div><div class="bar-col"><div class="bar" style="height:6px" title="2026-06-30: 0"></div><div class="bar-x">06-30</div></div><div class="bar-col"><div class="bar bar-last" style="height:7px" title="2026-07-01: 40"></div><div class="bar-x">07-01</div></div></div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">Guardrails</div>
+        <div class="gr-grid">
+          <div class="gr-item gr-na">
+            <span class="gr-icon">⚪</span>
+            <div><div class="gr-name">Blended ROAS floor (4.5)</div>
+            <div class="gr-detail">Needs ad spend — pending source</div></div>
+          </div>
+          <div class="gr-item gr-na">
+            <span class="gr-icon">⚪</span>
+            <div><div class="gr-name">Budget cap pacing (15k)</div>
+            <div class="gr-detail">Needs spend</div></div>
+          </div>
+          <div class="gr-item gr-warn">
+            <span class="gr-icon">🟡</span>
+            <div><div class="gr-name">Store data integrity</div>
+            <div class="gr-detail">COD: settled revenue lags orders by 2-3 days</div></div>
+          </div>
+          <div class="gr-item gr-ok">
+            <span class="gr-icon">🟢</span>
+            <div><div class="gr-name">Demand stability</div>
+            <div class="gr-detail">Orders steady 17–22/day</div></div>
+          </div></div>
+      </div>
+
+      <div class="section"><div class="section-label">Data Quality & Backfill</div><ul class="dq"><li>COD store: today 40 SAR settled vs 19 orders placed → revenue understated, will backfill upward. Judge on orders_count until settlement clears.</li><li>sales_summary MTD (40) diverges from source attribution (7,769) precisely because attribution counts placed orders while sales_summary counts settled revenue — expected for COD.</li><li>Backfill on next run: re-pull last 4 days and restate 06-30 / 07-01 revenue.</li></ul></div>
+
+      <div class="section">
+        <div class="section-label">Ad Platform <span class="section-sub">campaign → ad group → ad → creative</span></div>
+        
+      <div class="pending">
+        <div class="pending-title">⏳ Ad-platform layer pending — no live spend source today</div>
+        <div class="pending-body">TikTok pipeboard hit its usage cap (33/30). Opt in to Porter for TikTok spend, or wait for reset.</div>
+        <div class="pending-scaffold">Will render: Campaign → Ad Group → Ad → Creative
+        (spend · ROAS · CTR · CPM · frequency + fatigue badge · thumbnails), each with 1d/3d/7d deltas.</div>
+      </div>
+      </div>
+    </section></div>
+  <div class="foot">Truth = Salla revenue. Platform numbers are diagnostic. Blended ROAS governs budget.
+  Monitor-only report — no platform actions taken. TikTok spend via pipeboard: quota exhausted today (33/30). Meta+TikTok spend via Porter: opt-in (billed).</div>
+</body></html>

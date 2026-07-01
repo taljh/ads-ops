@@ -1,0 +1,100 @@
+{
+  "date": "2026-07-01 (Wed)",
+  "generated": "daily-check skill",
+  "cycle_phase": "PEAK (payroll 26→3)",
+  "backfill_window": 4,
+  "footer": "TikTok spend via pipeboard: quota exhausted today (33/30). Meta+TikTok spend via Porter: opt-in (billed).",
+  "clients": [
+    {
+      "name": "Raghad (Zain Abayas)",
+      "settlement": "prepaid",
+      "best_source": "tiktok",
+      "decision": {
+        "priority": "med",
+        "title": "Peak day accelerating — fund what converts, cut nothing.",
+        "detail": "Revenue 6,938 SAR (16 orders), +67% vs yesterday and +341% vs same weekday last week. TikTok drives 48% of sales; Meta (FB+IG) adds 2,010 SAR at the highest visit-to-purchase efficiency. It is a peak day — verify TikTok & Meta budgets are pacing to demand. No cuts. Ad-spend/ROAS confirmation pending a spend source."
+      },
+      "truth": {
+        "revenue": {"today": 6938, "yesterday": 4150, "d3": 3701, "d7": 1572},
+        "orders": {"today": 16, "yesterday": 10, "d3": 9, "d7": 5},
+        "aov": {"today": 434, "yesterday": 415, "d3": 411, "d7": 393}
+      },
+      "sources": [
+        {"source": "tiktok", "revenue": 3326, "purchases": 7, "share": 47.9, "roas": null},
+        {"source": "direct", "revenue": 1602, "purchases": 4, "share": 23.1, "roas": null},
+        {"source": "facebook", "revenue": 1234, "purchases": 3, "share": 17.8, "roas": null},
+        {"source": "instagram", "revenue": 776, "purchases": 2, "share": 11.2, "roas": null}
+      ],
+      "trend": [
+        {"date": "2026-06-24", "revenue": 1572, "orders": 5},
+        {"date": "2026-06-25", "revenue": 6527, "orders": 16},
+        {"date": "2026-06-26", "revenue": 2187, "orders": 6},
+        {"date": "2026-06-27", "revenue": 1592, "orders": 4},
+        {"date": "2026-06-28", "revenue": 3701, "orders": 9},
+        {"date": "2026-06-29", "revenue": 3311, "orders": 9},
+        {"date": "2026-06-30", "revenue": 4150, "orders": 10},
+        {"date": "2026-07-01", "revenue": 6938, "orders": 16}
+      ],
+      "guardrails": [
+        {"name": "Blended ROAS floor (4.5)", "status": "na", "detail": "Needs ad spend — pending source"},
+        {"name": "Budget cap pacing (15k)", "status": "na", "detail": "Needs spend; MTD revenue 6,938 on day 1"},
+        {"name": "CPA ceiling (90)", "status": "na", "detail": "Needs spend + conversions"},
+        {"name": "Store data integrity", "status": "ok", "detail": "Prepaid: orders = paid sales, same-day clean"}
+      ],
+      "data_quality": [
+        "Prepaid store: sales_summary (6,938) reconciles exactly with source attribution (3,326+1,602+1,234+776). No settlement lag.",
+        "Source attribution window may be rolling-30d, not strict MTD — treat per-source ROAS as directional until spend is joined."
+      ],
+      "ad_platform": {
+        "status": "pending",
+        "reason": "no live spend source today",
+        "note": "TikTok pipeboard hit its usage cap (33/30). Meta has no direct MCP here — it routes through Porter (query_data), which starts billing your accounts. Choose: (a) wait for pipeboard reset, or (b) opt in to Porter for TikTok+Meta spend."
+      }
+    },
+    {
+      "name": "Noura",
+      "settlement": "cod",
+      "best_source": "tiktok",
+      "decision": {
+        "priority": "high",
+        "title": "Hold judgment — COD settlement lag, revenue will restate up.",
+        "detail": "19 orders placed today but only 40 SAR settled (COD pays on delivery). Yesterday shows 0 settled against 17 orders — this backfills upward over 2–3 days. Demand is steady (17–22 orders/day). TikTok = 78% of attributed sales. Do NOT act on today's revenue; re-check in 2 days once COD clears before any budget move."
+      },
+      "truth": {
+        "revenue": {"today": 40, "yesterday": 0, "d3": 270, "d7": 1306},
+        "orders": {"today": 19, "yesterday": 17, "d3": 22, "d7": 12},
+        "aov": {"today": 40, "yesterday": null, "d3": 270, "d7": 261}
+      },
+      "sources": [
+        {"source": "tiktok", "revenue": 6070, "purchases": 13, "share": 78.1, "roas": null},
+        {"source": "direct", "revenue": 1699, "purchases": 6, "share": 21.9, "roas": null}
+      ],
+      "trend": [
+        {"date": "2026-06-24", "revenue": 1306, "orders": 12},
+        {"date": "2026-06-25", "revenue": 325, "orders": 13},
+        {"date": "2026-06-26", "revenue": 310, "orders": 10},
+        {"date": "2026-06-27", "revenue": 753, "orders": 25},
+        {"date": "2026-06-28", "revenue": 270, "orders": 22},
+        {"date": "2026-06-29", "revenue": 965, "orders": 19},
+        {"date": "2026-06-30", "revenue": 0, "orders": 17},
+        {"date": "2026-07-01", "revenue": 40, "orders": 19}
+      ],
+      "guardrails": [
+        {"name": "Blended ROAS floor (4.5)", "status": "na", "detail": "Needs ad spend — pending source"},
+        {"name": "Budget cap pacing (15k)", "status": "na", "detail": "Needs spend"},
+        {"name": "Store data integrity", "status": "warn", "detail": "COD: settled revenue lags orders by 2-3 days"},
+        {"name": "Demand stability", "status": "ok", "detail": "Orders steady 17–22/day"}
+      ],
+      "data_quality": [
+        "COD store: today 40 SAR settled vs 19 orders placed → revenue understated, will backfill upward. Judge on orders_count until settlement clears.",
+        "sales_summary MTD (40) diverges from source attribution (7,769) precisely because attribution counts placed orders while sales_summary counts settled revenue — expected for COD.",
+        "Backfill on next run: re-pull last 4 days and restate 06-30 / 07-01 revenue."
+      ],
+      "ad_platform": {
+        "status": "pending",
+        "reason": "no live spend source today",
+        "note": "TikTok pipeboard hit its usage cap (33/30). Opt in to Porter for TikTok spend, or wait for reset."
+      }
+    }
+  ]
+}

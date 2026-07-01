@@ -30,17 +30,19 @@ from pathlib import Path
 # ──────────────────────────────────────────────
 
 CLIENTS = {
+    # نوره — عبايات نوره · TikTok فقط · متجرها Cash-on-Delivery (الإيراد يتأخّر بعد التحصيل → backfill مهم)
     "noura": {
+        "display_name": "Noura",
         "db": "clients/noura/data/tracker.db",
         "monitor": "clients/noura/data/monitoring.json",
+        "salla_settlement": "cod",          # COD: orders_count يسبق sales_total (revenue lag)
         "budget_cap": 15000,
         "breakeven": 2.4,
         "blended_floor": 4.5,
-        "inflation": {"tiktok": 1.39, "snapchat": 4.98},
-        "platforms": ["tiktok", "snapchat"],
-        "windsor_accounts": {
+        "inflation": {"tiktok": 1.39},
+        "platforms": ["tiktok"],
+        "ad_accounts": {
             "tiktok": "7401593626448363521",
-            "snapchat": "1dfe24d6-d8e8-42cb-bc69-8cf651cffdc4",
         },
         "guardrails": {
             "freq_prospecting": 3,
@@ -51,16 +53,20 @@ CLIENTS = {
         },
         "peak_days": list(range(26, 32)) + list(range(1, 4)),
     },
+    # زين — عبايات زين (رغد) · TikTok + Meta · متجرها مدفوع مسبقاً (الإيراد نفس اليوم، نظيف)
     "zain": {
+        "display_name": "Raghad (Zain Abayas)",
         "db": "clients/zain/data/tracker.db",
         "monitor": "clients/zain/data/monitoring.json",
+        "salla_settlement": "prepaid",      # prepaid: orders == paid sales same-day
         "budget_cap": 15000,
         "breakeven": 2.5,
         "blended_floor": 4.5,
-        "inflation": {"tiktok": 1.39},
-        "platforms": ["tiktok"],
-        "windsor_accounts": {
+        "inflation": {"tiktok": 1.39, "meta": 1.3},
+        "platforms": ["tiktok", "meta"],
+        "ad_accounts": {
             "tiktok": "7494645342479319056",
+            "meta": "act_1686054965972322",
         },
         "guardrails": {
             "freq_prospecting": 3,
