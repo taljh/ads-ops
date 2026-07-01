@@ -124,6 +124,9 @@ def render_ad_platform(ap):
       </div>"""
     # populated hierarchy
     html = ""
+    note = ap.get("note", "")
+    if note:
+        html += f'<div class="ap-note">{note}</div>'
     for lvl, rows in [("Campaigns", ap.get("campaigns", [])),
                       ("Ad Groups", ap.get("adgroups", [])),
                       ("Ads", ap.get("ads", []))]:
@@ -131,13 +134,29 @@ def render_ad_platform(ap):
             continue
         trs = ""
         for r in rows:
-            trs += (f'<tr><td>{r.get("name")}</td><td class="num">{money(r.get("spend"))}</td>'
+            st = r.get("status", "")
+            rcls = {"fail": "row-fail", "warn": "row-warn"}.get(st, "")
+            cpa = r.get("cpa")
+            cpa_txt = f'{cpa:.0f}' if cpa else "—"
+            freq = r.get("frequency")
+            freq_txt = f'{freq:.2f}' if freq else "—"
+            flag = ""
+            if cpa and r.get("cpa_ceiling") and cpa > r["cpa_ceiling"]:
+                flag += ' <span class="mini-flag">CPA↑</span>'
+            if freq and freq >= 2.5:
+                flag += ' <span class="mini-flag">fatigue</span>'
+            trs += (f'<tr class="{rcls}"><td>{r.get("name")}{flag}</td>'
+                    f'<td class="num">{money(r.get("spend"))}</td>'
                     f'<td class="num">{r.get("conversions","—")}</td>'
-                    f'<td class="num">{(str(round(r["roas"],2))+"x") if r.get("roas") else "—"}</td>'
+                    f'<td class="num">{cpa_txt}</td>'
+                    f'<td class="num">{freq_txt}</td>'
+                    f'<td class="num">{r.get("ctr","—")}%</td>'
                     f'<td class="num">{delta_html(r.get("spend"), r.get("spend_7d"))}</td></tr>')
-        html += (f'<div class="sub-label">{lvl}</div><table class="tbl"><thead><tr>'
+        html += (f'<div class="sub-label">{lvl} <span class="section-sub">today</span></div>'
+                 f'<table class="tbl"><thead><tr>'
                  f'<th>Name</th><th class="num">Spend</th><th class="num">Conv</th>'
-                 f'<th class="num">ROAS</th><th class="num">Spend vs 7d</th></tr></thead>'
+                 f'<th class="num">CPA</th><th class="num">Freq</th><th class="num">CTR</th>'
+                 f'<th class="num">Spend vs 7d</th></tr></thead>'
                  f'<tbody>{trs}</tbody></table>')
     # creatives grid
     cr = ap.get("creatives", [])
@@ -258,6 +277,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .thumb-blank{display:flex;align-items:center;justify-content:center;background:#f3f4f6;color:#9ca3af;font-size:11px}
 .cr-name{font-size:11.5px;font-weight:600;padding:6px 8px 2px}.cr-meta{font-size:10.5px;color:var(--ink3);padding:0 8px 8px}
 .badge-fatigue{font-size:9px;color:var(--red);font-weight:700}
+.ap-note{font-size:11.5px;color:var(--ink3);background:#f8fafc;border:1px solid var(--border);border-radius:6px;padding:8px 10px;margin-bottom:10px}
+.row-fail td{background:#fef2f2}.row-warn td{background:#fffbeb}
+.mini-flag{font-size:9px;font-weight:700;color:var(--red);background:#fee2e2;padding:1px 5px;border-radius:4px;margin-left:4px}
 .foot{max-width:1000px;margin:16px auto 0;padding:0 20px;font-size:11px;color:var(--ink3)}
 """
 

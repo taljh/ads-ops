@@ -51,6 +51,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .thumb-blank{display:flex;align-items:center;justify-content:center;background:#f3f4f6;color:#9ca3af;font-size:11px}
 .cr-name{font-size:11.5px;font-weight:600;padding:6px 8px 2px}.cr-meta{font-size:10.5px;color:var(--ink3);padding:0 8px 8px}
 .badge-fatigue{font-size:9px;color:var(--red);font-weight:700}
+.ap-note{font-size:11.5px;color:var(--ink3);background:#f8fafc;border:1px solid var(--border);border-radius:6px;padding:8px 10px;margin-bottom:10px}
+.row-fail td{background:#fef2f2}.row-warn td{background:#fffbeb}
+.mini-flag{font-size:9px;font-weight:700;color:var(--red);background:#fee2e2;padding:1px 5px;border-radius:4px;margin-left:4px}
 .foot{max-width:1000px;margin:16px auto 0;padding:0 20px;font-size:11px;color:var(--ink3)}
 </style></head>
 <body>
@@ -69,10 +72,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
         <span class="pill">PREPAID</span>
       </div>
 
-      <div class="decision dec-med">
+      <div class="decision dec-high">
         <div class="dec-tag">🎯 TODAY'S DECISION</div>
-        <div class="dec-title">Peak day accelerating — fund what converts, cut nothing.</div>
-        <div class="dec-detail">Revenue 6,938 SAR (16 orders), +67% vs yesterday and +341% vs same weekday last week. TikTok drives 48% of sales; Meta (FB+IG) adds 2,010 SAR at the highest visit-to-purchase efficiency. It is a peak day — verify TikTok & Meta budgets are pacing to demand. No cuts. Ad-spend/ROAS confirmation pending a spend source.</div>
+        <div class="dec-title">SCALE campaign overspending on peak day — CPA 165 vs 90 ceiling + creative fatigue.</div>
+        <div class="dec-detail">TikTok spend jumped to 1,277 SAR (+221% vs yesterday), almost all in 'SCALE | Best Sellers': 1,155 SAR, 7 conv, CPA 165 (~2× the 90 ceiling), frequency 2.9 (fatigue). 'Prospecting Sales' stays healthy (CPA 41). TikTok channel ROAS 2.6x — below the 4.5 target, above the 2.5 breakeven. It is day-1 of scale on a peak day, so do NOT kill — refresh the SCALE creative and cap its budget; if CPA stays >90 tomorrow, intervene. Store MER looks 5.4x but Meta spend isn't connected, so treat that as an upper bound.</div>
       </div>
 
       <div class="section">
@@ -125,7 +128,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
             <td class="num">3,326</td>
             <td class="num">7</td>
             <td class="num">48%</td>
-            <td class="num"><span class="muted">needs spend</span></td>
+            <td class="num">2.60x</td>
           </tr>
           <tr>
             <td class="src-name">direct</td>
@@ -159,39 +162,38 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       <div class="section">
         <div class="section-label">Guardrails</div>
         <div class="gr-grid">
-          <div class="gr-item gr-na">
-            <span class="gr-icon">⚪</span>
-            <div><div class="gr-name">Blended ROAS floor (4.5)</div>
-            <div class="gr-detail">Needs ad spend — pending source</div></div>
-          </div>
-          <div class="gr-item gr-na">
-            <span class="gr-icon">⚪</span>
-            <div><div class="gr-name">Budget cap pacing (15k)</div>
-            <div class="gr-detail">Needs spend; MTD revenue 6,938 on day 1</div></div>
-          </div>
-          <div class="gr-item gr-na">
-            <span class="gr-icon">⚪</span>
+          <div class="gr-item gr-fail">
+            <span class="gr-icon">🔴</span>
             <div><div class="gr-name">CPA ceiling (90)</div>
-            <div class="gr-detail">Needs spend + conversions</div></div>
+            <div class="gr-detail">SCALE campaign CPA 165 today — ~2× ceiling</div></div>
+          </div>
+          <div class="gr-item gr-warn">
+            <span class="gr-icon">🟡</span>
+            <div><div class="gr-name">Channel ROAS floor (4.5)</div>
+            <div class="gr-detail">TikTok channel 2.6x — below target, above 2.5 breakeven</div></div>
+          </div>
+          <div class="gr-item gr-warn">
+            <span class="gr-icon">🟡</span>
+            <div><div class="gr-name">Frequency (<2.5x creative)</div>
+            <div class="gr-detail">SCALE freq 2.9 — refresh creative</div></div>
+          </div>
+          <div class="gr-item gr-ok">
+            <span class="gr-icon">🟢</span>
+            <div><div class="gr-name">Budget cap pacing (15k)</div>
+            <div class="gr-detail">TikTok spend today 1,277; day-1 of month</div></div>
           </div>
           <div class="gr-item gr-ok">
             <span class="gr-icon">🟢</span>
             <div><div class="gr-name">Store data integrity</div>
-            <div class="gr-detail">Prepaid: orders = paid sales, same-day clean</div></div>
+            <div class="gr-detail">Prepaid: sales reconcile with attribution</div></div>
           </div></div>
       </div>
 
-      <div class="section"><div class="section-label">Data Quality & Backfill</div><ul class="dq"><li>Prepaid store: sales_summary (6,938) reconciles exactly with source attribution (3,326+1,602+1,234+776). No settlement lag.</li><li>Source attribution window may be rolling-30d, not strict MTD — treat per-source ROAS as directional until spend is joined.</li></ul></div>
+      <div class="section"><div class="section-label">Data Quality & Backfill</div><ul class="dq"><li>Prepaid store: Salla revenue (6,938) reconciles exactly with source attribution — per-source ROAS is valid for today.</li><li>Meta (FB+IG) drove 2,010 SAR of sales but its spend is NOT connected in InsightfulPipe → FB/IG ROAS and true blended MER are incomplete.</li><li>TikTok reports total_purchase_value = 0 (pixel value not passed) — revenue always comes from Salla, by design.</li></ul></div>
 
       <div class="section">
         <div class="section-label">Ad Platform <span class="section-sub">campaign → ad group → ad → creative</span></div>
-        
-      <div class="pending">
-        <div class="pending-title">⏳ Ad-platform layer pending — no live spend source today</div>
-        <div class="pending-body">TikTok pipeboard hit its usage cap (33/30). Meta has no direct MCP here — it routes through Porter (query_data), which starts billing your accounts. Choose: (a) wait for pipeboard reset, or (b) opt in to Porter for TikTok+Meta spend.</div>
-        <div class="pending-scaffold">Will render: Campaign → Ad Group → Ad → Creative
-        (spend · ROAS · CTR · CPM · frequency + fatigue badge · thumbnails), each with 1d/3d/7d deltas.</div>
-      </div>
+        <div class="ap-note">TikTok via InsightfulPipe (live). Meta not connected → Raghad FB/IG spend missing. Ad + creative drill available on request.</div><div class="sub-label">Campaigns <span class="section-sub">today</span></div><table class="tbl"><thead><tr><th>Name</th><th class="num">Spend</th><th class="num">Conv</th><th class="num">CPA</th><th class="num">Freq</th><th class="num">CTR</th><th class="num">Spend vs 7d</th></tr></thead><tbody><tr class="row-fail"><td>SCALE | Best Sellers | Purchase <span class="mini-flag">CPA↑</span> <span class="mini-flag">fatigue</span></td><td class="num">1,155</td><td class="num">7</td><td class="num">165</td><td class="num">2.91</td><td class="num">2.43%</td><td class="num"><span class="delta delta-up">▲ 321%</span></td></tr><tr class=""><td>Prospecting Sales | JUN</td><td class="num">122</td><td class="num">3</td><td class="num">41</td><td class="num">2.17</td><td class="num">1.53%</td><td class="num"><span class="delta delta-down">▼ 39%</span></td></tr></tbody></table>
       </div>
     </section>
     <section class="client">
@@ -200,10 +202,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
         <span class="pill">COD</span>
       </div>
 
-      <div class="decision dec-high">
+      <div class="decision dec-med">
         <div class="dec-tag">🎯 TODAY'S DECISION</div>
-        <div class="dec-title">Hold judgment — COD settlement lag, revenue will restate up.</div>
-        <div class="dec-detail">19 orders placed today but only 40 SAR settled (COD pays on delivery). Yesterday shows 0 settled against 17 orders — this backfills upward over 2–3 days. Demand is steady (17–22 orders/day). TikTok = 78% of attributed sales. Do NOT act on today's revenue; re-check in 2 days once COD clears before any budget move.</div>
+        <div class="dec-title">TikTok efficiency healthy (CPA 75) — but revenue is COD-delayed, hold.</div>
+        <div class="dec-detail">17 TikTok conversions today at CPA 74.5 (under the 90 ceiling), frequency 1.68, spend 1,267 SAR (+98% vs yesterday). Demand is real (19 orders). But only 40 SAR is settled — COD pays on delivery, so revenue backfills over 2–3 days; do NOT compute ROAS on 40. TikTok drives 78% of attributed sales. Hold budget; re-check in 2 days once COD clears.</div>
       </div>
 
       <div class="section">
@@ -276,41 +278,35 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       <div class="section">
         <div class="section-label">Guardrails</div>
         <div class="gr-grid">
-          <div class="gr-item gr-na">
-            <span class="gr-icon">⚪</span>
-            <div><div class="gr-name">Blended ROAS floor (4.5)</div>
-            <div class="gr-detail">Needs ad spend — pending source</div></div>
+          <div class="gr-item gr-ok">
+            <span class="gr-icon">🟢</span>
+            <div><div class="gr-name">CPA ceiling (90)</div>
+            <div class="gr-detail">TikTok CPA 74.5 today — under ceiling</div></div>
+          </div>
+          <div class="gr-item gr-ok">
+            <span class="gr-icon">🟢</span>
+            <div><div class="gr-name">Frequency (<3 prospecting)</div>
+            <div class="gr-detail">1.68 — healthy</div></div>
           </div>
           <div class="gr-item gr-na">
             <span class="gr-icon">⚪</span>
-            <div><div class="gr-name">Budget cap pacing (15k)</div>
-            <div class="gr-detail">Needs spend</div></div>
+            <div><div class="gr-name">ROAS floor (4.5)</div>
+            <div class="gr-detail">COD revenue not settled — cannot compute today</div></div>
           </div>
           <div class="gr-item gr-warn">
             <span class="gr-icon">🟡</span>
             <div><div class="gr-name">Store data integrity</div>
-            <div class="gr-detail">COD: settled revenue lags orders by 2-3 days</div></div>
-          </div>
-          <div class="gr-item gr-ok">
-            <span class="gr-icon">🟢</span>
-            <div><div class="gr-name">Demand stability</div>
-            <div class="gr-detail">Orders steady 17–22/day</div></div>
+            <div class="gr-detail">COD: settled revenue lags orders 2–3 days</div></div>
           </div></div>
       </div>
 
-      <div class="section"><div class="section-label">Data Quality & Backfill</div><ul class="dq"><li>COD store: today 40 SAR settled vs 19 orders placed → revenue understated, will backfill upward. Judge on orders_count until settlement clears.</li><li>sales_summary MTD (40) diverges from source attribution (7,769) precisely because attribution counts placed orders while sales_summary counts settled revenue — expected for COD.</li><li>Backfill on next run: re-pull last 4 days and restate 06-30 / 07-01 revenue.</li></ul></div>
+      <div class="section"><div class="section-label">Data Quality & Backfill</div><ul class="dq"><li>COD store: 40 SAR settled vs 19 orders placed → revenue understated, will backfill upward. Judge on orders_count + TikTok conversions until settled.</li><li>Per-source ROAS not computable today: attribution (6,070 tiktok) is placed-order value over a rolling window, not same-day settled — mixing it with today's spend would mislead.</li><li>Backfill next run: re-pull last 4 days and restate 06-30 / 07-01 revenue.</li></ul></div>
 
       <div class="section">
         <div class="section-label">Ad Platform <span class="section-sub">campaign → ad group → ad → creative</span></div>
-        
-      <div class="pending">
-        <div class="pending-title">⏳ Ad-platform layer pending — no live spend source today</div>
-        <div class="pending-body">TikTok pipeboard hit its usage cap (33/30). Opt in to Porter for TikTok spend, or wait for reset.</div>
-        <div class="pending-scaffold">Will render: Campaign → Ad Group → Ad → Creative
-        (spend · ROAS · CTR · CPM · frequency + fatigue badge · thumbnails), each with 1d/3d/7d deltas.</div>
-      </div>
+        <div class="ap-note">TikTok via InsightfulPipe (live). Noura runs TikTok only. Ad + creative drill available on request.</div><div class="sub-label">Campaigns <span class="section-sub">today</span></div><table class="tbl"><thead><tr><th>Name</th><th class="num">Spend</th><th class="num">Conv</th><th class="num">CPA</th><th class="num">Freq</th><th class="num">CTR</th><th class="num">Spend vs 7d</th></tr></thead><tbody><tr class=""><td>Prospecting Sales | JUN</td><td class="num">1,267</td><td class="num">17</td><td class="num">75</td><td class="num">1.68</td><td class="num">1.90%</td><td class="num"><span class="delta delta-up">▲ 39%</span></td></tr></tbody></table>
       </div>
     </section></div>
   <div class="foot">Truth = Salla revenue. Platform numbers are diagnostic. Blended ROAS governs budget.
-  Monitor-only report — no platform actions taken. TikTok spend via pipeboard: quota exhausted today (33/30). Meta+TikTok spend via Porter: opt-in (billed).</div>
+  Monitor-only report — no platform actions taken. TikTok spend LIVE via InsightfulPipe (both clients). Meta (Raghad FB/IG) not yet connected in InsightfulPipe → missing. Salla = revenue truth. TikTok reports no purchase value, so ROAS uses Salla revenue.</div>
 </body></html>

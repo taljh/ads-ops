@@ -27,13 +27,17 @@ are diagnostic. **Never invent numbers** — if a source is missing, say so. Alw
 | Truth: revenue / orders / AOV | **Salla** `reports_sales_summary` | per store MCP |
 | Which source drove sales | **Salla** `reports_traffic_sources` / `reports_traffic_campaigns` | per store MCP |
 | Daily revenue trend (deltas) | **Salla** `reports_sales_breakdowns` (`sales-per-day`) | per store MCP |
-| TikTok spend / performance / creative | **TikTok pipeboard** (native, to ad+creative level) | `get_tiktok_insights`, `get_tiktok_ads`, `get_tiktok_video_info` |
-| Meta spend (Raghad only) | **Porter Metrics** `query_data` (no direct Meta MCP) | `fetch(tool:porter-reporting:query_data)` |
+| TikTok spend / performance / creative | **InsightfulPipe MCP** (live, both advertisers, to ad+creative) | `query_contexts` → `query_data` (action `report/integrated/get/`, `campaign/get/`, `ad/get/`) |
+| Meta spend (Raghad only) | **InsightfulPipe MCP** once `facebook-ads` is connected | same flow, `platform="facebook-ads"` |
 
-- Aggregation layers (Porter/Windsor) blend attribution windows + lag → use native sources first
-  (pipeboard for TikTok, Salla for the store). Use Porter **only** where there is no direct link (Meta).
-- ⚠️ **pipeboard has a low daily quota** (seen: 33/30 → capped). Budget calls: pull campaign level daily,
-  drill to ad/creative only for movers. If capped, Porter is the fallback for TikTok too (it bills).
+- **Primary ad source = InsightfulPipe MCP** (goes through the MCP channel, not blocked by network egress).
+  Discover accounts with `query_contexts request=accounts`; workspace_id=3106, brand_id=3300.
+  TikTok advertiser IDs: Noura `7401593626448363521`, Raghad/Zain `7494645342479319056`.
+- ⚠️ **Meta is NOT connected yet** in InsightfulPipe (only `tiktok-ads` shows under sources). Until Raghad's
+  `facebook-ads` account is connected, her FB/IG spend is missing → FB/IG ROAS and true blended MER are partial. Say so.
+- ⚠️ TikTok returns `total_purchase_value = 0` (pixel value not passed) → **never** derive ROAS from TikTok;
+  revenue comes from Salla. TikTok gives spend / conversions (`complete_payment`) / CPA / CTR / frequency.
+- Fallbacks if InsightfulPipe is down: TikTok pipeboard (`get_tiktok_insights`, low daily quota) or Porter (bills).
 - Client config (accounts, settlement type, guardrails, inflation) lives in `tools/daily_check.py` → `CLIENTS`.
 
 ## 2) The daily loop (per client)
