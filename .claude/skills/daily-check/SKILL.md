@@ -28,7 +28,7 @@ are diagnostic. **Never invent numbers** — if a source is missing, say so. Alw
 | Which source drove sales | **Salla** `reports_traffic_sources` / `reports_traffic_campaigns` | per store MCP |
 | Daily revenue trend (deltas) | **Salla** `reports_sales_breakdowns` (`sales-per-day`) | per store MCP |
 | TikTok spend / performance / creative | **InsightfulPipe MCP** (live, both advertisers, to ad+creative) | `query_contexts` → `query_data` (action `report/integrated/get/`, `campaign/get/`, `ad/get/`) |
-| Meta spend (Raghad only) | **InsightfulPipe MCP** once `facebook-ads` is connected | same flow, `platform="facebook-ads"` |
+| Meta spend / creative (Raghad only) | **Meta MCP** (live) | `ads_get_ad_entities` (account `1686054965972322`, level campaign/adset/ad, `time_increment=1`) |
 
 - **Primary ad source = InsightfulPipe MCP** (goes through the MCP channel, not blocked by network egress).
   Discover accounts with `query_contexts request=accounts`; workspace_id=3106, brand_id=3300.
@@ -70,6 +70,30 @@ restatements are first-class). Surface: *"Correction: 06-28 gained 3 late conver
 
 Every core metric (Blended ROAS, revenue, spend, CPA, CTR) shows **vs 1d / vs 3d / vs 7d** as **% + arrow**
 (🟢↑ good / 🔴↓ bad). The 7-day compare is same-weekday (cancels day-of-week effects).
+
+## 4b) Report architecture — one wide view, platform-nested
+
+The report is a **single page** built for an away-from-desk operator:
+1. **Portfolio bird's-eye** (top): total ad spend, total Salla revenue, portfolio MER,
+   per-client mini-cards (MER + decision), and cross-client **alerts**.
+2. **Per client**, in order: Today's Decision → **Client totals (blended)** → then one
+   **layer per platform**: 🛒 Salla (truth) → 📘 Meta → 🎵 TikTok → Guardrails.
+   Each platform is shown **separately** (its own spend/ROAS/CPA/campaigns) AND rolled
+   into the client blended total — so you get both the wide overview and the detail.
+   A platform the client doesn't run renders as an explicit "not running" note.
+
+## 4c) Analysis lenses — bake in the prompt library
+
+Every ads platform layer carries short **analysis lenses** distilled from
+`insightfulpipe_prompts.md` (the 10-prompt InsightfulPipe library, saved in this
+folder). Apply the matching lenses per platform, each as 1–2 evidence-based bullets:
+
+- **Meta:** Performance (#1) · Audience (#2) · Creative (#3) · Budget (#4) · Weekly (#5)
+- **TikTok:** Performance (#6) · Targeting (#7) · Creative (#8) · Weekly (#9) · Health (#10)
+- **Salla:** Performance + Attribution (store-truth lenses).
+
+Lenses **summarize**, they don't replace the tables — pull the real numbers first,
+then let the lens say what to do. This is pure enhancement; nothing already built changes.
 
 ## 5) Hierarchy — campaign → ad group → ad → creative
 

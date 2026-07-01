@@ -3,105 +3,176 @@
   "generated": "daily-check skill",
   "cycle_phase": "PEAK (payroll 26→3)",
   "backfill_window": 4,
-  "footer": "TikTok spend LIVE via InsightfulPipe (both clients). Meta (Raghad FB/IG) not yet connected in InsightfulPipe → missing. Salla = revenue truth. TikTok reports no purchase value, so ROAS uses Salla revenue.",
+  "footer": "TikTok spend LIVE via InsightfulPipe · Meta spend LIVE via Meta MCP · Salla = revenue truth. Meta returned 3 days (7d deltas partial). Noura is COD → settled revenue backfills over 2–3 days.",
+  "portfolio": {
+    "total_spend": 2721,
+    "total_revenue": 6978,
+    "blended_mer": "2.56",
+    "total_orders": 35,
+    "alerts": [
+      "Portfolio MER 2.56x is understated — Noura is COD; its revenue settles over 2–3 days. Raghad's clean MER = 4.77x.",
+      "Raghad: Meta is ~4× more efficient than TikTok (ROAS 11.3 vs 2.6) but gets only 12% of ad budget — reallocation opportunity.",
+      "Raghad: TikTok 'SCALE' campaign CPA 165 (2× the 90 ceiling) + frequency 2.9 fatigue — cap & refresh."
+    ]
+  },
   "clients": [
     {
       "name": "Raghad (Zain Abayas)",
       "settlement": "prepaid",
-      "best_source": "tiktok",
       "decision": {
         "priority": "high",
-        "title": "SCALE campaign overspending on peak day — CPA 165 vs 90 ceiling + creative fatigue.",
-        "detail": "TikTok spend jumped to 1,277 SAR (+221% vs yesterday), almost all in 'SCALE | Best Sellers': 1,155 SAR, 7 conv, CPA 165 (~2× the 90 ceiling), frequency 2.9 (fatigue). 'Prospecting Sales' stays healthy (CPA 41). TikTok channel ROAS 2.6x — below the 4.5 target, above the 2.5 breakeven. It is day-1 of scale on a peak day, so do NOT kill — refresh the SCALE creative and cap its budget; if CPA stays >90 tomorrow, intervene. Store MER looks 5.4x but Meta spend isn't connected, so treat that as an upper bound."
+        "title": "Shift budget from TikTok SCALE (CPA 165) toward Meta (ROAS 11, starved at 12% of spend).",
+        "detail": "Blended MER 4.77x today (above the 4.5 floor) on 1,454 SAR ad spend. But the mix is wrong: TikTok 'SCALE' burns 1,155 SAR at CPA 165 (2× ceiling, freq 2.9 fatigue) returning ROAS ~2.6, while Meta prospecting returns ROAS 11.3 (CPA 35, freq 1.3 fresh) on just 177 SAR. It is a peak day + day-1 of scale, so don't kill SCALE — cap & refresh it and push test budget to Meta where efficiency is ~4× higher. TikTok 'Prospecting Sales' (CPA 41) stays healthy."
       },
-      "truth": {
+      "totals": {
         "revenue": {"today": 6938, "yesterday": 4150, "d3": 3701, "d7": 1572},
-        "orders": {"today": 16, "yesterday": 10, "d3": 9, "d7": 5},
-        "aov": {"today": 434, "yesterday": 415, "d3": 411, "d7": 393}
+        "spend": {"today": 1454, "yesterday": 586, "d3": null, "d7": null},
+        "mer": {"today": 4.77, "yesterday": 7.08, "d3": null, "d7": null},
+        "orders": {"today": 16, "yesterday": 10, "d3": 9, "d7": 5}
       },
-      "sources": [
-        {"source": "tiktok", "revenue": 3326, "purchases": 7, "share": 47.9, "roas": 2.60},
-        {"source": "direct", "revenue": 1602, "purchases": 4, "share": 23.1, "roas": null},
-        {"source": "facebook", "revenue": 1234, "purchases": 3, "share": 17.8, "roas": null},
-        {"source": "instagram", "revenue": 776, "purchases": 2, "share": 11.2, "roas": null}
-      ],
-      "trend": [
-        {"date": "2026-06-24", "revenue": 1572, "orders": 5},
-        {"date": "2026-06-25", "revenue": 6527, "orders": 16},
-        {"date": "2026-06-26", "revenue": 2187, "orders": 6},
-        {"date": "2026-06-27", "revenue": 1592, "orders": 4},
-        {"date": "2026-06-28", "revenue": 3701, "orders": 9},
-        {"date": "2026-06-29", "revenue": 3311, "orders": 9},
-        {"date": "2026-06-30", "revenue": 4150, "orders": 10},
-        {"date": "2026-07-01", "revenue": 6938, "orders": 16}
+      "platforms": [
+        {
+          "key": "salla", "label": "🛒 Salla — store truth", "kind": "salla",
+          "best_source": "tiktok",
+          "kpis": {
+            "revenue": {"today": 6938, "yesterday": 4150, "d3": 3701, "d7": 1572},
+            "orders": {"today": 16, "yesterday": 10, "d3": 9, "d7": 5},
+            "aov": {"today": 434, "yesterday": 415, "d3": 411, "d7": 393}
+          },
+          "sources": [
+            {"source": "tiktok", "revenue": 3326, "purchases": 7, "share": 47.9, "roas": 2.60},
+            {"source": "direct", "revenue": 1602, "purchases": 4, "share": 23.1, "roas": null},
+            {"source": "facebook", "revenue": 1234, "purchases": 3, "share": 17.8, "roas": null},
+            {"source": "instagram", "revenue": 776, "purchases": 2, "share": 11.2, "roas": null}
+          ],
+          "trend": [
+            {"date": "2026-06-24", "revenue": 1572}, {"date": "2026-06-25", "revenue": 6527},
+            {"date": "2026-06-26", "revenue": 2187}, {"date": "2026-06-27", "revenue": 1592},
+            {"date": "2026-06-28", "revenue": 3701}, {"date": "2026-06-29", "revenue": 3311},
+            {"date": "2026-06-30", "revenue": 4150}, {"date": "2026-07-01", "revenue": 6938}
+          ],
+          "notes": [
+            "Prepaid store: Salla revenue (6,938) reconciles exactly with source attribution — per-source ROAS is valid for today.",
+            "Facebook + Instagram (2,010 SAR) both come from Meta ads — combined below in the Meta layer."
+          ],
+          "lenses": [
+            {"title": "Performance", "points": ["Revenue +67% vs yesterday, +341% vs same weekday last week.", "16 orders, AOV 434 (stable)."]},
+            {"title": "Attribution", "points": ["TikTok 48% of sales but low ROAS.", "Meta (FB+IG) 30% at high efficiency.", "Direct 23% = halo / organic."]}
+          ]
+        },
+        {
+          "key": "meta", "label": "📘 Meta (Facebook / Instagram)", "kind": "ads",
+          "chips": [
+            {"label": "Spend", "value": "177", "sub": "▼6% vs 1d", "cls": ""},
+            {"label": "Revenue", "value": "2,010", "sub": "FB 1,234 · IG 776", "cls": ""},
+            {"label": "ROAS", "value": "11.3x", "sub": "≥ 4.5 floor", "cls": "chip-ok"},
+            {"label": "CPA", "value": "35", "sub": "5 purchases", "cls": "chip-ok"}
+          ],
+          "campaigns": [
+            {"name": "ZA_META_SALES_PROSPECTING_KSA", "spend": 177.25, "conversions": 5, "cpa": 35.45, "frequency": 1.30, "ctr": "4.73", "spend_7d": null, "cpa_ceiling": 90, "status": "ok"}
+          ],
+          "lenses": [
+            {"title": "Performance", "points": ["Most efficient channel: ROAS 11.3, CPA 35 — but only 12% of ad budget."]},
+            {"title": "Audience", "points": ["Single KSA prospecting campaign; CTR 4.73% strong; no fragmentation/overlap."]},
+            {"title": "Creative", "points": ["Freq 1.30 fresh, CTR 4.73% — no fatigue, headroom to scale."]},
+            {"title": "Budget", "points": ["Prime reallocation target — absorb budget from TikTok SCALE."]}
+          ]
+        },
+        {
+          "key": "tiktok", "label": "🎵 TikTok", "kind": "ads",
+          "chips": [
+            {"label": "Spend", "value": "1,277", "sub": "▲221% vs 1d", "cls": ""},
+            {"label": "Revenue", "value": "3,326", "sub": "Salla-attributed", "cls": ""},
+            {"label": "ROAS", "value": "2.6x", "sub": "< 4.5 target", "cls": "chip-warn"},
+            {"label": "CPA", "value": "128", "sub": "10 conv", "cls": "chip-warn"}
+          ],
+          "campaigns": [
+            {"name": "SCALE | Best Sellers | Purchase", "spend": 1154.63, "conversions": 7, "cpa": 164.95, "frequency": 2.91, "ctr": "2.43", "spend_7d": 274.04, "cpa_ceiling": 90, "status": "fail"},
+            {"name": "Prospecting Sales | JUN", "spend": 122.47, "conversions": 3, "cpa": 40.82, "frequency": 2.17, "ctr": "1.53", "spend_7d": 199.78, "cpa_ceiling": 90, "status": "ok"}
+          ],
+          "lenses": [
+            {"title": "Performance", "points": ["Volume engine (2.3× Meta spend) but ROAS 2.6 < 4.5 target; SCALE is the drag."]},
+            {"title": "Targeting", "points": ["Prospecting Sales efficient (CPA 41); SCALE broad best-sellers overspending."]},
+            {"title": "Creative", "points": ["SCALE freq 2.91 → fatigue, refresh now; Prospecting CTR 1.53 acceptable."]},
+            {"title": "Budget / Health", "points": ["SCALE = ~90% of TikTok spend at CPA 165 — cap it.", "No policy flags; pacing within cap."]}
+          ]
+        }
       ],
       "guardrails": [
-        {"name": "CPA ceiling (90)", "status": "fail", "detail": "SCALE campaign CPA 165 today — ~2× ceiling"},
-        {"name": "Channel ROAS floor (4.5)", "status": "warn", "detail": "TikTok channel 2.6x — below target, above 2.5 breakeven"},
-        {"name": "Frequency (<2.5x creative)", "status": "warn", "detail": "SCALE freq 2.9 — refresh creative"},
-        {"name": "Budget cap pacing (15k)", "status": "ok", "detail": "TikTok spend today 1,277; day-1 of month"},
-        {"name": "Store data integrity", "status": "ok", "detail": "Prepaid: sales reconcile with attribution"}
-      ],
-      "data_quality": [
-        "Prepaid store: Salla revenue (6,938) reconciles exactly with source attribution — per-source ROAS is valid for today.",
-        "Meta (FB+IG) drove 2,010 SAR of sales but its spend is NOT connected in InsightfulPipe → FB/IG ROAS and true blended MER are incomplete.",
-        "TikTok reports total_purchase_value = 0 (pixel value not passed) — revenue always comes from Salla, by design."
-      ],
-      "ad_platform": {
-        "status": "ok",
-        "note": "TikTok via InsightfulPipe (live). Meta not connected → Raghad FB/IG spend missing. Ad + creative drill available on request.",
-        "campaigns": [
-          {"name": "SCALE | Best Sellers | Purchase", "spend": 1154.63, "conversions": 7, "cpa": 164.95, "frequency": 2.91, "ctr": "2.43", "spend_7d": 274.04, "cpa_ceiling": 90, "status": "fail"},
-          {"name": "Prospecting Sales | JUN", "spend": 122.47, "conversions": 3, "cpa": 40.82, "frequency": 2.17, "ctr": "1.53", "spend_7d": 199.78, "cpa_ceiling": 90, "status": "ok"}
-        ]
-      }
+        {"name": "CPA ceiling (90)", "status": "fail", "detail": "TikTok SCALE CPA 165 — 2× ceiling"},
+        {"name": "Blended MER floor (4.5)", "status": "ok", "detail": "4.77x today (TikTok+Meta)"},
+        {"name": "TikTok channel ROAS", "status": "warn", "detail": "2.6x — below 4.5 target, above 2.5 breakeven"},
+        {"name": "Frequency (<2.5x creative)", "status": "warn", "detail": "SCALE 2.9 — refresh"},
+        {"name": "Budget cap pacing (15k)", "status": "ok", "detail": "Spend today 1,454; day-1 of month"}
+      ]
     },
     {
       "name": "Noura",
       "settlement": "cod",
-      "best_source": "tiktok",
       "decision": {
         "priority": "med",
         "title": "TikTok efficiency healthy (CPA 75) — but revenue is COD-delayed, hold.",
-        "detail": "17 TikTok conversions today at CPA 74.5 (under the 90 ceiling), frequency 1.68, spend 1,267 SAR (+98% vs yesterday). Demand is real (19 orders). But only 40 SAR is settled — COD pays on delivery, so revenue backfills over 2–3 days; do NOT compute ROAS on 40. TikTok drives 78% of attributed sales. Hold budget; re-check in 2 days once COD clears."
+        "detail": "17 TikTok conversions today at CPA 74.5 (under the 90 ceiling), frequency 1.68, spend 1,267 SAR (+98% vs yesterday). Demand is real (19 orders). But only 40 SAR is settled — COD pays on delivery, so revenue backfills over 2–3 days; do NOT compute ROAS on 40. TikTok drives 78% of attributed sales. Hold budget; re-check in 2 days once COD clears. (Noura runs no Meta.)"
       },
-      "truth": {
+      "totals": {
         "revenue": {"today": 40, "yesterday": 0, "d3": 270, "d7": 1306},
-        "orders": {"today": 19, "yesterday": 17, "d3": 22, "d7": 12},
-        "aov": {"today": 40, "yesterday": null, "d3": 270, "d7": 261}
+        "spend": {"today": 1267, "yesterday": 640, "d3": 1024, "d7": 959},
+        "mer": {"today": null, "yesterday": null, "d3": null, "d7": null},
+        "orders": {"today": 19, "yesterday": 17, "d3": 22, "d7": 12}
       },
-      "sources": [
-        {"source": "tiktok", "revenue": 6070, "purchases": 13, "share": 78.1, "roas": null},
-        {"source": "direct", "revenue": 1699, "purchases": 6, "share": 21.9, "roas": null}
-      ],
-      "trend": [
-        {"date": "2026-06-24", "revenue": 1306, "orders": 12},
-        {"date": "2026-06-25", "revenue": 325, "orders": 13},
-        {"date": "2026-06-26", "revenue": 310, "orders": 10},
-        {"date": "2026-06-27", "revenue": 753, "orders": 25},
-        {"date": "2026-06-28", "revenue": 270, "orders": 22},
-        {"date": "2026-06-29", "revenue": 965, "orders": 19},
-        {"date": "2026-06-30", "revenue": 0, "orders": 17},
-        {"date": "2026-07-01", "revenue": 40, "orders": 19}
+      "platforms": [
+        {
+          "key": "salla", "label": "🛒 Salla — store truth", "kind": "salla",
+          "best_source": "tiktok",
+          "kpis": {
+            "revenue": {"today": 40, "yesterday": 0, "d3": 270, "d7": 1306},
+            "orders": {"today": 19, "yesterday": 17, "d3": 22, "d7": 12},
+            "aov": {"today": 40, "yesterday": null, "d3": 270, "d7": 261}
+          },
+          "sources": [
+            {"source": "tiktok", "revenue": 6070, "purchases": 13, "share": 78.1, "roas": null},
+            {"source": "direct", "revenue": 1699, "purchases": 6, "share": 21.9, "roas": null}
+          ],
+          "trend": [
+            {"date": "2026-06-24", "revenue": 1306}, {"date": "2026-06-25", "revenue": 325},
+            {"date": "2026-06-26", "revenue": 310}, {"date": "2026-06-27", "revenue": 753},
+            {"date": "2026-06-28", "revenue": 270}, {"date": "2026-06-29", "revenue": 965},
+            {"date": "2026-06-30", "revenue": 0}, {"date": "2026-07-01", "revenue": 40}
+          ],
+          "notes": [
+            "COD store: 40 SAR settled vs 19 orders placed → revenue understated, backfills upward. Judge on orders + TikTok conversions until settled.",
+            "sales_summary MTD (40) diverges from attribution (7,769) because attribution counts placed orders while sales_summary counts settled revenue — expected for COD."
+          ],
+          "lenses": [
+            {"title": "Performance", "points": ["19 orders today (steady 17–22 band).", "Only 40 SAR settled — COD lag, not a demand drop."]},
+            {"title": "Attribution", "points": ["TikTok 78% of attributed sales; direct 22%."]}
+          ]
+        },
+        {"key": "meta", "label": "📘 Meta", "kind": "none", "message": "Noura runs TikTok only — no Meta account connected."},
+        {
+          "key": "tiktok", "label": "🎵 TikTok", "kind": "ads",
+          "chips": [
+            {"label": "Spend", "value": "1,267", "sub": "▲98% vs 1d", "cls": ""},
+            {"label": "Revenue", "value": "—", "sub": "COD pending", "cls": "chip-na"},
+            {"label": "ROAS", "value": "—", "sub": "COD pending", "cls": "chip-na"},
+            {"label": "CPA", "value": "75", "sub": "17 conv · under 90", "cls": "chip-ok"}
+          ],
+          "campaigns": [
+            {"name": "Prospecting Sales | JUN", "spend": 1267.32, "conversions": 17, "cpa": 74.55, "frequency": 1.68, "ctr": "1.90", "spend_7d": 908.57, "cpa_ceiling": 90, "status": "ok"}
+          ],
+          "lenses": [
+            {"title": "Performance", "points": ["17 conversions at CPA 74.5 (under 90) — solid on a peak day."]},
+            {"title": "Creative", "points": ["Freq 1.68 fresh, CTR 1.90 acceptable — no fatigue."]},
+            {"title": "Budget / Health", "points": ["Spend +98% DoD into peak; within cap.", "Main campaign carries; traffic campaign off."]}
+          ]
+        }
       ],
       "guardrails": [
-        {"name": "CPA ceiling (90)", "status": "ok", "detail": "TikTok CPA 74.5 today — under ceiling"},
+        {"name": "CPA ceiling (90)", "status": "ok", "detail": "TikTok CPA 74.5 — under ceiling"},
         {"name": "Frequency (<3 prospecting)", "status": "ok", "detail": "1.68 — healthy"},
         {"name": "ROAS floor (4.5)", "status": "na", "detail": "COD revenue not settled — cannot compute today"},
         {"name": "Store data integrity", "status": "warn", "detail": "COD: settled revenue lags orders 2–3 days"}
-      ],
-      "data_quality": [
-        "COD store: 40 SAR settled vs 19 orders placed → revenue understated, will backfill upward. Judge on orders_count + TikTok conversions until settled.",
-        "Per-source ROAS not computable today: attribution (6,070 tiktok) is placed-order value over a rolling window, not same-day settled — mixing it with today's spend would mislead.",
-        "Backfill next run: re-pull last 4 days and restate 06-30 / 07-01 revenue."
-      ],
-      "ad_platform": {
-        "status": "ok",
-        "note": "TikTok via InsightfulPipe (live). Noura runs TikTok only. Ad + creative drill available on request.",
-        "campaigns": [
-          {"name": "Prospecting Sales | JUN", "spend": 1267.32, "conversions": 17, "cpa": 74.55, "frequency": 1.68, "ctr": "1.90", "spend_7d": 908.57, "cpa_ceiling": 90, "status": "ok"}
-        ]
-      }
+      ]
     }
   ]
 }
